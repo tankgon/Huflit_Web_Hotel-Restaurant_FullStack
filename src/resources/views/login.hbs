@@ -1,0 +1,66 @@
+<form action = "./private" method="get" >
+    <div class="body-for_img">
+        <img src="./img/dangnhap.png" alt="">
+        <div class="to">
+            <div class="form">
+                <img src="./img/logoo.png" height="130" width="180">
+                <h2>Đăng Nhập vào GonT</h2>
+            <label> Username</label>
+                 <input type="text" name="username" id="username">
+                <label> Password</label>
+                 <input type="password" name="password" id="password">   
+                <a href="#" >Quên mật khẩu ?</a> 
+                <input  id="submit" type="submit" name="submit" onclick="login()" value="Gửi">
+                {{!-- <button id="submit" onclick="">Gửi</button> --}}
+            </div>                
+        </div>
+    </div>
+</form>
+
+
+<script>
+
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+   function login()
+    {
+        $.ajax({
+            url : '/',
+            type : 'POST',
+            data: {
+                username : $('#username').val(),
+                password : $('#password').val()
+            }
+        })
+        .then( data =>
+        {
+          
+            setCookie('token',data.token,1)
+        })
+        .catch(err =>
+        {
+            console.log(err);
+        })
+    }
+</script>
