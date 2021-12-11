@@ -23,7 +23,7 @@ router.get("/khachhang",checklogin,PrivateController.giahan);
 router.get("/phong",checklogin,PrivateController.phong);
 router.get("/doiphong",checklogin,PrivateController.doiphong);
 router.get("/dskhachhang",checklogin,PrivateController.dskhachhang);
-
+// hi hello
 
 router.post("/receivekhachhang",checklogin,PrivateController.receivekhachhang);
 
