@@ -9,32 +9,32 @@ class PrivateController {
 
   //[GET] private/dichvu
   dichvu(req, res, next) {
-    res.render("phieudichvu");
+    res.render("dichvu/phieudichvu");
   }
 
   //[GET] private/phanquyen
   phanquyen(req, res, next) {
-    res.render("phieuphanquyen");
+    res.render("management/phieuphanquyen");
   }
 
   //[GET] private/nhanphong
   nhanphong(req, res, next) {
-    res.render("nhanphong");
+    res.render("phong/nhanphong");
   }
 
   //[GET] private/traphong
   traphong(req, res, next) {
-    res.render("traphong");
+    res.render("phong/traphong");
   }
 
   //[GET] private/dattiec
   dattiec(req, res, next) {
-    res.render("phieudattiec");
+    res.render("nhahang/phieudattiec");
   }
 
   //[GET] private/khachhang
   khachhang(req, res, next) {
-    res.render("hosoKH");
+    res.render("khachhang/hosoKH");
   }
 
   //[GET] private/dskhachhang 
@@ -42,13 +42,13 @@ class PrivateController {
     Customer.find({}).lean()
     // course paramater là doucument trong db
     .then((data) => {
-      res.render("dskhachhang", { data:data });
+      res.render("khachhang/dskhachhang", { data:data });
     })
     .catch(next);
   }
   //[GET] private/giahan
   giahan(req, res, next) {
-    res.render("phieugiahan");
+    res.render("phong/phieugiahan");
   }
 
   //[GET] private/phong
@@ -58,7 +58,7 @@ class PrivateController {
 
   //[GET] private/doiphong
   doiphong(req, res, next) {
-    res.render("phieudoiphong");
+    res.render("phong/phieudoiphong");
   }
 
 
