@@ -65,13 +65,11 @@ class PrivateController {
 
   //[POST] private/receivecustomer
   receivekhachhang(req, res, next) {
-    // post dữ liệu lên db
-    const customer = new Customer(req.body);
-
-    customer.save()
-      // chuyển hướng đến trang trủ
-      .then(() => res.redirect("./dskhachhang"))
-      .catch((error) => {});
+   const customer = new Customer(req.body);
+    console.log(customer);
+   customer.save()
+    .then(()=>{res.redirect("./dskhachhang")})
+    .catch((error)=>{});
   }
 
 

@@ -23,9 +23,12 @@ router.get("/khachhang",checklogin,PrivateController.giahan);
 router.get("/phong",checklogin,PrivateController.phong);
 router.get("/doiphong",checklogin,PrivateController.doiphong);
 router.get("/dskhachhang",checklogin,PrivateController.dskhachhang);
+// router.get("/",checklogin.PrivateController.);
+
 // hi hello
 
-router.post("/receivekhachhang",checklogin,PrivateController.receivekhachhang);
+router.post("/khachhang",checklogin,PrivateController.receivekhachhang);
+
 
 
 module.exports = router;
