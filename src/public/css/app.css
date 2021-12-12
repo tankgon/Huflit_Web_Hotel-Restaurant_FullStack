@@ -15,32 +15,56 @@
 .menu-ul{
     width: 100%;
     height: 100vh;
+    margin-bottom: 820px;
 }
 .menu-ul_li{
     width: 100%;
     height: 50px;
     cursor: pointer;
-}
-.menu-ul_li:hover{
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: #46466e;
 }
 .menu-ul_li > a{
     color: white;
     display: inline-block;
-    margin-top: 10px;
+    margin-top: 14px;
     font-weight: 400;
     margin-left: 32px;
-    width: 90%;
-    height: 80%
 }
 .menu-ul_li > a > i{
     padding-right : 12px;
     font-weight: 500;
     font-size: 20px;
 } 
+
+.menu-ul_li-inside_li{
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
+}
+.menu-ul_li-inside_li:hover{
+    background-color: rgba(255, 255, 255, 0.05);
+}
+.menu-ul_li-inside_a{
+    color: #ccf1fa;
+    display: inline-block;
+    padding-top: 14px;
+    font-weight: 400;
+    padding-left: 60px;
+    width: 100%;
+    height: 100%
+}
+.menu-ul_li-inside_a > i{
+    padding-right : 12px;
+    font-weight: 500;
+    font-size: 18px;
+} 
+
 /* ===content_nav=== */
+.body-for_img{
+    width: 100%;
+}
 .con{
-    width: 10000px;
+    width: 100000px;
 }
 .dang_xuat{
     border-top: 1px solid #111175;
@@ -507,12 +531,14 @@ js-modal{
     margin-bottom: -8px;
 }
 .bang-text{
-    padding: 12px;
+    padding: 20px 0 100px 20px;
     width: 100%;
     height: 100px;
     border: none;
     border: 1px solid rgb(214, 214, 214);
     box-shadow: 0px 0px 0.8px 0px #AAA;
+    overflow: auto;
+    word-break: break-word;
 }
 .noi_dung-1-text_name{
     font-size: 1.4rem;
@@ -542,6 +568,7 @@ js-modal{
     box-shadow: 0px 0px 4px 0px #AAA;
     width: 98%;
 }
+
 .textarea{
     padding: 8px;
     margin: 8px 0;
@@ -623,4 +650,31 @@ js-modal{
     margin-left: 60px;
 }
 
-  
+/* --- danh sach --- */
+.tieu_de_ds{
+    margin: auto;
+    width: 120px;
+    display: flex;
+    justify-content: space-between;  
+}
+.tieu_de_ds_input{
+    margin-top: 4px;
+    cursor: pointer;
+}
+.select_danhsach{
+    margin: 0 20px 0px 20px;
+    padding: 8px;
+    width: 700px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.btn_ds{
+    background-color: #57578b;
+    width: 80px;
+    cursor: pointer;
+    border-radius: 3px;
+    color: #ccf1fa;
+}
+.btn_ds:hover{
+    background-color: rgb(83, 126, 163);
+}

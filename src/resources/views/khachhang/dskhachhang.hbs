@@ -246,30 +246,39 @@
 
     </nav>
     {{!-- nội dung bài --}}
-    <div style="color:aqua;" class="div">
-      <h3>Danh sách khách hàng</h3>
+    <div class="content-container">
+      <div class="tieu_de">
+        <div class="tieu_de-text">
+          Danh sách khách hàng
+        </div>
+        <div class="tieu_de-huong-dan">
+          <a href="">
+            <i class="fas fa-exclamation-circle"></i>
+            Hướng dẫn
+          </a>
+        </div>
+      </div>
       {{!-- cú pháp kt --}}
       {{#if deletedCount}}
       <a href="/me/trash/khoahoc">Thùng rác {{deletedCount}}</a>
       {{/if}}
 
-      <div class="mt-4 d-flex align-items-center">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="checkbox-all">
-          <label class="form-check-label" for="checkbox-all">
+      <div class="tieu_de">
+        <div class="tieu_de_ds">
+          <input class="tieu_de_ds_input" type="checkbox" value="" >
             Chọn tất cả
-          </label>
         </div>
-
-        <select class="form-control form-control-sm  checkbox-select-all-options" name="action">
+        <select class="select_danhsach" name="action">
           <option value="edit">Thêm</option>
           <option value="delete">XÓA</option>
-          <option>3</option>
         </select>
-        <button class="btn btn-primary btn-check-all-submit disabled">Submit</button>
+        <button class="btn_ds">Submit</button>
       </div>
+
     </div>
-    <table style="color:aqua;" class="table mt-2">
+
+
+    <table style="color:black;" class="table mt-2">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -330,7 +339,6 @@
       </tbody>
       {{/each}}
     </table>
-    </form>
 
     {{!-- confirm xóa khóa học --}}
     <div class="modal" tabindex="-1" role="dialog" id="delete-khoahoc-modal">
