@@ -653,7 +653,7 @@ js-modal{
 /* --- danh sach --- */
 .tieu_de_ds{
     margin: auto;
-    width: 120px;
+    width: 112px;
     display: flex;
     justify-content: space-between;  
 }
@@ -677,4 +677,14 @@ js-modal{
 }
 .btn_ds:hover{
     background-color: rgb(83, 126, 163);
+}
+.table_ds{
+    margin-top: 20px;
+    width: 100%;
+    border: #AA0000;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+.tr_ds{
+    border: 2px solid black;
 }

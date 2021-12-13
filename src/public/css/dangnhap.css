@@ -66,6 +66,10 @@ input[type="text"] {
     padding: 5px;
     width: 70%;
 }
+input[type="password"] {
+    padding: 5px;
+    width: 70%;
+}
  
 input#submit {
     padding: 7px;
