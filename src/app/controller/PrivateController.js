@@ -1,6 +1,7 @@
 const account = require("../models/Account");
 const jwt = require("jsonwebtoken");
 const Customer = require("../models/Customer");
+const Service = require("../models/Service")
 class PrivateController {
   //[GET] private/
   privated(req, res, next) {
@@ -72,7 +73,51 @@ class PrivateController {
     .catch((error)=>{});
   }
 
+  test(req,res,next)
+  {
+    res.render("test");
+  }
 
+  testt(req,res,next)
+  {
+    // Service.find({}).lean()
+    // // course paramater là doucument trong db
+    // .then(service => {
+    //   res.render("test1", { service: service });
+    // })
+    // .catch(next);
+    // Customer.find({name:{$regex:namee,$options:'$i'}}).lean()
+    
+    // // course paramater là doucument trong db
+    // .then((data) => {
+        
+    //   res.render("test1", { data:data});
+   
+    // })
+    // .catch(next);
+
+    const namee = req.body.name
+    console.log(namee);
+    Service.find({},(err,service)=>
+    {
+      Customer.find({name:{$regex:namee,$options:'$i'}},(err,data)=>
+      {
+          res.render("test1",
+          {
+            service : service, 
+            data : data
+            
+          })
+      })
+    
+    })
+    
+  }
+  showservice(req,res,next)
+  {
+        
+  
+  }
 }
 
 module.exports = new PrivateController();

@@ -23,11 +23,14 @@ router.get("/khachhang",checklogin,PrivateController.giahan);
 router.get("/phong",checklogin,PrivateController.phong);
 router.get("/doiphong",checklogin,PrivateController.doiphong);
 router.get("/dskhachhang",checklogin,PrivateController.dskhachhang);
+router.get("/test",checklogin,PrivateController.test);
 // router.get("/",checklogin.PrivateController.);
 
 // hi hello
 
 router.post("/khachhang",checklogin,PrivateController.receivekhachhang);
+router.post("/test",checklogin,PrivateController.testt);
+
 
 
 
