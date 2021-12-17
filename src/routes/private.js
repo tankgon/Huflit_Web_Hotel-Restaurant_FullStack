@@ -30,7 +30,7 @@ router.get("/test",checklogin,PrivateController.test);
 
 router.post("/khachhang",checklogin,PrivateController.receivekhachhang);
 router.post("/test",checklogin,PrivateController.testt);
-
+router.post("/dichvu",checklogin,PrivateController.dichvupost);
 
 
 

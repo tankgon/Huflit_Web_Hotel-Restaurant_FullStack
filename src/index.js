@@ -18,6 +18,7 @@ app.engine('hbs', handlebars({
       sum:(a,b) => a+b,
     
 }
+
 }));
 
 app.set('view engine', 'hbs');

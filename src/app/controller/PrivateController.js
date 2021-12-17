@@ -10,9 +10,37 @@ class PrivateController {
 
   //[GET] private/dichvu
   dichvu(req, res, next) {
+
     res.render("dichvu/phieudichvu");
   }
 
+  dichvupost(req,res,next)
+  {
+    //    const namee = req.body.cmnd
+    // console.log(namee);
+    // Customer.findOne({cmnd:namee}).lean()
+    
+    // // course paramater là doucument trong db
+    // .then((data) => {
+        
+    //   res.render("dichvu/dichvupost",{ data:data });
+   
+    // })
+    // .catch(next)
+
+    const namee = req.body.cmnd
+    console.log(namee);
+    Promise.all([  Customer.findOne({cmnd:namee}).lean(),Service.find({}).lean()])
+    .then(([data,service])=>
+      res.render("dichvu/dichvupost",
+      {
+         data : data,
+        service : service 
+      })
+
+      )
+      .catch(next)
+  }
   //[GET] private/phanquyen
   phanquyen(req, res, next) {
     res.render("management/phieuphanquyen");
@@ -73,6 +101,7 @@ class PrivateController {
     .catch((error)=>{});
   }
 
+
   test(req,res,next)
   {
     res.render("test");
@@ -86,31 +115,36 @@ class PrivateController {
     //   res.render("test1", { service: service });
     // })
     // .catch(next);
-    // Customer.find({name:{$regex:namee,$options:'$i'}}).lean()
+
+    // const namee = req.body.name
+    // console.log(namee);
+    // Customer.findOne({name:{$regex:namee,$options:'$i'}}).lean()
     
     // // course paramater là doucument trong db
     // .then((data) => {
         
-    //   res.render("test1", { data:data});
+    //   res.render("test1", { data:data });
    
     // })
-    // .catch(next);
+    // .catch(next)
 
     const namee = req.body.name
     console.log(namee);
-    Service.find({},(err,service)=>
-    {
-      Customer.find({name:{$regex:namee,$options:'$i'}},(err,data)=>
+    Promise.all([   Customer.findOne({name:{$regex:namee,$options:'$i'}}),Service.find({}).lean()])
+    .then(([data,service])=>
+      res.render("test1",
       {
-          res.render("test1",
-          {
-            service : service, 
-            data : data
-            
-          })
+         data : data,
+        service : service 
       })
+
+      )
+      .catch(next)
+
+
+
     
-    })
+
     
   }
   showservice(req,res,next)
