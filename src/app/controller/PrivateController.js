@@ -13,14 +13,14 @@ class PrivateController {
     res.render("dichvu/phieudichvu");
   }
 
-
+  
   //[GET] private/themdichvu
-  themdichvu(req, res, next) {
-    res.render("dichvu/themdichvu");
-  }
+  // themdichvu(req, res, next) {
+  //   res.render("dichvu/themdichvu");
+  // }
 
   //[GET] private/sudungdv
-  sudungdv(req, res, next) {
+  sudungdichvu(req, res, next) {
     res.render("dichvu/sudungdv");
   }
 
@@ -148,21 +148,6 @@ class PrivateController {
     // })
     // .catch(next);
 
-    const namee = req.body.name
-    console.log(namee);
-    Service.find({},(err,service)=>
-    {
-      Customer.find({name:{$regex:namee,$options:'$i'}},(err,data)=>
-      {
-          res.render("test1",
-          {
-            service : service, 
-            data : data
-            
-          })
-      })
-    
-    })
     
   }
   showservice(req,res,next)

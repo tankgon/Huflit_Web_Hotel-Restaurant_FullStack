@@ -12,10 +12,10 @@ var checklogin = (req, res, next) => {
 };
 const PrivateController = require("../app/controller/PrivateController");
 
-router.get("/",checklogin, PrivateController.privated);
+router.get("/",checklogin, PrivateController.privated); 
 router.get("/dichvu", checklogin, PrivateController.dichvu);
-router.get("/themdichvu", checklogin, PrivateController.sudungdv);
-router.get("/sudungdv", checklogin, PrivateController.themdichvu);
+// router.get("/themdichvu", checklogin, PrivateController.themdichvu);
+router.get("/sudungdichvu", checklogin, PrivateController.sudungdichvu);
 router.get("/phanquyen", checklogin, PrivateController.phanquyen);
 router.get("/nhanphong", checklogin, PrivateController.nhanphong);
 router.get("/traphong", checklogin, PrivateController.traphong);

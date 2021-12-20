@@ -8,7 +8,7 @@ const customerSchema = new Schema(
         cmnd : { type : Number , required : true }, 
         phone : { type : Number , required : true}, 
         address : { type :  String , required : true},
-        note : {type: String , required : true}
+  
     },
     {
         collection : "customer"
