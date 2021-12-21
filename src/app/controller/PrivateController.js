@@ -188,6 +188,8 @@ class PrivateController {
     return res.send(data)
 
   }
+  //AJAX GET DATA POST FORM => INSERT DB
+    //RES.SEND('') , SUCCESS OR ERROR
 
 
   //[GET] private/hdtraphong
