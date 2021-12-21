@@ -2,6 +2,7 @@ const account = require("../models/Account");
 const jwt = require("jsonwebtoken");
 const Customer = require("../models/Customer");
 const Service = require("../models/Service")
+const TicketService = require("../models/VoucherService");
 class PrivateController {
   //[GET] private/
   privated(req, res, next) {
@@ -21,7 +22,53 @@ class PrivateController {
 
   //[GET] private/sudungdichvu
   sudungdichvu(req, res, next) {
-    res.render("dichvu/sudungdv");
+    Service.find({}).lean()
+    .then( (service) => res.render("dichvu/sudungdv",{
+      service:service
+    }))
+   
+  }
+
+
+    // query khách hàng 
+  //[GET] private/khachhangdichvu
+  searchkhachhang(req,res,next)
+  {
+    const namee = req.query.cmnd
+    console.log(namee)
+    Promise.all([Customer.findOne({cmnd:namee}).lean(),    Service.find({}).lean()])
+      .then(([data,service]) =>
+        res.render("dichvu/dichvu",{
+          data : data , 
+          service : service 
+        })
+      )
+      
+  }
+
+  //[POST] private/khachhangdichvu 
+  createphieudichvu(req,res,next)
+  {
+    // const ticketService = new TicketService(req.body);
+    // const money = req.body.amount * req.body.price;
+    // req.body.push(`"Intomoney: ${money}"`)
+    console.log(req.body);
+    const data = {
+      'name' : req.body['name'],
+      'cmnd' : req.body['cmnd'],
+      'phone' : req.body['phone'],
+      'address' : req.body['address'] ,
+      'nameService' :req.body['nameService'], 
+      'price' : req.body['price'], 
+      'amount' : req.body['amount'], 
+      'IntoMoney' : req.body['price'] * req.body['amount'] , 
+    }
+    const ticketService = new TicketService(data);
+    console.log(data)
+    ticketService.save()
+    .then(()=>{res.send("thành công")})
+    .catch((error)=>{});
+
   }
 
 
@@ -76,18 +123,7 @@ class PrivateController {
     .catch((error)=>{});
   }
 
-  // query khách hàng 
-  //[POST] private/timkiemkhachhang
-  searchkhachhang(req,res,next)
-  {
-    const namee = req.body.cmnd
-    console.log(namee)
-    Promise.all([Customer.findOne({cmnd:namee}),    Service.find({}).lean()])
-      .then(([data,service]) =>
-        res.send([data,service])
-      )
-      
-  }
+
 
   // Chưa hoàn thhành 
   //[GET] private/dskhachhang/trash

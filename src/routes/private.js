@@ -13,9 +13,12 @@ var checklogin = (req, res, next) => {
 const PrivateController = require("../app/controller/PrivateController");
 
 router.get("/",checklogin, PrivateController.privated); 
+
 router.get("/dichvu", checklogin, PrivateController.dichvu);
-// router.get("/themdichvu", checklogin, PrivateController.themdichvu);
 router.get("/sudungdichvu", checklogin, PrivateController.sudungdichvu);
+router.get("/khachhangdichvu",checklogin,PrivateController.searchkhachhang);
+
+
 router.get("/phanquyen", checklogin, PrivateController.phanquyen);
 router.get("/nhanphong", checklogin, PrivateController.nhanphong);
 router.get("/traphong", checklogin, PrivateController.traphong);
@@ -39,14 +42,12 @@ router.get("/hddichvu",checklogin,PrivateController.hddichvu);
 router.get("/themmonan",checklogin,PrivateController.themmonan);
 
 
-// router.get("/",checklogin.PrivateController.);
+
 
 // hi hello
 
 router.post("/khachhang",checklogin,PrivateController.receivekhachhang);
-router.post("/test",checklogin,PrivateController.testt);
-router.post("/timkiemkhachhang",checklogin,PrivateController.searchkhachhang);
-
+router.post("/khachhangdichvu",checklogin,PrivateController.createphieudichvu);
 
 
 
