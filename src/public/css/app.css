@@ -604,14 +604,13 @@ js-modal{
     padding:16px 0px;
     cursor: pointer;
     border-radius: 3px;
+    padding:16px 40px;
+    color: #e6f4ff;
 }
 .bottom-nav_luu:hover{
     background-color: rgb(83, 126, 163);
 }
-.bottom-nav_luu >a{
-    color: #e6f4ff;
-    padding:16px 40px;
-}
+
 .bottom-nav_huy{
     background-color: #999;
     width: 100%;
@@ -619,14 +618,13 @@ js-modal{
     cursor: pointer;
     border-radius: 3px;
     margin-right: 50px;
+    padding:16px 40px;
+    color: #fff;
 }
 .bottom-nav_huy:hover{
     background-color: rgb(170, 168, 168);
 }
-.bottom-nav_huy >a{
-    color: #e6f4ff;
-    padding:16px 40px;
-}
+
 .name_hd{
     display: block;
     margin:0vh 30vh;

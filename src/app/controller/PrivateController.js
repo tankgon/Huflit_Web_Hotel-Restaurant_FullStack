@@ -19,7 +19,7 @@ class PrivateController {
   //   res.render("dichvu/themdichvu");
   // }
 
-  //[GET] private/sudungdv
+  //[GET] private/sudungdichvu
   sudungdichvu(req, res, next) {
     res.render("dichvu/sudungdv");
   }
