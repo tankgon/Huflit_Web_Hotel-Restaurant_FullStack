@@ -66,7 +66,7 @@ class PrivateController {
     const ticketService = new TicketService(data);
     console.log(data)
     ticketService.save()
-    .then(()=>{res.send("thành công")})
+    .then(()=>{res.redirect(`/private/hddichvu/${req.body['cmnd']}`)})
     .catch((error)=>{});
 
   }
@@ -177,8 +177,16 @@ class PrivateController {
 
 
   //[GET] private/hddichvu
-  hddichvu(req, res, next) {
+  async hddichvu(req, res, next) {
+    // cmnd 
     res.render("hoadon/hddichvu");
+    
+  }
+  async getTicket(req,res){
+    const cmnd = req.params['cmnd']
+    const data = await TicketService.find( {cmnd: cmnd })
+    return res.send(data)
+
   }
 
 

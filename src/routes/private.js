@@ -38,7 +38,8 @@ router.get("/test",checklogin,PrivateController.test);
 router.get("/hdsuco",checklogin,PrivateController.hdsuco);
 router.get("/hdungtruoc",checklogin,PrivateController.hdungtruoc);
 router.get("/hdtraphong",checklogin,PrivateController.hdtraphong);
-router.get("/hddichvu",checklogin,PrivateController.hddichvu);
+router.get("/hddichvu/:cmnd",checklogin,PrivateController.hddichvu);
+router.get("/getTicket/:cmnd",checklogin,PrivateController.getTicket);
 router.get("/themmonan",checklogin,PrivateController.themmonan);
 
 

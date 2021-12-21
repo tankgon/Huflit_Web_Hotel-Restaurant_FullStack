@@ -411,7 +411,7 @@
                           <p> (*)</p>
                       </div>              
                 
-                      <input class="textarea" name="cmnd" value="{{data.cmnd}}" placeholder="Nhập số chứng minh"></input>
+                      <input class="textarea" name="cmnd" value="{{data.cmnd}}" id="cmnd" placeholder="Nhập số chứng minh"></input>
                      
                     </div>
    
@@ -673,6 +673,8 @@
  function change(sel) {
    const name_dv = document.getElementById('name_dv');
    name_dv.value = sel.options[sel.selectedIndex].text;
+   const cmnd = document.getElementById('cmnd').value
+   window.localStorage.setItem('key',cmnd)
   
 }
 </script>
