@@ -20,13 +20,17 @@ router.get("/phanquyen", checklogin, PrivateController.phanquyen);
 router.get("/nhanphong", checklogin, PrivateController.nhanphong);
 router.get("/traphong", checklogin, PrivateController.traphong);
 router.get("/dattiec",checklogin,PrivateController.dattiec);
+
 router.get("/khachhang",checklogin,PrivateController.khachhang);
+router.get("/dskhachhang",checklogin,PrivateController.dskhachhang);
+router.get("/dskhachhang/trash",checklogin,PrivateController.trashkhachhang);
+
 router.get("/giahan",checklogin,PrivateController.giahan);
 router.get("/phong",checklogin,PrivateController.phong);
 router.get("/kiemtraphong",checklogin,PrivateController.kiemtraphong);
 router.get("/capnhat",checklogin,PrivateController.capnhat);
 router.get("/doiphong",checklogin,PrivateController.doiphong);
-router.get("/dskhachhang",checklogin,PrivateController.dskhachhang);
+
 router.get("/test",checklogin,PrivateController.test);
 router.get("/hdsuco",checklogin,PrivateController.hdsuco);
 router.get("/hdungtruoc",checklogin,PrivateController.hdungtruoc);
@@ -41,6 +45,7 @@ router.get("/themmonan",checklogin,PrivateController.themmonan);
 
 router.post("/khachhang",checklogin,PrivateController.receivekhachhang);
 router.post("/test",checklogin,PrivateController.testt);
+router.post("/timkiemkhachhang",checklogin,PrivateController.searchkhachhang);
 
 
 

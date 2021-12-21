@@ -66,6 +66,43 @@ class PrivateController {
     })
     .catch(next);
   }
+   
+    //[POST] private/receivecustomer
+  receivekhachhang(req, res, next) {
+   const customer = new Customer(req.body);
+    console.log(customer);
+   customer.save()
+    .then(()=>{res.redirect("./dskhachhang")})
+    .catch((error)=>{});
+  }
+
+  // query khách hàng 
+  //[POST] private/timkiemkhachhang
+  searchkhachhang(req,res,next)
+  {
+    const namee = req.body.cmnd
+    console.log(namee)
+    Promise.all([Customer.findOne({cmnd:namee}),    Service.find({}).lean()])
+      .then(([data,service]) =>
+        res.send([data,service])
+      )
+      
+  }
+
+  // Chưa hoàn thhành 
+  //[GET] private/dskhachhang/trash
+  trashkhachhang(req,res,next)
+ {
+       // lấy ra find những thằng đã xóa
+       Customer.findDeleted({}).lean()
+       .then((customer) =>
+         res.render("me/trash-khoahoc", {
+          customer : customer
+         })
+       )
+       .catch(next);
+  }
+
   //[GET] private/giahan
   giahan(req, res, next) {
     res.render("phong/phieugiahan");
@@ -116,14 +153,7 @@ class PrivateController {
   
 
 
-  //[POST] private/receivecustomer
-  receivekhachhang(req, res, next) {
-   const customer = new Customer(req.body);
-    console.log(customer);
-   customer.save()
-    .then(()=>{res.redirect("./dskhachhang")})
-    .catch((error)=>{});
-  }
+
 
   test(req,res,next)
   {
