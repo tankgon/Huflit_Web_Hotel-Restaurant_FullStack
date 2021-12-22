@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const port = 3000;
 // cài đặt quá trình put,get,post trong update 
-// const methodOverride = require('method-override')
+const methodOverride = require('method-override')
 const handlebars = require('express-handlebars');
 // // tạo bên index route index.js
 const route = require('./routes');
@@ -30,8 +30,10 @@ app.use(express.json());
 
 // import cookie parser 
 app.use(cookieParser());
+
 // cài đặt method phải ở vị trí đầu 
 // app.use(methodOverride('_method'));
+app.use(methodOverride('_method'));
 
 // static file 
 app.use(express.static(path.join(__dirname, 'public')));

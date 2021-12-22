@@ -4,6 +4,7 @@ const Customer = require("../models/Customer");
 const Service = require("../models/Service")
 const TicketService = require("../models/VoucherService");
 const BillService = require("../models/BillService");
+
 class PrivateController {
   //[GET] private/
   privated(req, res, next) {
@@ -15,11 +16,18 @@ class PrivateController {
     res.render("dichvu/phieudichvu");
   }
 
-   
-  //[GET] private/themdichvu
-  // themdichvu(req, res, next) {
-  //   res.render("dichvu/themdichvu");
-  // }
+  //[POST] private/dichvu
+  createdichvu(req,res,next)
+  {
+    const dichvu = new Service(req.body)
+    dichvu.save()
+    .then(()=>
+    {
+      res.send("thành công");
+    })
+    .catch(next);
+  }
+
 
   //[GET] private/sudungdichvu
   sudungdichvu(req, res, next) {
@@ -31,7 +39,7 @@ class PrivateController {
   }
 
 
-    // query khách hàng 
+ // query khách hàng 
   //[GET] private/khachhangdichvu
   searchkhachhang(req,res,next)
   {
@@ -128,6 +136,8 @@ class PrivateController {
     res.render("nhahang/themmonan");
   }
 
+
+
 /////////Khách hàng ///////////
   //[GET] private/khachhang
   khachhang(req, res, next) {
@@ -169,7 +179,18 @@ class PrivateController {
        .catch(next);
   }
 
- 
+ editkhachhang(req,res,next)
+ {
+   Customer.findById(req.params.id).lean()
+   .then((data)=>
+   {
+     res.render("khachhang/editkhachhang",
+     {
+       data : data 
+     })
+   })
+   .catch(next)
+ }
 
   //// hóa đơn/////////////
   //[GET] private/hdsuco
@@ -197,6 +218,9 @@ class PrivateController {
     return res.send('success')
     
   }
+
+
+  // [GET] private/getTicket/:cmnd
   async getTicket(req,res){
     const cmnd = req.params['cmnd']
     const data = await TicketService.find( {cmnd: cmnd })
