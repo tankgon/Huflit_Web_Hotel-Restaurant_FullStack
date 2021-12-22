@@ -418,16 +418,17 @@
                   <div class="box">
   
                     <div class="box-trong l-5">
+          
                       <div class="noi_dung-1-text_noi-dung">
                         <div class="noi_dung-1-text_noi-dung_hoten">CMND: </div>
-                          <p id="cmnd"> </p>
+                          <p id="cmnd" name="cmnd"> </p>
                       </div>              
                      
                     </div>
                   </div>
                   <div class="noi_dung-1-text_noi-dung">
                     <div class="noi_dung-1-text_noi-dung_hoten">Họ tên: </div>
-                    <p id="name"> </p>
+                    <p id="name" name="name"> </p>
                   </div>
                   <table style="width:100%; border:1px solid black;">
                     <thead>
@@ -537,11 +538,11 @@
     
                     <div class="box-trong l-5">
                       <div class="noi_dung-1-text_noi-dung">
-                        <div class="noi_dung-1-text_noi-dung_hoten" name="thanhtoan">Tổng tiền thanh toán</div>
+                        <div class="noi_dung-1-text_noi-dung_hoten" >Tổng tiền thanh toán</div>
                         <p> (*)</p>
                       </div>
                       <div class="box-trong_om">
-                        <span class="box-trong_text" id="total"> </span>
+                        <span class="box-trong_text" id="total" name="total"> </span>
                       </div> 
                     </div>
                 
@@ -560,13 +561,15 @@
                   Hủy         
                 </button>
   
-                <button class="bottom-nav_luu">
+                <button class="bottom-nav_luu" type="button" id="save_btn">
                   Lưu           
                 </button>
+             
               </div>
+      
             </div>         
            <!-- ===content__Phieu Dat Tiec-end==== -->
-  
+
   
           </div>
           <!-- ====content-end==== -->
@@ -654,16 +657,16 @@
                           ${index +1}
                       </th>
                       
-                      <th>
+                      <th id="nameService" name="nameService">
                         ${el['nameService']}
                       </th>
-                      <th>
+                      <th id="amount" name="amount">
                         ${el['amount']}
                       </th>
-                      <th>
+                      <th id="price" name="price">
                         ${el['price']}
                       </th>
-                      <th>
+                      <th id="IntoMoney" name="IntoMoney">
                         ${el['IntoMoney'].toLocaleString('vi', {style : 'currency', currency : 'VND'})}
                       </th>
                     </tr>
@@ -680,7 +683,52 @@
         console.error('error')
       }
     })
+
+
+    $('#save_btn').click(()=>{
+      const key = window.localStorage.getItem('key')
+      $.ajax({
+        url: `/private/get/${key}`,
+        type: 'GET',
+        success:(data)=>{
+          let serviceDate = []
+          let total = 0
+          data.forEach((el,index)=>{
+            serviceDate.push({'nameService': el['nameService'],'amount':el['amount'], 'price':el['price'],'IntoMoney':el['IntoMoney']})
+            total += el['IntoMoney']
+          })
+          const dataBill = {
+            'name': data[0]['name'],
+            'cmnd': data[0]['cmnd'],
+            'service': serviceDate,
+            'totalMoney': total
+            
+            
+          }
+          $.ajax({
+            url: '/private/hddichvu',
+            type: 'POST',
+            data: dataBill,
+           
+
+          }).then((res)=>{alert('Save successfully'); window.location.replace('/private/sudungdichvu');})
+          .catch((res)=>{alert('Save error ')})
+        },
+        error:(data)=>{
+          console.error(data)
+        }
+      })
+    })
+
+    
   })
+  
+ 
+
+
+   
+
+
 </script>
 {{!-- CREATE AJAX DATA FORM: {} => POST => SUCCESS OR ERROR --}}
 <!-- ===Gop_Y-end=== -->

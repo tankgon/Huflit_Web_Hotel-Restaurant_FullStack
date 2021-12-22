@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const Customer = require("../models/Customer");
 const Service = require("../models/Service")
 const TicketService = require("../models/VoucherService");
+const BillService = require("../models/BillService");
 class PrivateController {
   //[GET] private/
   privated(req, res, next) {
@@ -14,7 +15,7 @@ class PrivateController {
     res.render("dichvu/phieudichvu");
   }
 
-  
+   
   //[GET] private/themdichvu
   // themdichvu(req, res, next) {
   //   res.render("dichvu/themdichvu");
@@ -77,6 +78,7 @@ class PrivateController {
     res.render("management/phieuphanquyen");
   }
 
+  //////// Phòng ///////
   //[GET] private/nhanphong
   nhanphong(req, res, next) {
     res.render("phong/nhanphong");
@@ -87,6 +89,34 @@ class PrivateController {
     res.render("phong/traphong");
   }
 
+   //[GET] private/giahan
+   giahan(req, res, next) {
+    res.render("phong/phieugiahan");
+  }
+
+  //[GET] private/kiemtraphong
+  kiemtraphong(req, res, next) {
+    res.render("phong/kiemtraphong");
+  }
+
+
+  //[GET] private/phong
+  phong(req, res, next) {
+    res.render("phong");
+  }
+
+  //[GET] private/doiphong
+  doiphong(req, res, next) {
+    res.render("phong/phieudoiphong");
+  }
+
+  //[GET] private/capnhat
+  capnhat(req, res, next) {
+    res.render("phong/capnhatphong");
+  }
+
+
+  //////Đặt tiệc ///////
   //[GET] private/dattiec
   dattiec(req, res, next) {
     res.render("nhahang/phieudattiec");
@@ -98,7 +128,7 @@ class PrivateController {
     res.render("nhahang/themmonan");
   }
 
-
+/////////Khách hàng ///////////
   //[GET] private/khachhang
   khachhang(req, res, next) {
     res.render("khachhang/hosoKH");
@@ -139,32 +169,9 @@ class PrivateController {
        .catch(next);
   }
 
-  //[GET] private/giahan
-  giahan(req, res, next) {
-    res.render("phong/phieugiahan");
-  }
+ 
 
-  //[GET] private/kiemtraphong
-  kiemtraphong(req, res, next) {
-    res.render("phong/kiemtraphong");
-  }
-
-
-  //[GET] private/phong
-  phong(req, res, next) {
-    res.render("phong");
-  }
-
-  //[GET] private/doiphong
-  doiphong(req, res, next) {
-    res.render("phong/phieudoiphong");
-  }
-
-  //[GET] private/capnhat
-  capnhat(req, res, next) {
-    res.render("phong/capnhatphong");
-  }
-
+  //// hóa đơn/////////////
   //[GET] private/hdsuco
   hdsuco(req, res, next) {
     res.render("hoadon/hdsuco");
@@ -182,7 +189,21 @@ class PrivateController {
     res.render("hoadon/hddichvu");
     
   }
+  //[POST] private/hddichvu
+   createhddichvu(req,res,next)
+  {
+    const bill  =  new BillService(req.body);
+    bill.save()
+    return res.send('success')
+    
+  }
   async getTicket(req,res){
+    const cmnd = req.params['cmnd']
+    const data = await TicketService.find( {cmnd: cmnd })
+    return res.send(data)
+
+  }
+  async getData(req,res){
     const cmnd = req.params['cmnd']
     const data = await TicketService.find( {cmnd: cmnd })
     return res.send(data)

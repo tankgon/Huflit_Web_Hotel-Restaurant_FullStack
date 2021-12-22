@@ -17,7 +17,8 @@ router.get("/",checklogin, PrivateController.privated);
 router.get("/dichvu", checklogin, PrivateController.dichvu);
 router.get("/sudungdichvu", checklogin, PrivateController.sudungdichvu);
 router.get("/khachhangdichvu",checklogin,PrivateController.searchkhachhang);
-
+router.get("/getTicket/:cmnd",checklogin,PrivateController.getTicket);
+router.get("/get/:cmnd",checklogin,PrivateController.getData);
 
 router.get("/phanquyen", checklogin, PrivateController.phanquyen);
 router.get("/nhanphong", checklogin, PrivateController.nhanphong);
@@ -39,7 +40,7 @@ router.get("/hdsuco",checklogin,PrivateController.hdsuco);
 router.get("/hdungtruoc",checklogin,PrivateController.hdungtruoc);
 router.get("/hdtraphong",checklogin,PrivateController.hdtraphong);
 router.get("/hddichvu/:cmnd",checklogin,PrivateController.hddichvu);
-router.get("/getTicket/:cmnd",checklogin,PrivateController.getTicket);
+// router.get("/hddichvu",checklogin,PrivateController.createhddichvu);
 router.get("/themmonan",checklogin,PrivateController.themmonan);
 
 
@@ -49,7 +50,7 @@ router.get("/themmonan",checklogin,PrivateController.themmonan);
 
 router.post("/khachhang",checklogin,PrivateController.receivekhachhang);
 router.post("/khachhangdichvu",checklogin,PrivateController.createphieudichvu);
-
+router.post("/hddichvu",PrivateController.createhddichvu);
 
 
 module.exports = router;
