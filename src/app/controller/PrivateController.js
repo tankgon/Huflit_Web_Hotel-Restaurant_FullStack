@@ -212,7 +212,25 @@ class PrivateController {
        .then(() => res.redirect("back"))
        .catch(next);
   }
+  //[]
+  restorekhachhang(req,res,next)
+  {
+     // thực hiện xóa mềm lệnh delete
+     Customer.restore({ _id: req.params.id })
+     // khi mà xóa xong nó sẽ quay lại trang  mà đã xóa
+     .then(() => res.redirect('back'))
+     .catch(next);
+  }
 
+  //[]
+  deleteforcekhachhang(req,res,next)
+  {
+        // thực hiện xóa thật bằng lệnh delete One
+        Customer.deleteOne({ _id: req.params.id })
+        // khi mà xóa xong nó sẽ quay lại trang  mà đã xóa
+        .then(() => res.redirect("back"))
+        .catch(next);
+  }
   //// hóa đơn/////////////
   //[GET] private/hdsuco
   hdsuco(req, res, next) {

@@ -400,9 +400,9 @@
 
       </div>
       {{!-- cú pháp kt --}}
-      {{#if deletedCount}}
-      <a href="/private/dskhachhang/trash">Thùng rác {{deletedCount}}</a>
-      {{/if}}
+   
+      <a href="/private/dskhachhang">Quay trở lại {{deletedCount}}</a>
+    
       
      
     <table border="1" class="table_ds">
@@ -441,12 +441,12 @@
           <td>{{this.address}}</td>
 
           <td>
-            <a href="/private/khachhang/{{this._id}}/edit" class="btn">Sữa</a>
+                  <a href="" class="btn btn-link btn-restore" data-id="{{this._id}}">Khôi phục</a>
             {{!-- sau khi bấm xóa lấy được id khóa học mà muốn xóa
             data-id là truyền id khóa học muốn lấy --}}
-        <form action="/private/khachhang/{{this._id}}?_method=DELETE" method="POST">
+        <form action="/private/khachhang/{{this._id}}/force?_method=DELETE" method="POST">
       
-        <button style="background-color:red"type="submit">Xóa</button>
+        <button style="background-color:red"type="submit">Xóa vĩnh viễn</button>
         </form>
           </td>
         </tr>
@@ -455,7 +455,7 @@
         <tr>
           <td colspan="6" class="text-center">Không có dữ liệu
           </td>
-          <td colspan="12">   <a href="/khoahoc/showcreate">TẠO KHÁCH HÀNG</a></td>
+          <td colspan="12">   <a href="/private/dskhachhang"> Trở lại danh sách khách hàng </a></td>
 
         </tr>
 
@@ -499,6 +499,94 @@
     });
       
           
+
+
+
+
+{{!-- form ẩn thuộc delete , dùng js để xác định form này --}}
+{{!-- mục địch đưa cái form này để có--}}
+{{!-- tạo form trống ổ đây chủ yếu submit lên controller --}}
+<form method="POST" name="delete-khoahoc-form"></form>
+
+
+{{!-- form ẩn thuộc softdelete , dùng js để xác định form này --}}
+{{!-- mục địch đưa cái form này để có--}}
+{{!-- tạo form trống ổ đây chủ yếu submit lên controller --}}
+<form method="POST" name="restore-khoahoc-form"></form>
+
+
+{{!-- liên quan đến javascript --}}
+<script>
+  // định nghĩa $
+  // khi nào dom nó load xong nó sẽ chạy 
+  document.addEventListener('DOMContentLoaded', function () {
+    var khoahocId;
+
+    var deleteForm = document.forms['delete-khoahoc-form']
+    //đặt restore trước nút khôi phục 
+    // dùng jquery để lần lượt duyệt các nút
+    var restoreBtn = $('.btn-restore')
+    // tạo form để submid
+    var restoreForm = document.forms['restore-khoahoc-form']
+    //lúc này chưa định nghĩa được $ nên ta phải định nghĩa 
+    $('#delete-khoahoc-modal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget);
+      var khoahocId = button.data('id');
+      console.log(khoahocId);
+
+
+      // lắng nghe sự kiện click 
+      // khi mà click cái nút xóa phải set lại attribute của nút xóa bằng url
+      var btnDeleteKhoaHoc = document.getElementById("btn-delete-khoahoc");
+
+
+      // xem lấy được domdocument hay không 
+      // console.log(btnDeleteKhoaHoc);
+
+
+      // gắn sự kiện onclick 
+      btnDeleteKhoaHoc.onclick = function () {
+        // trong alert cần phải lấy được id cần xóa :: NỘI DUNG KT
+        //alert(khoahocId);
+
+
+        // set lại cái action , method override delete
+        // submit cái này đẩy lên override xong add vào controller 
+        deleteForm.action = '/khoahoc/' + khoahocId + '/force?_method=DELETE';
+        deleteForm.submit();
+
+
+
+      }
+    });
+    // sử dụng restore lại cứu click khôi phục lại softdelete
+      restoreBtn.click ( function (e)
+      {
+        // bỏ hành vi mặc định trong thẻ a khôi phục href 
+        e.preventDefault();
+        // consolelog ra hẳn cái id của nó 
+        // dùng jquery
+        // this nó sẽ trả chính jqueyr mà cái nút click vào 
+        // lấy ra id mà chung ta đang dùng data thì lấy get data id 
+        console.log($(this).data('id'));
+        
+        
+        
+        // lúc này cần submit đến cái restore
+        var khoahocId = $(this).data('id');
+        
+         // set lại cái action , method override delete
+        // submit cái này đẩy lên override xong add vào controller 
+        restoreForm.action = '/private/khachhang/' + khoahocId + '/restore?_method=PATCH';
+        restoreForm.submit();
+      }
+      )
+  });
+
+
+
+
+
 
 
 
