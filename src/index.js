@@ -24,6 +24,10 @@ app.engine('hbs', handlebars({
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources','views'));
 
+
+// cài đặt method phải ở vị trí đầu 
+// app.use(methodOverride('_method'));
+app.use(methodOverride('_method'));
 // import dạng dữ liệu json 
 app.use(express.urlencoded());
 app.use(express.json());
@@ -31,9 +35,7 @@ app.use(express.json());
 // import cookie parser 
 app.use(cookieParser());
 
-// cài đặt method phải ở vị trí đầu 
-// app.use(methodOverride('_method'));
-app.use(methodOverride('_method'));
+
 
 // static file 
 app.use(express.static(path.join(__dirname, 'public')));

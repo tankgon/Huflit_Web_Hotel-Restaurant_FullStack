@@ -179,6 +179,7 @@ class PrivateController {
        .catch(next);
   }
 
+  //[GET] khachhang/{{this._id}}/edit
  editkhachhang(req,res,next)
  {
    Customer.findById(req.params.id).lean()
@@ -191,6 +192,15 @@ class PrivateController {
    })
    .catch(next)
  }
+
+//[PUT] khachhang/:id
+  puteditkhachhang(req,res,next)
+  {
+    Customer.updateOne({_id:req.params.id},req.body)
+      .then(()=>res.redirect("/private/dskhachhang"))
+      .catch(next)
+  }
+
 
   //// hóa đơn/////////////
   //[GET] private/hdsuco
