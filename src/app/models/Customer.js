@@ -1,9 +1,11 @@
-const mongoose = require("mongoose");
+// cài đặt mongoose kết nổi qua 
+const mongoose = require('mongoose');
+// cài đặt schema 
+const Schema = mongoose.Schema;
 // cài đặt mongoose slug 
 const slug = require('mongoose-slug-generator');
 // cài đặt mongoose-delete để softdelete
 const mongooseDelete = require('mongoose-delete')
-const Schema = mongoose.Schema;
 
 const customerSchema = new Schema(
     {
@@ -15,8 +17,8 @@ const customerSchema = new Schema(
         slug: { type: String, slug: "name", unique: true },
     },
     {
-        collection : "customer"
-    }
+        timestamps: true,
+      }
 );
 // region add plugin
 // cài đặt  mongoose slug
@@ -31,5 +33,5 @@ customerSchema.plugin(mongooseDelete, {
 });
 
 
-const customerModel = mongoose.model("customer",customerSchema);
-module.exports =  customerModel;
+
+module.exports = mongoose.model('customer', customerSchema);

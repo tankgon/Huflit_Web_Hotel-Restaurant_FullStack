@@ -389,7 +389,7 @@
     <div class="content-container">
       <div class="tieu_de">
         <div class="tieu_de-text">
-          Danh sách khách hàng
+         Danh sách khách hàng đã xóa
         </div>
         <div class="tieu_de-huong-dan">
           <a href="">
@@ -400,9 +400,9 @@
 
       </div>
       {{!-- cú pháp kt --}}
-      {{!-- {{#if deletedCount}} --}}
+      {{#if deletedCount}}
       <a href="/private/dskhachhang/trash">Thùng rác {{deletedCount}}</a>
-      {{!-- {{/if}} --}}
+      {{/if}}
       
      
     <table border="1" class="table_ds">

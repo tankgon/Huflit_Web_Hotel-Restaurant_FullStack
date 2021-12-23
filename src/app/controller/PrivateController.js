@@ -171,12 +171,14 @@ class PrivateController {
  {
        // lấy ra find những thằng đã xóa
        Customer.findDeleted({}).lean()
-       .then((customer) =>
-         res.render("me/trash-khoahoc", {
-          customer : customer
+       .then((data) =>
+         res.render("khachhang/trashdskh", {
+          data:data
          })
+ 
        )
        .catch(next);
+      
   }
 
   //[GET] khachhang/{{this._id}}/edit
@@ -204,7 +206,11 @@ class PrivateController {
   //[DELETE] khachhang/:id
   deletesoftkhachhang(req,res,next)
   {
-    res.send("thành công")
+       // thực hiện xóa mềm lệnh delete
+       Customer.delete({ _id: req.params.id })
+       // khi mà xóa xong nó sẽ quay lại trang  mà đã xóa
+       .then(() => res.redirect("back"))
+       .catch(next);
   }
 
   //// hóa đơn/////////////
