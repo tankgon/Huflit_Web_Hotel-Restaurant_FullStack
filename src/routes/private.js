@@ -25,10 +25,12 @@ router.get("/nhanphong", checklogin, PrivateController.nhanphong);
 router.get("/traphong", checklogin, PrivateController.traphong);
 router.get("/dattiec",checklogin,PrivateController.dattiec);
 
+router.delete("/khachhang/:id",checklogin,PrivateController.deletesoftkhachhang);
 router.put("/khachhang/:id",checklogin,PrivateController.puteditkhachhang);
 router.get("/khachhang",checklogin,PrivateController.khachhang);
 router.get("/dskhachhang",checklogin,PrivateController.dskhachhang);
 router.get("/khachhang/:id/edit",checklogin,PrivateController.editkhachhang);
+
 router.get("/dskhachhang/trash",checklogin,PrivateController.trashkhachhang);
 
 

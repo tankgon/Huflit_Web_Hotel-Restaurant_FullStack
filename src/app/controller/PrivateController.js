@@ -201,6 +201,11 @@ class PrivateController {
       .catch(next)
   }
 
+  //[DELETE] khachhang/:id
+  deletesoftkhachhang(req,res,next)
+  {
+    res.send("thành công")
+  }
 
   //// hóa đơn/////////////
   //[GET] private/hdsuco
