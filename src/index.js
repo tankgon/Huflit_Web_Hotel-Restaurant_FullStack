@@ -29,7 +29,11 @@ app.set('views', path.join(__dirname, 'resources','views'));
 // app.use(methodOverride('_method'));
 app.use(methodOverride('_method'));
 // import dạng dữ liệu json 
-app.use(express.urlencoded());
+app.use(express.urlencoded(
+  {
+    extended : true
+  }
+));
 app.use(express.json());
 
 // import cookie parser 

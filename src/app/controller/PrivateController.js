@@ -4,12 +4,18 @@ const Customer = require("../models/Customer");
 const Service = require("../models/Service")
 const TicketService = require("../models/VoucherService");
 const BillService = require("../models/BillService");
-
+const Room = require("../models/Room");
+const TicketBooked = require("../models/TicketBooked");
 class PrivateController {
+
+ 
+
   //[GET] private/
   privated(req, res, next) {
     res.render("home");
   }
+
+  //[DICHVU]
 
   //[GET] private/dichvu
   dichvu(req, res, next) {
@@ -81,12 +87,65 @@ class PrivateController {
   }
 
 
+  
+
+  //[QUẢN LÝ]
   //[GET] private/phanquyen
   phanquyen(req, res, next) {
     res.render("management/phieuphanquyen");
   }
 
-  //////// Phòng ///////
+//[PHÒNG]/////////////
+//[GET] private/khachhangdatphong
+// search khách hàng 
+  khachhangdatphong(req,res,next)
+  {
+    const namee = req.query.cmnd
+    console.log(namee)
+    Promise.all([Customer.findOne({cmnd:namee}).lean(), Room.find({status : true}).lean()])
+      .then(([data,room]) =>
+        res.render("phong/datphongsearch",{
+          data : data , 
+          room : room 
+        })
+      )
+  }
+
+  //[GET] private/datphong
+  datphongget(req,res,next)
+  {
+    Room.find({status : true}).lean()
+    .then((data)=>
+    {
+      res.render("phong/datphong",{
+        data:data
+      })
+    })
+  }
+
+
+  //[POST] private/datphongthanhcong
+ async datphongthanhcong(req,res,next)
+  {
+    var data = {
+        "name" : "ngocphu", 
+        "cmnd" : 9999, 
+        "qtyCusomer" : 2,
+        "dateArrive": "2021-12-23T19:13:48.549+00:00",
+        "dateGo" : "2021-12-23T19:13:48.549+00:00",
+        "idRoom": [{'idRoom1':agfgsdas},{'idRoom2': fgafgafsdgas}]
+    }
+    var name = req.body.idRoom
+    console.log(name)
+    // var ids = await data.map(function(o)
+    // {
+    //   return o.nameRoom;
+    // })
+    // console.log(ids.json);
+
+    // const change = await Room.find({name: name},)
+    // console.log(change)
+  } 
   //[GET] private/nhanphong
   nhanphong(req, res, next) {
     res.render("phong/nhanphong");
@@ -107,11 +166,6 @@ class PrivateController {
     res.render("phong/kiemtraphong");
   }
 
-
-  //[GET] private/phong
-  phong(req, res, next) {
-    res.render("phong");
-  }
 
   //[GET] private/doiphong
   doiphong(req, res, next) {
@@ -165,7 +219,7 @@ class PrivateController {
 
 
 
-  // Chưa hoàn thhành 
+
   //[GET] private/dskhachhang/trash
   trashkhachhang(req,res,next)
  {
@@ -212,7 +266,7 @@ class PrivateController {
        .then(() => res.redirect("back"))
        .catch(next);
   }
-  //[]
+  //[PATCH] /khachhang/:id/restore
   restorekhachhang(req,res,next)
   {
      // thực hiện xóa mềm lệnh delete
@@ -282,34 +336,34 @@ class PrivateController {
   }
   
 
-
-
-
-  test(req,res,next)
+  hdtong(req,res,next)
   {
-    res.render("test");
+     res.render("hoadon/hdtong");
   }
 
-  testt(req,res,next)
+  hdtongpost(req,res,next)
   {
-    // Service.find({}).lean()
-    // // course paramater là doucument trong db
-    // .then(service => {
-    //   res.render("test1", { service: service });
-    // })
-    // .catch(next);
-    // Customer.find({name:{$regex:namee,$options:'$i'}}).lean()
-    
-    // // course paramater là doucument trong db
-    // .then((data) => {
-        
-    //   res.render("test1", { data:data});
-   
-    // })
-    // .catch(next);
-
-    
+      res.render("hoadon/")
   }
+
+
+   suco(req,res,next)
+  {
+    const name = req.query.name ; 
+   Room.findOne({name : name }).lean()
+   .then((data)=>
+   {
+     res.render("hoadon/hdsucosearch",
+     {
+       data : data 
+     })
+   })
+   .catch(next)
+ 
+  }
+
+
+ 
   showservice(req,res,next)
   {
         

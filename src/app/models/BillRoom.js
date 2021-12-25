@@ -1,17 +1,15 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const billServiceSchema = new Schema(
+const billRoomSchema = new Schema(
     {
         name : { type : String , required : true }, 
         cmnd : { type : Number , required : true }, 
-        service :[
+        Room :[
             {
-                nameService : { type : String , required : false}, 
-                price : { type : Number , required : false }, 
-                amount : { type : Number , required : false }, 
-                IntoMoney :{ type : Number , required : false }, 
-          }
+                idRoom {type : String , required : true }, 
+                 
+            }
         ],
         totalMoney : {type : Number, required : true  }
         
