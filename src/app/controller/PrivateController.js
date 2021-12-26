@@ -5,6 +5,7 @@ const Service = require("../models/Service")
 const TicketService = require("../models/VoucherService");
 const BillService = require("../models/BillService");
 const Room = require("../models/Room");
+const Food = require("../models/Food");
 const TicketBooked = require("../models/TicketBooked");
 class PrivateController {
 
@@ -150,6 +151,32 @@ class PrivateController {
     } )
     return res.redirect("back")
   }
+
+
+  //[GET] private/dsdatphong
+  dsdatphong(req,res,next)
+  {
+    
+    // TicketBooked.find({},function(err,ticket)
+    // {
+    //    ticket.forEach((el)=>
+    //    {
+    //      console.log(el.Room.idRoom)
+    //      var idRoom = el.Room.idRoom
+    //       Room.findById({idRoom},function(err,dataRoom),)
+          
+    //    })
+    // }).lean()
+
+    
+    TicketBooked.find({}).lean()
+    .then((data)=>
+    {
+      res.render("phong/dsdatphong",{
+        data:data
+      })
+    })
+  }
   //[GET] private/nhanphong
   nhanphong(req, res, next) {
     res.render("phong/nhanphong");
@@ -204,13 +231,25 @@ class PrivateController {
   //////Đặt tiệc ///////
   //[GET] private/dattiec
   dattiec(req, res, next) {
-    res.render("nhahang/phieudattiec");
+    Food.find({}).lean()
+    .then((data)=>
+    {
+      res.render("nhahang/phieudattiec",{
+        data:data
+      })
+    })
   }
 
 
-  //[GET] private/themmonan
+  //[GET] private/dsmonan
   themmonan(req, res, next) {
-    res.render("nhahang/themmonan");
+    Food.find({}).lean()
+    .then((data)=>
+    {
+      res.render("nhahang/themmonan",{
+        data:data
+      })
+    })
   }
 
 
@@ -331,7 +370,7 @@ class PrivateController {
   {
     const name = req.query.name ; 
     
-   Room.findOne({name : name,status : true }).lean()
+   Room.findOne({name : name,status : false }).lean()
    .then((data)=>
    {
      res.render("hoadon/hdsucosearch",

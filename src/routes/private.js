@@ -33,7 +33,7 @@ router.get("/phanquyen", checklogin, PrivateController.phanquyen);
 
 //[ĐẶT TIỆC]
 router.get("/dattiec",checklogin,PrivateController.dattiec);
-router.get("/themmonan",checklogin,PrivateController.themmonan);
+router.get("/dsmonan",checklogin,PrivateController.themmonan);
 
 //[KHACHHANG]
 router.delete("/khachhang/:id/force",checklogin,PrivateController.deleteforcekhachhang);
@@ -51,6 +51,7 @@ router.post("/khachhang",checklogin,PrivateController.receivekhachhang);
 //[PHÒNG]
 router.get("/khachhangdatphong", checklogin, PrivateController.khachhangdatphong);
 router.get("/datphong", checklogin, PrivateController.datphongget);
+router.get("/dsdatphong", checklogin, PrivateController.dsdatphong);
 
 router.get("/giahan",checklogin,PrivateController.giahan);
 router.get("/capnhat",checklogin,PrivateController.capnhat);

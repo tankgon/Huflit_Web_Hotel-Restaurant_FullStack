@@ -1,3 +1,8 @@
+   
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <div class="row">
   <!-- ====menu==== -->
   <div class="menu col l-3 m-0 c-0">
@@ -379,71 +384,33 @@
       
     </nav>
 
+    
+    {{!-- nội dung bài --}}
+    <div class="content-container">
+      <div class="tieu_de">
+        <div class="tieu_de-text">
+          Danh sách đặt phòng
+        </div>
+        <div class="tieu_de-huong-dan">
+          <a href="">
+            <i class="fas fa-exclamation-circle"></i>
+            Hướng dẫn
+          </a>
+        </div>
 
-         
-
-           
-            <!-- ===content__Phieu Dat Tiec==== -->
-            <div class="content-container">
-              <div class="tieu_de">
-                <div class="tieu_de-text">
-                  Thêm mới phiếu đặt tiệc
-                </div>
-                <div class="tieu_de-huong-dan">
-                  <a href="">
-                  <i class="fas fa-exclamation-circle"></i>
-                  Hướng dẫn
-                  </a>
-                </div>
-              </div>
-                    
-  
-              <div class="noi_dung-1">
-                <div class="l-8 m-12 c-12">
-                <div class="bang_lon ">
-                  <div class="noi_dung-1-text_name">Thông tin cơ bản</div>
-                  
-
-                  <div class="box">
-                      
-                    <div class="box-trong l-5">
-                      <div class="noi_dung-1-text_noi-dung">
-                        <div class="noi_dung-1-text_noi-dung_hoten">CMND</div>
-                          <p> (*)</p>
-                      </div>              
-                      <input class="textarea"  placeholder="Nhập số chứng minh"></input>
-                    </div>
-
-                           <div class="box-trong l-5">
-                      <div class="noi_dung-1-text_noi-dung">
-                        <div class="noi_dung-1-text_noi-dung_hoten">SĐT</div>
-                          <p> (*)</p>
-                      </div>              
-                      <input class="textarea"  placeholder="Nhập số SĐT"></input>
-                    </div>
-                  </div>
-                  <div class="noi_dung-1-text_noi-dung">
-                    <div class="noi_dung-1-text_noi-dung_hoten">Họ tên</div>
-                    <p> (*)</p>
-                  </div>
-                  <input class="textarea"  placeholder="Nhập họ và tên"></input>
-
-                  
-
-                  
-                  
-                </div>
-  
-                <div class=" bang_lon-dong1 ">
-                  <div class="noi_dung-1-text_name">Thông tin phiếu</div>
-
-
+      </div>
+      {{!-- cú pháp kt --}}
+      {{!-- {{#if deletedCount}} --}}
+      <a href="/private/dskhachhang/trash">Thùng rác {{deletedCount}}</a>
+      {{!-- {{/if}} --}}
+      
+     
     <table border="1" class="table_ds">
       <thead >
         <tr class="tr_ds">
      
           <th scope="col">
-            #
+            STT
 
             {{!-- viết một controller tôi đang sử dụng chức năng sort đó
             truyển query paramter lên
@@ -453,10 +420,14 @@
               <span ></span> </a>
           </th>
        
-          <th scope="col">Tên món ăn </th>
-          <th scope="col">Đơn giá</th>
-          <th scope="col">Số lượng</th>
-          <th scope="col">Thành tiền</th>
+          <th scope="col">Tên khách hàng</th>
+          <th scope="col">CMND</th>
+          <th scope="col">Ngày đến</th>
+          <th scope="col">Ngày đi </th>
+           <th scope="col">Mã phòng</th>
+           <th scope="col">Gía phòng</th>
+            <th scope="col">Thao tác</th>
+            
         </tr>
       </thead>
       <tbody>
@@ -466,16 +437,19 @@
    
           {{!-- sum này bên index.js chính để có thể thực hiện index + --}}
           <th scope="row">{{sum @index 1}}</th>
-          <td id="nameFood">{{this.name}}</td>
-          <td id="priceFood">{{this.price}}</td>
-             <td>
-               <input type="text" name="" id="">
-             </td>
-                <td>
-               <input type="text" name="" id="">
-             </td>
+          <td>{{this.name}}</td>
+          <td>{{this.cmnd}}</td>
+          <td>{{this.dateArrive}}</td>
+          <td>{{this.dateArrive}}</td>
+          <td>{{this.Room.idRoom}}</td>
+          <td>{{this.moneyPay}}</td>
 
-         
+          <td>
+            <a href="/private/phieudatphong/{{this._id}}/update" class="btn">Cập nhật</a>
+            {{!-- sau khi bấm xóa lấy được id khóa học mà muốn xóa
+            data-id là truyền id khóa học muốn lấy --}}
+     
+          </td>
         </tr>
         {{!-- else là khi không có dữ liệu nó sẽ hiển thị --}}
         {{else}}
@@ -491,150 +465,42 @@
     </table>
 
 
-                    <div class="box-trong l-5">
-                      <div class="noi_dung-1-text_noi-dung">
-                        <div class="noi_dung-1-text_noi-dung_hoten">Tổng  tiền</div>
-                          <p> (*)</p>
-                      </div>  
 
-                      <div class="box-trong_om">
-                        <span class="box-trong_text"> 0.000.000 đ</span>
-                      </div>                                
-                    </div>
 
-                  </div>
-  
-                  
-                </div>
-              </div>
-                
-  
-              
-  
-  
-              </div>
-  
-              <div class="bottom-nav">
-                <button class="bottom-nav_huy">
-                  Hủy         
-                </button>
-  
-                <button class="bottom-nav_luu">
-                  Lưu           
-                </button>
-              </div>
-            </div>         
-           <!-- ===content__Phieu Dat Tiec-end==== -->
-  
-  
-          </div>
-          <!-- ====content-end==== -->
-  
-  
-  
+  {{!-- confirm xóa khóa học --}}
+<div class="modal" tabindex="-1" role="dialog" id="delete-khoahoc-modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">bạn chắc chắn có muốn xóa không </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-  
-  <!-- ===Gop_Y=== -->
-      <div class="modal js-modal">
-        <div class="modal-container js-modal-container">
-  
-            <div class="modal-close js-modal-close">
-              <i class="ti-close"></i>
-            </div>
-  
-            <div class="modal-header">
-                Gửi góp ý
-            </div>
-  
-            <div class="modal-body">
-                <input id="quantity" type="text" class="modal-input" placeholder="Vui Lòng nhập góp ý của bạn vào đây !">
-  
-                <button class=modal-pay>
-                    Gửi 
-                    <i class="ti-check"></i>
-                </button>
-  
-                <div class="modal-footer">
-                    <p class="modal-help">
-                        Need 
-                        <a href="">
-                            Help?
-                        </a>
-                    </p>
-                </div>        
-            </div>
-        </div>
-  
+      <div class="modal-body">
+        <p>Bạn chắc chắn có muốn xóa không </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+        {{!-- truy vấn một cái nút confirm xóa bỏ chuyển hướng trình duyệt phương thức post --}}
+        <button id="btn-delete-khoahoc" type="button" class="btn btn-danger">Xóa bỏ</button>
+      </div>
+    </div>
   </div>
+</div>
 
-
-          </div>
-          
-
-          </div>
-        </div> 
-
-        </div>
-        <!-- ====content-end==== -->
 
 
 
     </div>
 
-<!-- ===Gop_Y=== -->
-    <div class="modal js-modal">
-      <div class="modal-container js-modal-container">
 
-          <div class="modal-close js-modal-close">
-            <i class="ti-close"></i>
-          </div>
 
-          <div class="modal-header">
-              Gửi góp ý
-          </div>
 
-          <div class="modal-body">
-              <input id="quantity" type="text" class="modal-input" placeholder="Vui Lòng nhập góp ý của bạn vào đây !">
+    });
+      
+          
 
-              <button class=modal-pay>
-                  Gửi 
-                  <i class="ti-check"></i>
-              </button>
 
-              <div class="modal-footer">
-                  <p class="modal-help">
-                      Need 
-                      <a href="">
-                          Help?
-                      </a>
-                  </p>
-              </div>        
-          </div>
-      </div>
 
-</div>
-
-<script>      
-     // dong/mo Modal
-      const buyBtns = document.querySelectorAll('.js-buy-ticket');
-      const modal = document.querySelector('.js-modal')
-      const modalclose = document.querySelector('.js-modal-close')
-      const modalcontainer = document.querySelector('.js-modal-container')
-
-      function Showbuytickets() {
-        modal.classList.add('open')
-      }
-      function hidebuyticket (){
-        modal.classList.remove('open')
-      }      
-
-      for(const buyBtn of buyBtns){
-        buyBtn.addEventListener('click',Showbuytickets)
-      }
-
-      modalclose.addEventListener('click',hidebuyticket)
-      modal.addEventListener('click',hidebuyticket)
-      modalcontainer.addEventListener('click', function(even){
-        even.stopPropagation()
-      })
 </script>
