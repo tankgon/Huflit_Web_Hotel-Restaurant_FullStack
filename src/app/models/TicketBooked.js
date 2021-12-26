@@ -5,10 +5,10 @@ const ticketBookedSchema = new Schema(
     {
         name : { type : String , required : true }, 
         cmnd : { type : Number , required : true }, 
-        qtyCustomer :{type :Number, required:true},
         dateArrive:{type : Date , required:true},
         dateGo :{type : Date , required:true},
-        Room : []
+        Room : {idRoom :{type : String,required:true}},
+        moneyPay : {type:Number , String,required:true}
    
     },
     

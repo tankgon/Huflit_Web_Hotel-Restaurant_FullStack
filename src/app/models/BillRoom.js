@@ -5,14 +5,16 @@ const billRoomSchema = new Schema(
     {
         name : { type : String , required : true }, 
         cmnd : { type : Number , required : true }, 
-        Room :[
+        Room :
             {
-                idRoom {type : String , required : true }, 
+                idRoom :{type : String , required : true }
                  
             }
-        ],
-        totalMoney : {type : Number, required : true  }
-        
+        ,
+        dateArrive:{type : Date , required:true},
+        dateGo :{type : Date , required:true},
+        totalMoney : {type : Number, required : true  },
+       
     },
     
     {

@@ -398,9 +398,9 @@
         <div class="l-8 m-12 c-12">
           <div class="bang_lon ">
             <div class="noi_dung-1-text_name">Thông tin cơ bản</div>
+             <form action="./datphongthanhcong?_method=PUT" method="post">
 
             <div class="box">
-             
                 <div class="box-trong l-6">
                   <div class="noi_dung-1-text_noi-dung">
                     <div class="noi_dung-1-text_noi-dung_hoten">CMND</div>
@@ -412,14 +412,13 @@
               
               <div class="box-trong l-4">
                 <div class="noi_dung-1-text_noi-dung ">
-                  <div class="noi_dung-1-text_noi-dung_hoten">Số lượng khách</div>
+                  <div class="noi_dung-1-text_noi-dung_hoten">Ứng tiền trước</div>
                   <p> (*)</p>
                 </div>
-                <select class="textarea" id="amount_customer">
-                  <option value="2" name="qtyCusomer"class="option">Số khách: 2</option>
-                  <option  value="4" name="qtyCusomer">Số khách: 4</option>
-                  <option  value="6" name="qtyCusomer">Số khách: 6</option>
-                </select>
+                <div>
+                         <input  class="textarea" type="text" id="money" name="moneyPay">
+                </div>
+             
               </div>
 
             </div>
@@ -460,13 +459,14 @@
                   </tr>
                   {{!-- bảng dữ liệu phòng --}}
                   {{#each room}}
+                  
                   <tr>
                     <td>
-                      <form class="form-check">
+                   
                         {{!-- khoahoc[] là chứa các checkbox của 1 mảng checkbox con --}}
-                        <input class="form-check-input" id="checkid" name="roomid" type="radio" value="{{this.name}} " >
-
-                      </form>
+                        <input class="form-check-input"  name="roomid" id="{{this.name}}"  type="radio" value="{{this._id}}" >
+                   
+                   
                     </td>
 
                     <td>
@@ -500,13 +500,13 @@
                     <div class="noi_dung-1-text_noi-dung_hoten">Ngày đến</div>
                     <p> (*)</p>
                   </div>
-                  <input class="textarea" type="date" id="begin"></input>
+                  <input class="textarea" name="dateArrive" type="date" id="begin"></input>
 
                   <div class="noi_dung-1-text_noi-dung">
                     <div class="noi_dung-1-text_noi-dung_hoten">Ngày đi</div>
                     <p> (*)</p>
                   </div>
-                  <input class="textarea" type="date" id="end"></input>
+                  <input class="textarea" name="dateGo" type="date" id="end"></input>
 
                 </div>
 
@@ -521,13 +521,13 @@
                 <a href="#">Hủy</a>
               </button>
 
-              <button class="bottom-nav_luu" id="save_btn">
+              <button class="bottom-nav_luu" type="button" id="save_btn">
                 <a >Lưu</a>
               </button>
             </div>
           </div>
           <!-- ===content__Tong Quan-end==== -->
-
+    </form>
 
 
 
@@ -586,21 +586,56 @@
    
     $('#save_btn').click(()=>{
       const name =  $('#nameuser').val()
-      const amountCustumer = $('#amount_customer').val()
+      const money = $('#money').val()
       const iduser = $('#cmnd').val()
-      const idRoom = $('#checkid').val()
+      const idRoom = $("input[name='roomid']:checked").val();
       const dayBegin = $('#begin').val()
       const endDay = $('#end').val()
       const data = {
         name: name,
-        amountCustumer: amountCustumer,
-        iduser:iduser,
-        idRoom: idRoom,
-        dayBegin: idRoom,
-        endDay: endDay
+        moneyPay : money,
+        cmnd:iduser,
+        Room : {idRoom},
+        dateArrive : dayBegin,
+        dateGo: endDay
       }
-      console.log(data)
+      
+      if(name==''||money==''||iduser== ''||idRoom==''||dayBegin==''||endDay==''){
+        alert('invalue')
 
-    })
+      }
+      else{
+        $.ajax({
+          url: 'http://localhost:3000/private/datphongthanhcong',
+          type: 'POST',
+          data : data,
+          success:(res)=>{
+            alert('success')
+          },
+          error:(res)=>{
+            console.error(res)
+          }
+        })
+      }
+   })
   })
+</script>
+
+
+<script>
+
+
+/*const servive_data = document.getElementById('roomid');
+    servive_data.addEventListener('change',(e)=>{
+    console.log(servive_data.val)
+   
+  })
+
+ function change(sel) {
+   const name_dv = document.getElementById('roomid');
+   name_dv.value = sel.options[sel.selectedIndex].text;
+   const cmnd = document.getElementById('cmnd').value
+   window.localStorage.setItem('key',cmnd)
+  
+}*/
 </script>

@@ -50,25 +50,43 @@ router.post("/khachhang",checklogin,PrivateController.receivekhachhang);
 //[PHÒNG]
 router.get("/khachhangdatphong", checklogin, PrivateController.khachhangdatphong);
 router.get("/datphong", checklogin, PrivateController.datphongget);
-router.get("/traphong", checklogin, PrivateController.traphong);
+
 router.get("/giahan",checklogin,PrivateController.giahan);
 router.get("/capnhat",checklogin,PrivateController.capnhat);
 router.get("/doiphong",checklogin,PrivateController.doiphong);
 
-router.put("/datphongthanhcong", PrivateController.datphongthanhcong);
-//[HÓA ĐƠN]
 
+// chưa làm front end 
+router.post("/datphongthanhcong",PrivateController.datphongthanhcong);
+
+
+//[HÓA ĐƠN]
+      //[SỰ CỐ]
 router.get("/hdsuco",checklogin,PrivateController.hdsuco);
-router.get("/hdungtruoc",checklogin,PrivateController.hdungtruoc);
-router.get("/hdtraphong",checklogin,PrivateController.hdtraphong);
-router.get("/hddichvu/:cmnd",checklogin,PrivateController.hddichvu);
-router.get("/hdtong/:cmnd",checklogin,PrivateController.hdtong);
 router.get("/suco",checklogin,PrivateController.suco);
 
 
+router.post("/suco",checklogin,PrivateController.sucopost)
+      //[PHÒNG]
+router.get("/hdungtruoc",checklogin,PrivateController.hdungtruoc);
+router.get("/hdtraphong",checklogin,PrivateController.hdtraphong);
+
+router.get("/traphong",checklogin,PrivateController.traphong);
+      //[DỊCH VỤ]
+router.get("/hddichvu/:cmnd",checklogin,PrivateController.hddichvu);
+
 router.post("/khachhangdichvu",checklogin,PrivateController.createphieudichvu);
-router.post("/hddichvu",checklogin,PrivateController.createhddichvu);
+router.post("/hddichvu",checklogin,PrivateController.createhddichvu); 
+        //[TỔNG]
+router.get("/hdtong/:cmnd",checklogin,PrivateController.hdtong);
+
 router.post("/khachhanghdtong",checklogin,PrivateController.hdtongpost);
+
+
+
+
+
+
 // router.get("/hddichvu",checklogin,PrivateController.createhddichvu);
 
 

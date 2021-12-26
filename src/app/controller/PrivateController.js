@@ -123,49 +123,48 @@ class PrivateController {
     })
   }
 
-
+  
   //[PUT] private/datphongthanhcong
  async datphongthanhcong(req,res,next)
   {
-    var data = {
-        "name" : "ngocphu", 
-        "cmnd" : 9999, 
-        "qtyCustomer" : 2,
-        "dateArrive": "2021-12-23T19:13:48.549+00:00",
-        "dateGo" : "2021-12-23T19:13:48.549+00:00",
-        "Room": [
-        {"idRoom": "61c610380480f5fe5dd798c0"},
-        {"idRoom": "61c6106004e215697521e241"}
-        ]
-    }
-    var name = req.body.Room
- await name.forEach( (el)=>
-    {
-      console.log(req.body);
-        const ticketbooked = new TicketBooked(req.body); 
-        ticketbooked.save()
-       Room.findById(el.idRoom,function(err,room){
-        room.status = !room.status ; 
-        room.save(function (err, updatedroom) {
-          if (err) {
-            console.log(err);
-          } else {
-              console.log("thành công")
-          }
-        })
+    console.log(req.body)
+    // var ticketBooked = new TicketBooked(req.body)
+    // ticketBooked.save()  
+    var idRoom = req.body.Room.idRoom
+    console.log(idRoom);
+    Room.findById(idRoom,function(err,room){
+      room.status = !room.status ; 
+      room.save(function (err, updatedroom) {
+        if (err) {
+          console.log(err);
+        } else {
+            console.log("thành công")
+        }
       })
-     });
-     return res.redirect("/")
-    } 
+    } )
+    return res.redirect("back")
+  }
   //[GET] private/nhanphong
   nhanphong(req, res, next) {
     res.render("phong/nhanphong");
   }
 
-  //[GET] private/traphong
-  traphong(req, res, next) {
-    res.render("phong/traphong");
+
+   //[GET] private/traphong
+   traphong(req, res, next) {
+    console.log(req.query.nameRoom)
+    const nameRoom = req.query.nameRoom;
+       
+  TicketBooked.findOne({nameRoom : nameRoom}).lean()
+   .then((data)=>
+   {
+     res.render("hoadon/hdtraphongsearch",{data:data})
+   })
+   .catch(next)
   }
+
+
+  
 
    //[GET] private/giahan
    giahan(req, res, next) {
@@ -310,6 +309,28 @@ class PrivateController {
     res.render("hoadon/hddichvu");
     
   }
+
+  suco(req,res,next)
+  {
+    const name = req.query.name ; 
+    
+   Room.findOne({name : name,status : true }).lean()
+   .then((data)=>
+   {
+     res.render("hoadon/hdsucosearch",
+     {
+       data : data 
+     })
+   })
+   .catch(next)
+ 
+  }
+
+  sucopost(req,res,next)
+  {
+    
+  }
+
   //[POST] private/hddichvu
    createhddichvu(req,res,next)
   {
@@ -354,21 +375,7 @@ class PrivateController {
   }
 
 
-   suco(req,res,next)
-  {
-    const name = req.query.name ; 
-    
-   Room.findOne({name : name,status : true }).lean()
-   .then((data)=>
-   {
-     res.render("hoadon/hdsucosearch",
-     {
-       data : data 
-     })
-   })
-   .catch(next)
- 
-  }
+
 
 
  

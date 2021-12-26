@@ -412,14 +412,10 @@
               </form>
               <div class="box-trong l-4">
                 <div class="noi_dung-1-text_noi-dung ">
-                  <div class="noi_dung-1-text_noi-dung_hoten">Số lượng khách</div>
+                  <div class="noi_dung-1-text_noi-dung_hoten">Tiền ứng trước</div>
                   <p> (*)</p>
                 </div>
-                <select class="textarea">
-                  <option class="option">Số khách: 1</option>
-                  <option class="option">Số khách: 2</option>
-                  <option class="option">Số khách: 3</option>
-                </select>
+              <input type="number" name="" id="">
               </div>
 
             </div>
@@ -454,31 +450,9 @@
                       Đơn giá
                     </th>
                   </tr>
-                  {{!-- bảng dữ liệu phòng --}}
-                  {{#each data}}
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        {{!-- khoahoc[] là chứa các checkbox của 1 mảng checkbox con --}}
-                        <input class="form-check-input" id="phongIds[]" type="checkbox" onclick='handleClick(this)'value="{{this._id}}">
+        
 
-                      </div>
-                    </td>
-
-                    <td>
-                      {{this.name}}
-                    </td>
-                    <td>
-                      {{this.type}}
-                    </td>
-                    <td>
-                      {{this.floor}}
-                    </td>
-                    <td>
-                      {{this.price}}
-                    </td>
-                  </tr>
-                  {{/each}}
+           
                 </thead>
                 <tbody id="tbody">
 
