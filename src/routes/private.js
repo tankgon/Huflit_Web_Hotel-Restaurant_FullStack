@@ -15,6 +15,7 @@ var checklogin = (req, res, next) => {
 const PrivateController = require("../app/controller/PrivateController");
 
 router.get("/",checklogin, PrivateController.privated); 
+router.get("/dsphongdadat",checklogin, PrivateController.dsphongdadat); 
 
 //[DICHVU]
 router.get("/dichvu", checklogin, PrivateController.dichvu);

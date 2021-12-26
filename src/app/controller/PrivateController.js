@@ -12,7 +12,13 @@ class PrivateController {
 
   //[GET] private/
   privated(req, res, next) {
-    res.render("home");
+    Room.find({status : true}).lean()
+    .then((data)=>
+    {
+      res.render("home",{
+        data:data
+      })
+    })
   }
 
   //[DICHVU]
@@ -183,6 +189,17 @@ class PrivateController {
     res.render("phong/capnhatphong");
   }
 
+
+  dsphongdadat(req,res,next)
+  {
+    Room.find({status : false}).lean()
+    .then((data)=>
+    {
+      res.render("phong/dspchuadat",{
+        data:data
+      })
+    })
+  }
 
   //////Đặt tiệc ///////
   //[GET] private/dattiec
