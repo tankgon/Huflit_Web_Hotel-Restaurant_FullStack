@@ -124,28 +124,39 @@ class PrivateController {
   }
 
 
-  //[POST] private/datphongthanhcong
+  //[PUT] private/datphongthanhcong
  async datphongthanhcong(req,res,next)
   {
     var data = {
         "name" : "ngocphu", 
         "cmnd" : 9999, 
-        "qtyCusomer" : 2,
+        "qtyCustomer" : 2,
         "dateArrive": "2021-12-23T19:13:48.549+00:00",
         "dateGo" : "2021-12-23T19:13:48.549+00:00",
-        "idRoom": [{'idRoom1':agfgsdas},{'idRoom2': fgafgafsdgas}]
+        "Room": [
+        {"idRoom": "61c610380480f5fe5dd798c0"},
+        {"idRoom": "61c6106004e215697521e241"}
+        ]
     }
-    var name = req.body.idRoom
-    console.log(name)
-    // var ids = await data.map(function(o)
-    // {
-    //   return o.nameRoom;
-    // })
-    // console.log(ids.json);
-
-    // const change = await Room.find({name: name},)
-    // console.log(change)
-  } 
+    var name = req.body.Room
+ await name.forEach( (el)=>
+    {
+      console.log(req.body);
+        const ticketbooked = new TicketBooked(req.body); 
+        ticketbooked.save()
+       Room.findById(el.idRoom,function(err,room){
+        room.status = !room.status ; 
+        room.save(function (err, updatedroom) {
+          if (err) {
+            console.log(err);
+          } else {
+              console.log("thành công")
+          }
+        })
+      })
+     });
+     return res.redirect("/")
+    } 
   //[GET] private/nhanphong
   nhanphong(req, res, next) {
     res.render("phong/nhanphong");
@@ -161,10 +172,6 @@ class PrivateController {
     res.render("phong/phieugiahan");
   }
 
-  //[GET] private/kiemtraphong
-  kiemtraphong(req, res, next) {
-    res.render("phong/kiemtraphong");
-  }
 
 
   //[GET] private/doiphong
@@ -350,7 +357,8 @@ class PrivateController {
    suco(req,res,next)
   {
     const name = req.query.name ; 
-   Room.findOne({name : name }).lean()
+    
+   Room.findOne({name : name,status : true }).lean()
    .then((data)=>
    {
      res.render("hoadon/hdsucosearch",

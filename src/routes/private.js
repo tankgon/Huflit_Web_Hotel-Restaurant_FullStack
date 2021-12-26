@@ -52,11 +52,10 @@ router.get("/khachhangdatphong", checklogin, PrivateController.khachhangdatphong
 router.get("/datphong", checklogin, PrivateController.datphongget);
 router.get("/traphong", checklogin, PrivateController.traphong);
 router.get("/giahan",checklogin,PrivateController.giahan);
-router.get("/kiemtraphong",checklogin,PrivateController.kiemtraphong);
 router.get("/capnhat",checklogin,PrivateController.capnhat);
 router.get("/doiphong",checklogin,PrivateController.doiphong);
 
-router.post("/datphongthanhcong", PrivateController.datphongthanhcong);
+router.put("/datphongthanhcong", PrivateController.datphongthanhcong);
 //[HÓA ĐƠN]
 
 router.get("/hdsuco",checklogin,PrivateController.hdsuco);
