@@ -204,19 +204,92 @@ class PrivateController {
     res.render("phong/phieugiahan");
   }
 
+  //[GET] private/giahansearch
+  giahanphong(req,res,next)
+  {
+   const cmnd = req.query.cmnd
+   TicketBooked.find({cmnd:cmnd}).lean()
+   .then((data)=>
+   {
+     if(data == '')
+     {
+       res.send("không có dữ liệu ")
+     }
+     else
+     {
+   
+       res.render("phong/phieugiahansearch",{
+         data:data,
+   
+       })
+      
+    
+     }
+   })
+   
+  }
+//[GET] private/:id/edit
+  giahanphongedit(req,res,next)
+  {
+    TicketBooked.findById(req.params.id).lean()
+    .then((data)=>
+    {
+      res.render("phong/giahanphongedit",
+      {
+        data : data 
+      })
+    })
+    .catch(next)
+  }
 
+  //[PUT] private/giahanphong/:id
+  giahanphongput(req,res,next)
+  {
+    TicketBooked.updateOne({_id:req.params.id},req.body)
+    .then(()=>res.redirect("/private/giahan"))
+    .catch(next)
+  }
 
   //[GET] private/doiphong
   doiphong(req, res, next) {
-    res.render("phong/phieudoiphong");
+    res.render("phong/doiphongsearch");
   }
 
+  //[GET] private/doiphongsearch
+ async doiphongsearch(req,res,next)
+  {
+    const cmnd = req.query.cmnd; 
+    if(cmnd == '')
+    {
+        res.send("không có dữ liệu")   
+    }
+  TicketBooked.find({cmnd : cmnd }).lean()
+    .then((data)=>
+    {
+      res.render("phong/phieudoiphong",{
+        data:data
+      })
+    })
+   
+  }
+  
+  //[PUT] doiphong/:id/edit
+  doiphongedit(req,res,next)
+  {
+    Promise.all([TicketBooked.findById(req.params.id).lean(), Room.find({status : true}).lean()])
+    .then(([data,room]) =>
+      res.render("phong/doiphongedit",{
+        data : data , 
+        room:room
+      })
+    )
+  }
   //[GET] private/capnhat
   capnhat(req, res, next) {
     res.render("phong/capnhatphong");
   }
 
-
+//[GET
   dsphongdadat(req,res,next)
   {
     Room.find({status : false}).lean()
@@ -243,15 +316,76 @@ class PrivateController {
 
   //[GET] private/dsmonan
   themmonan(req, res, next) {
+      res.render("nhahang/monan")
+    
+  }
+
+
+
+  //[GET] private/thucdonmonan
+  thucdonmonan(req,res,next)
+  {
     Food.find({}).lean()
     .then((data)=>
     {
-      res.render("nhahang/themmonan",{
+      res.render("nhahang/thucdonmonan",{
         data:data
-      })
+      }
+      )
+  
     })
+    .catch(next)
   }
 
+
+  //[GET] private/monan/:id/edit
+  editmonan(req,res,next)
+  {
+    Food.findById(req.params.id).lean()
+    .then((data)=>
+    {
+      res.render("nhahang/editmonan",
+      {
+        data : data 
+      })
+    })
+    .catch(next)
+  }
+
+  //[PUT] private/monan/:id
+  editmonanput(req,res,next)
+  {
+    Food.updateOne({_id:req.params.id},req.body)
+    .then(()=>res.redirect("/private/thucdonmonan"))
+    .catch(next)
+  }
+  //[POST] private/themmonan 
+  themmonanpost(req,res,next)
+  {
+    const name = req.body.name
+    const price = req.body.price 
+    if(name == '' || price == '' )
+    {
+       res.send("404 error")
+    }
+    const food = new Food(req.body)
+    food.save()
+    .then(()=>
+    {
+      res.redirect("./thucdonmonan")
+    })
+    .catch(next)
+    
+  }
+  //[DELETE] /private/:id 
+  deletemonan(req,res,next)
+  {
+     // thực hiện xóa thật bằng lệnh delete One
+     Food.deleteOne({ _id: req.params.id })
+     // khi mà xóa xong nó sẽ quay lại trang  mà đã xóa
+     .then(() => res.redirect("back"))
+     .catch(next);
+  }
 
 
 /////////Khách hàng ///////////
@@ -272,6 +406,10 @@ class PrivateController {
    
     //[POST] private/receivecustomer
   receivekhachhang(req, res, next) {
+    if(req.body=='')
+    {
+      res.render("<h1>404 ERROR </h1>")
+    }
    const customer = new Customer(req.body);
     console.log(customer);
    customer.save()

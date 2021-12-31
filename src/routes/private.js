@@ -35,7 +35,15 @@ router.get("/phanquyen", checklogin, PrivateController.phanquyen);
 
 //[ĐẶT TIỆC]
 router.get("/dattiec",checklogin,PrivateController.dattiec);
-router.get("/dsmonan",checklogin,PrivateController.themmonan);
+router.get("/themmonan",checklogin,PrivateController.themmonan);
+
+router.get("/thucdonmonan",checklogin,PrivateController.thucdonmonan)
+router.get("/monan/:id/edit",checklogin,PrivateController.editmonan)
+router.put("/monan/:id",checklogin,PrivateController.editmonanput)
+router.delete("/monan/:id",checklogin,PrivateController.deletemonan)
+
+
+router.post("/themmonan",checklogin,PrivateController.themmonanpost);
 
 //[KHACHHANG]
 router.delete("/khachhang/:id/force",checklogin,PrivateController.deleteforcekhachhang);
@@ -56,11 +64,19 @@ router.get("/datphong", checklogin, PrivateController.datphongget);
 router.get("/dsdatphong", checklogin, PrivateController.dsdatphong);
 
 router.get("/giahan",checklogin,PrivateController.giahan);
+router.get("/giahanphong",checklogin,PrivateController.giahanphong)
+router.get("/giahanphong/:id/edit",checklogin,PrivateController.giahanphongedit)
+router.put("/giahanphong/:id",checklogin,PrivateController.giahanphongput)
+
 router.get("/capnhat",checklogin,PrivateController.capnhat);
+
+
 router.get("/doiphong",checklogin,PrivateController.doiphong);
+router.get("/doiphongsearch",checklogin,PrivateController.doiphongsearch);
+router.get("/doiphongsearch",checklogin,PrivateController.doiphongsearch);
+router.get("/doiphong/:id/edit",checklogin,PrivateController.doiphongedit);
 
 
-// chưa làm front end 
 router.post("/datphongthanhcong",PrivateController.datphongthanhcong);
 
 

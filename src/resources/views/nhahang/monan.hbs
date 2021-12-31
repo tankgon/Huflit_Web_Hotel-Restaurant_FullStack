@@ -379,13 +379,15 @@
           </nav> 
 
 
+         
+
            
             <!-- ===content__Phieu Dat Tiec==== -->
             <div class="content-container">
               <div class="tieu_de">
                 <div class="tieu_de-text">
-                Tìm kiếm
-                </div>
+                  Thêm loại dịch vụ
+                </div>n
                 <div class="tieu_de-huong-dan">
                   <a href="">
                   <i class="fas fa-exclamation-circle"></i>
@@ -398,43 +400,102 @@
               <div class="noi_dung-1">
                 <div class="l-8 m-12 c-12">
                 <div class="bang_lon ">
-                  <div class="noi_dung-1-text_name l-12 m-0 c-0">Tìm kiếm khách hàng để gia hạn</div>
+                  <form action="./themmonan" method="post">
+                  <div class="noi_dung-1-text_name">Thông tin cơ bản</div>
+                  
 
                   <div class="box">
   
-                  <form action="./giahanphong" method="get">
                     <div class="box-trong l-5">
                       <div class="noi_dung-1-text_noi-dung">
-                        <div class="noi_dung-1-text_noi-dung_hoten">CMND</div>
+                        <div class="noi_dung-1-text_noi-dung_hoten">Tên món ăn</div>
                           <p> (*)</p>
                       </div>              
-                       <button type="submit" style="background-color: aqua;">Tìm kiếm</button>
-                      <input class="textarea" name="cmnd" placeholder="Nhập số chứng minh"></input>
-                     
+                      <input class="textarea"  name="name" placeholder="Nhập tên món ăn"></input>
                     </div>
-                    
-                  </form>
+
+                    <div class="box-trong l-5">
+                      <div class="noi_dung-1-text_noi-dung">
+                        <div class="noi_dung-1-text_noi-dung_hoten">Đơn giá</div>
+                          <p> (*)</p>
+                      </div>              
+                      <input class="textarea"  name="price" placeholder="Nhập đơn giá món ăn"></input>
+                    </div>     
+                  </div>
                   
-               
 
-                 
-     </div>
-
+                   
+                </div>              
               </div>
                 
   
+              
   
   
               </div>
   
-              
+              <div class="bottom-nav">
+                <button class="bottom-nav_huy">
+                  Hủy         
+                </button>
+  
+                <button class="bottom-nav_luu" type="submit">
+                  Lưu           
+                </button>
+              </div>
+              </form>
+            </div>         
            <!-- ===content__Phieu Dat Tiec-end==== -->
   
   
           </div>
           <!-- ====content-end==== -->
+  
+  
+  
       </div>
- 
+  
+  <!-- ===Gop_Y=== -->
+      <div class="modal js-modal">
+        <div class="modal-container js-modal-container">
+  
+            <div class="modal-close js-modal-close">
+              <i class="ti-close"></i>
+            </div>
+  
+            <div class="modal-header">
+                Gửi góp ý
+            </div>
+  
+            <div class="modal-body">
+                <input id="quantity" type="text" class="modal-input" placeholder="Vui Lòng nhập góp ý của bạn vào đây !">
+  
+                <button class=modal-pay>
+                    Gửi 
+                    <i class="ti-check"></i>
+                </button>
+  
+                <div class="modal-footer">
+                    <p class="modal-help">
+                        Need 
+                        <a href="">
+                            Help?
+                        </a>
+                    </p>
+                </div>        
+            </div>
+        </div>
+  
+  </div>
+
+
+          </div>
+          
+
+          </div>
+        </div> 
+
+        </div>
         <!-- ====content-end==== -->
 
 

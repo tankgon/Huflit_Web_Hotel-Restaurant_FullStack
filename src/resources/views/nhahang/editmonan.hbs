@@ -1,4 +1,3 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <div class="row">
     <!-- ====menu==== -->
     <div class="menu col l-3 m-0 c-0">
@@ -379,12 +378,11 @@
         </nav>
 
 
-
-        <!-- ===content__Phieu Dat Tiec==== -->
+        <!-- ===content__Tong Quan==== -->
         <div class="content-container">
             <div class="tieu_de">
                 <div class="tieu_de-text">
-                  Danh sách phòng
+                    Sữa thông tin khách hàng
                 </div>
                 <div class="tieu_de-huong-dan">
                     <a href="">
@@ -395,149 +393,113 @@
             </div>
 
 
-            <div class="noi_dung-1">
-                <div class="l-8 m-12 c-12">
-                    <div class="bang_lon ">
-                        <div class="noi_dung-1-text_name name_hd l-12 m-0 c-0">Thông tin khách hàng sử dụng phòng</div>
+            <form method="POST" action="/private/monan/{{data._id}}?_method=PUT">
+                <div class="noi_dung-1">
+                    <div class="l-8 m-12 c-12">
+                        <div class="bang_lon ">
 
-                        <div class="box_name">
-                            <div>
-                                <p>Công ty khách sạn:</p>
-                                <p>Địa chỉ:</p>
+                            <div class="box">
+                                <div class="box-trong l-5">
+                                    <div class="noi_dung-1-text_noi-dung">
+                                        <div class="noi_dung-1-text_noi-dung_hoten">Tên món ăn</div>
+                                        <p> (*)</p>
+                                    </div>
+                                    <input class="textarea" name="name" value="{{data.name}}"
+                                        placeholder="Nhập tên món ăn"></input>
+                                </div>
+
+                                <div class="box-trong l-4">
+                                    <div class="noi_dung-1-text_noi-dung">
+                                        <div class="noi_dung-1-text_noi-dung_hoten">Đơn giá</div>
+                                        <p> (*)</p>
+                                    </div>
+                                    <input class="textarea" value="{{data.price}}" name="price"
+                                        placeholder="Nhập đơn giá"></input>
+
+
+                                </div>
+
+
                             </div>
 
-                            <div class="first">
-                                <p>GonT</p>
-                                <p>144A Chi Lăng Vũng Tàu</p>
-                            </div>
+
                         </div>
 
-
-
-
-                        <div class="box">
-
-                           
-                        <table border="1" class="table_ds">
-                            <thead>
-                                <tr class="tr_ds">
-
-                                    <th scope="col">
-                                        STT
-                                    </th>
-                                     <th>NAME </th>
-                                    <th>CMND </th>
-                                    <th>Ngày đến </th>
-                                    <th scope="col">Ngày đi </th>
-                                    <th scope="col">Phòng</th>
-                                     <th scope="col">Số tiền trả</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{#each data }}
-                                <tr>
-                                    {{!-- thẻ checkbox all --}}
-
-                                    {{!-- sum này bên index.js chính để có thể thực hiện index + --}}
-                                    <th scope="row">{{sum @index 1}}</th>
-                                   <td>{{this.name}}</td>
-                                      <td>{{this.cmnd}}</td>
-                                    <td>{{this.dateArrive}}</td>
-                                    <td>{{this.dateGo}}</td>
-                                     <td>{{this.Room.idRoom}}</td>
-                                    <td>{{this.moneyPay}}</td>
-
-                                    <td>
-                                        <a href="/private/doiphong/{{this._id}}/edit" class="btn">Đổi phòng</a>
-                                        {{!-- sau khi bấm xóa lấy được id khóa học mà muốn xóa
-                                        data-id là truyền id khóa học muốn lấy --}}
-                                      
-                                    </td>
-                                </tr>
-                                {{!-- else là khi không có dữ liệu nó sẽ hiển thị --}}
-                                {{else}}
-                                <tr>
-                                    <td colspan="6" class="text-center">Không có dữ liệu
-                                    </td>
-                                    <td colspan="12"> <a href="/khoahoc/showcreate">TẠO KHÁCH HÀNG</a></td>
-
-                                </tr>
-
-                            </tbody>
-                            {{/each}}
-                        </table>
 
 
 
 
                     </div>
 
+                    <div class="bottom-nav">
+                        <button class="bottom-nav_huy">
+                            Hủy
+                        </button>
+
+                        <button class="bottom-nav_luu" type="submit">
+                            Lưu
+                        </button>
+                    </div>
                 </div>
-
-            </div>
+            </form>
+            <!-- ===content__Tong Quan-end==== -->
 
 
 
 
 
         </div>
+        <!-- ====content-end==== -->
 
-        <div class="bottom-nav">
-            <button class="bottom-nav_huy">
-                Hủy
-            </button>
 
-            <button class="bottom-nav_luu" type="button" id="save_btn">
-                Lưu
-            </button>
 
+    </div>
+
+    <!-- ===Gop_Y=== -->
+    <div class="modal js-modal">
+        <div class="modal-container js-modal-container">
+
+            <div class="modal-close js-modal-close">
+                <i class="ti-close"></i>
+            </div>
+
+            <div class="modal-header">
+                Gửi góp ý
+            </div>
+
+            <div class="modal-body">
+                <input id="quantity" type="text" class="modal-input"
+                    placeholder="Vui Lòng nhập góp ý của bạn vào đây !">
+
+                <button class=modal-pay>
+                    Gửi
+                    <i class="ti-check"></i>
+                </button>
+
+                <div class="modal-footer">
+                    <p class="modal-help">
+                        Need
+                        <a href="">
+                            Help?
+                        </a>
+                    </p>
+                </div>
+            </div>
         </div>
 
     </div>
-    <!-- ===content__Phieu Dat Tiec-end==== -->
 
+
+</div>
+
+
+</div>
+</div>
 
 </div>
 <!-- ====content-end==== -->
-</div>
-
-<!-- ====content-end==== -->
 
 
-
-</div>
-
-<!-- ===Gop_Y=== -->
-<div class="modal js-modal">
-    <div class="modal-container js-modal-container">
-
-        <div class="modal-close js-modal-close">
-            <i class="ti-close"></i>
-        </div>
-
-        <div class="modal-header">
-            Gửi góp ý
-        </div>
-
-        <div class="modal-body">
-            <input id="quantity" type="text" class="modal-input"
-                placeholder="Vui Lòng nhập góp ý của bạn vào đây !">
-
-            <button class=modal-pay>
-                Gửi
-                <i class="ti-check"></i>
-            </button>
-
-            <div class="modal-footer">
-                <p class="modal-help">
-                    Need
-                    <a href="">
-                        Help?
-                    </a>
-                </p>
-            </div>
-        </div>
-    </div>
 
 </div>
 
@@ -565,3 +527,4 @@
         even.stopPropagation()
     })
 </script>
+<!-- ===Gop_Y-end=== -->
