@@ -386,10 +386,9 @@
           Đổi phòng
         </div>
         <div class="tieu_de-huong-dan">
-          <a href="">
-            <i class="fas fa-exclamation-circle"></i>
-            Hướng dẫn
-          </a>
+       
+        <input type="text" name="" id="makh" value="{{data._id}}">
+       
         </div>
       </div>
 
@@ -398,7 +397,7 @@
         <div class="l-8 m-12 c-12">
           <div class="bang_lon ">
             <div class="noi_dung-1-text_name">Thông tin cơ bản</div>
-             <form action="./datphongthanhcong?_method=PUT" method="post">
+             <form  action="/private/doiphong/{{data._id}}?_method=PUT" method="post">
 
             <div class="box">
                 <div class="box-trong l-6">
@@ -558,40 +557,31 @@
 
   $(document).ready(()=>{
    
-    $('#save_btn').click(()=>{
-      const name =  $('#nameuser').val()
-      const money = $('#money').val()
-      const iduser = $('#cmnd').val()
-      const idRoom = $("input[name='roomid']:checked").val();
-      const dayBegin = $('#begin').val()
-      const endDay = $('#end').val()
-      const data = {
-        name: name,
-        moneyPay : money,
-        cmnd:iduser,
-        Room : {idRoom},
-        dateArrive : dayBegin,
-        dateGo: endDay
-      }
-      
-      if(name==''||money==''||iduser== ''||idRoom==''||dayBegin==''||endDay==''){
-        alert('invalue')
 
-      }
-      else{
+    $('#save_btn').click(()=>{
+
+      const idRoom = $("input[name='roomid']:checked").val();
+       const makh = document.getElementById('makh').value
+       console.log(makh)
+      const data = {
+          Room : {idRoom},
+       }
+
+
+     
         $.ajax({
-          url: 'http://localhost:3000/private/datphongthanhcong',
+          url: `http://localhost:3000/private/doiphong/${makh}`,
           type: 'POST',
           data : data,
           success:(res)=>{
             alert('success')
-            window.location.href="http://localhost:3000/private"
+            //window.location.href="http://localhost:3000/private"
           },
           error:(res)=>{
             console.error(res)
           }
         })
-      }
+    
    })
   })
 </script>

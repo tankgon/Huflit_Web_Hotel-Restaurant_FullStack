@@ -16,6 +16,7 @@ const PrivateController = require("../app/controller/PrivateController");
 const GetDetailController = require("../app/controller/GetDetailController");
 
 
+router.post("/",checklogin, PrivateController.privated); 
 router.get("/",checklogin, PrivateController.privated); 
 router.get("/dsphongdadat",checklogin, PrivateController.dsphongdadat); 
 
@@ -68,13 +69,14 @@ router.get("/giahanphong",checklogin,PrivateController.giahanphong)
 router.get("/giahanphong/:id/edit",checklogin,PrivateController.giahanphongedit)
 router.put("/giahanphong/:id",checklogin,PrivateController.giahanphongput)
 
-router.get("/capnhat",checklogin,PrivateController.capnhat);
+
 
 
 router.get("/doiphong",checklogin,PrivateController.doiphong);
 router.get("/doiphongsearch",checklogin,PrivateController.doiphongsearch);
 router.get("/doiphongsearch",checklogin,PrivateController.doiphongsearch);
 router.get("/doiphong/:id/edit",checklogin,PrivateController.doiphongedit);
+router.post("/doiphong/:id",PrivateController.doiphongput);
 
 
 router.post("/datphongthanhcong",PrivateController.datphongthanhcong);
