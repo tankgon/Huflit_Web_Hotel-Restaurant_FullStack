@@ -39,6 +39,7 @@ class PrivateController {
 
   //[GET] private/sudungdichvu
   sudungdichvu(req, res, next) {
+
     Service.find({})
       .lean()
       .then((service) =>
@@ -52,6 +53,10 @@ class PrivateController {
   //[GET] private/khachhangdichvu
   searchkhachhang(req, res, next) {
     const namee = req.query.cmnd;
+    if(req.body == null || namee === '')
+    {
+      res.send("không có dữ liệu")
+    }
     console.log(namee);
     Promise.all([
       Customer.findOne({ cmnd: namee }).lean(),
@@ -101,6 +106,10 @@ class PrivateController {
   // search khách hàng
   khachhangdatphong(req, res, next) {
     const namee = req.query.cmnd;
+    if(namee == '')
+    {
+      res.send("Không có dữ liệu")
+    }
     console.log(namee);
     Promise.all([
       Customer.findOne({ cmnd: namee }).lean(),
@@ -260,6 +269,7 @@ class PrivateController {
     const id = req.params.id;
     const ticketbooked = await TicketBooked.findById(id);
     const ticketbookedroom = ticketbooked.Room.idRoom;
+    // chuyển trạng thái phòng đã sử dũng thành true 
     Room.findById(ticketbookedroom, function (err, room) {
       room.status = !room.status;
       room.save(
@@ -270,10 +280,12 @@ class PrivateController {
             console.log("thành công");
           }
         },
+        // update dữ liệu phòng mới 
         TicketBooked.updateOne(
           { _id: req.params.id },
           req.body,
           function (err, data) {
+            // tìm dữ liệu phòng mới trả về false 
             Room.findById(roomstatuschange, function (err, room) {
               room.status = !room.status;
               room.save(function (err, updatedroom) {
