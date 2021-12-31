@@ -437,8 +437,25 @@ class PrivateController {
  
   showservice(req,res,next)
   {
-        
-  
+      
+  }
+
+
+  async getAllFood(req,res){
+    const foods = await Food.find({})
+    // add new count
+    const foodsCustomer = []
+    foods.forEach((el,index)=>{
+      const data = {
+        '_id' : el['_id'],
+        'name': el['name'],
+        'price': el['price'],
+        'count': 0
+      }
+      foodsCustomer.push(data)
+      
+    })
+    res.json(foodsCustomer)
   }
 }
 

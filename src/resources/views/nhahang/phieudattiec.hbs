@@ -1,4 +1,5 @@
-<div class="row">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<div class="row" >
   <!-- ====menu==== -->
   <div class="menu col l-3 m-0 c-0">
 
@@ -444,50 +445,15 @@
      
           <th scope="col">
             #
-
-            {{!-- viết một controller tôi đang sử dụng chức năng sort đó
-            truyển query paramter lên
-            Sort Column name trong database
-            sort từ nhỏ đén lớn asc --}}
-            <a href="?_sort&column=name&type=asc">
-              <span ></span> </a>
           </th>
-       
           <th scope="col">Tên món ăn </th>
           <th scope="col">Đơn giá</th>
           <th scope="col">Số lượng</th>
           <th scope="col">Thành tiền</th>
         </tr>
       </thead>
-      <tbody>
-        {{#each data }}
-        <tr>
-          {{!-- thẻ checkbox all --}}
-   
-          {{!-- sum này bên index.js chính để có thể thực hiện index + --}}
-          <th scope="row">{{sum @index 1}}</th>
-          <td id="nameFood">{{this.name}}</td>
-          <td id="priceFood">{{this.price}}</td>
-             <td>
-               <input type="text" name="" id="">
-             </td>
-                <td>
-               <input type="text" name="" id="">
-             </td>
-
-         
-        </tr>
-        {{!-- else là khi không có dữ liệu nó sẽ hiển thị --}}
-        {{else}}
-        <tr>
-          <td colspan="6" class="text-center">Không có dữ liệu
-          </td>
-          <td colspan="12">   <a href="/khoahoc/showcreate">TẠO KHÁCH HÀNG</a></td>
-
-        </tr>
-
-      </tbody>
-      {{/each}}
+    
+        <tbody id="tbody"></tbody>
     </table>
 
 
@@ -498,7 +464,7 @@
                       </div>  
 
                       <div class="box-trong_om">
-                        <span class="box-trong_text"> 0.000.000 đ</span>
+                        <span class="box-trong_text" id="money"> </span>
                       </div>                                
                     </div>
 
@@ -600,6 +566,7 @@
                   Gửi 
                   <i class="ti-check"></i>
               </button>
+             
 
               <div class="modal-footer">
                   <p class="modal-help">
@@ -638,3 +605,79 @@
         even.stopPropagation()
       })
 </script>
+<!-- action input so luong -->
+<script>
+  if(localStorage.getItem('food') != null){
+    console.log('ready')
+  }
+  else{
+    $.ajax({
+   url:'http://localhost:3000/private/getAllFood',
+   type:'GET',
+   success:(data)=>{
+     localStorage.setItem('food', JSON.stringify(data))
+   },
+   error:(data)=>{
+     console.log(data)
+   }
+   
+ })
+ window.location.reload()
+
+  }
+ 
+
+function renderTable(data){
+
+  $(document).ready(()=>{
+    let tbody = $('#tbody')
+    
+     let str = ''
+
+     let total = 0
+     data.forEach((el,index)=>{
+       total += (data[index]['count'] * data[index]['price'])
+       let tr_table= 
+       `
+        <tr class="tr_ds">
+     
+          <th scope="col">
+            ${index+1}
+          </th>
+          <th scope="col">${data[index]['name']} </th>
+          <th scope="col">${data[index]['price'].toLocaleString('vi', {style : 'currency', currency : 'VND'})}</th>
+          <th scope="col"><input value="${data[index]['count']}"  onchange="changeCount('${data[index]['_id']}',event)" min='0' max='15' type='text' ></th>
+          <th scope="col">${(data[index]['price']*data[index]['count']).toLocaleString('vi', {style : 'currency', currency : 'VND'})}</th>
+        </tr>
+       
+       `
+       str += tr_table
+      
+       
+     })
+     $('#money').text(`${total.toLocaleString('vi', {style : 'currency', currency : 'VND'})}`)
+     $('#tbody').html(str)
+     
+     
+  })
+  
+  
+   
+
+}
+const data = JSON.parse(localStorage.getItem('food'))
+renderTable(data);
+
+function changeCount(id,e){
+  const data = JSON.parse( localStorage.getItem('food'))
+  data.forEach((el,index)=>{
+    if(el['_id'] == id){
+      el['count'] = Number(e.target.value)
+    }
+  })
+  localStorage.setItem('food',JSON.stringify(data))
+  renderTable(data);
+}
+</script>
+
+

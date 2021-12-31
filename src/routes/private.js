@@ -13,6 +13,8 @@ var checklogin = (req, res, next) => {
 };
 
 const PrivateController = require("../app/controller/PrivateController");
+const GetDetailController = require("../app/controller/GetDetailController");
+
 
 router.get("/",checklogin, PrivateController.privated); 
 router.get("/dsphongdadat",checklogin, PrivateController.dsphongdadat); 
@@ -83,6 +85,8 @@ router.post("/hddichvu",checklogin,PrivateController.createhddichvu);
 router.get("/hdtong/:cmnd",checklogin,PrivateController.hdtong);
 
 router.post("/khachhanghdtong",checklogin,PrivateController.hdtongpost);
+
+router.get("/getAllFood",PrivateController.getAllFood);
 
 
 
