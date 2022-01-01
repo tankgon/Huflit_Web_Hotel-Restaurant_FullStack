@@ -71,7 +71,13 @@ router.post("/khachhang",checklogin,PrivateController.receivekhachhang);
 router.get("/khachhangdatphong", checklogin, PrivateController.khachhangdatphong);
 router.get("/datphong", checklogin, PrivateController.datphongget);
 router.get("/dsdatphong", checklogin, PrivateController.dsdatphong);
+//get idRoom
+router.post("/getIdRoom",checklogin,PrivateController.getIdRoom)
 
+
+
+//getAllTicket
+router.post("/getAllTicket",checklogin,PrivateController.getAllTicket)
 router.get("/giahan",checklogin,PrivateController.giahan);
 router.get("/giahanphong",checklogin,PrivateController.giahanphong)
 router.get("/giahanphong/:id/edit",checklogin,PrivateController.giahanphongedit)
@@ -119,6 +125,7 @@ router.post("/hddichvu",checklogin,PrivateController.createhddichvu);
 router.get("/hdtong/:cmnd",checklogin,PrivateController.hdtong);
 
 router.post("/khachhanghdtong",checklogin,PrivateController.hdtongpost);
+//
 
 router.get("/getAllFood",PrivateController.getAllFood);
 

@@ -680,3 +680,35 @@
 
   
 </script>
+<script>
+  $('#save_btn').click(()=>{
+   // private/dattiecsearch
+    const cmnd = $('#cmnd').val()
+    const name = $('#name').val()
+    const phone = $('#phone').val()
+    const food = JSON.parse(localStorage.getItem('food'))
+    let Intomoney = 0
+    food.forEach((el,index)=>{
+      Intomoney += (el['price'] * el['count'])
+    })
+    console.log(Intomoney)
+    const data ={
+      'cmnd': cmnd,
+      'name': name,
+      'phone': phone,
+      'food': food,
+      'totalMoney': Intomoney
+    }
+    $.ajax({
+      url:'http://localhost:3000/private/dattiecsearch',
+      type: 'POST',
+      data: data,
+      success:(data)=>{
+        console.log(data)
+      },
+      error:(data)=>{
+        console.log(data)
+      }
+    })   
+  })
+</script>

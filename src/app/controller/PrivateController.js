@@ -128,6 +128,7 @@ class PrivateController {
   datphongget(req, res, next) {
     Room.find({ status: true })
       .lean()
+
       .then((data) => {
         res.render("phong/datphong", {
           data: data,
@@ -252,6 +253,13 @@ class PrivateController {
         });
       });
   }
+  //getAllTicket
+  async getAllTicket(req,res){
+    const cmnd = req.body['cmnd']
+    TicketBooked.find({cmnd:cmnd})
+    .then((data)=>{res.json(data)})
+    .catch((data)=>res.send('error'))
+  }
 
   //[GET] doiphong/:id/edit
   doiphongedit(req, res, next) {
@@ -358,29 +366,30 @@ class PrivateController {
 //[POST] private/dattiecsearch
   dattiecpost(req,res,next)
   {
-    var data = 
-      {
-        "name": "ngocphu",
-        "cmnd" :"0909",
-          "phone":"0",
-          "Food" :[
-            {
-                "nameFood" : "Lẩu cá đuối", 
-                "price" : 200 ,
-                "amount" : 2 , 
-                "IntoMoney": 600, 
-          },
-          {
-            "nameFood" : "Cơm chiên dương châu ", 
-            "price" : 100 ,
-            "amount" : 1 , 
-            "IntoMoney": 100, 
-      }
-        ],
-        "totalMoney" :  700
+    console.log(req.body)
+    // var data = 
+    //   {
+    //     "name": "ngocphu",
+    //     "cmnd" :"0909",
+    //     "phone":"0",
+    //     "Food" :[
+    //         {
+    //             "nameFood" : "Lẩu cá đuối", 
+    //             "price" : 200 ,
+    //             "amount" : 2 , 
+                
+    //       },
+    //       {
+    //         "nameFood" : "Cơm chiên dương châu ", 
+    //         "price" : 100 ,
+    //         "count" : 1 , 
+            
+    //   }
+    //     ],
+    //     "totalMoney" :  700
    
-      }
-    const voucherfood = new VoucherFood(data)
+    //   }
+    const voucherfood = new VoucherFood(req.body)
     voucherfood.save()
     .then(()=>
     {
@@ -665,6 +674,13 @@ class PrivateController {
       foodsCustomer.push(data);
     });
     res.json(foodsCustomer);
+  }
+  //get getIdRoom
+  async getIdRoom(req,res){
+    const id = req.body['id']
+    await Room.find({'_id':id})
+    .then((data)=>{res.json(data)})
+    .catch((data)=>{res.send('error')})
   }
 }
 

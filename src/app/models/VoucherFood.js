@@ -7,12 +7,12 @@ const ticketFoodSchema = new Schema(
         cmnd : { type : Number , required : true }, 
         phone : { type : Number , required : true}, 
 
-        Food :[
+        food :[
             {
                 nameFood : { type : String , required : false}, 
                 price : { type : Number , required : false }, 
-                amount : { type : Number , required : false }, 
-                IntoMoney :{ type : Number , required : false }, 
+                count : { type : Number , required : false }, 
+   
           }
         ],
         totalMoney : {type : Number , required:true}
