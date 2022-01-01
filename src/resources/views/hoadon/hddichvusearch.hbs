@@ -1,4 +1,4 @@
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
      <div class="row">
         <!-- ====menu==== -->
         <div class="menu col l-3 m-0 c-0">
@@ -379,15 +379,13 @@
           </nav> 
 
 
-         
-
            
             <!-- ===content__Phieu Dat Tiec==== -->
             <div class="content-container">
               <div class="tieu_de">
                 <div class="tieu_de-text">
-                 Thêm vào thực đơn món an 
-                </div>n
+                Tìm kiếm
+                </div>
                 <div class="tieu_de-huong-dan">
                   <a href="">
                   <i class="fas fa-exclamation-circle"></i>
@@ -400,102 +398,43 @@
               <div class="noi_dung-1">
                 <div class="l-8 m-12 c-12">
                 <div class="bang_lon ">
-                  <form action="./themmonan" method="post">
-                  <div class="noi_dung-1-text_name">Thông tin cơ bản</div>
-                  
+                  <div class="noi_dung-1-text_name l-12 m-0 c-0">Tìm kiếm khách hàng để gia hạn</div>
 
                   <div class="box">
   
+             
                     <div class="box-trong l-5">
                       <div class="noi_dung-1-text_noi-dung">
-                        <div class="noi_dung-1-text_noi-dung_hoten">Tên món ăn</div>
+                        <div class="noi_dung-1-text_noi-dung_hoten">CMND</div>
                           <p> (*)</p>
                       </div>              
-                      <input class="textarea"  name="name" placeholder="Nhập tên món ăn"></input>
+                       <button type="button" id="save_btn" style="background-color: aqua;">Tìm kiếm</button>
+                      <input class="textarea"   id="cmnd" name="cmnd" placeholder="Nhập số chứng minh"></input>
+                     
                     </div>
-
-                    <div class="box-trong l-5">
-                      <div class="noi_dung-1-text_noi-dung">
-                        <div class="noi_dung-1-text_noi-dung_hoten">Đơn giá</div>
-                          <p> (*)</p>
-                      </div>              
-                      <input class="textarea"  name="price" placeholder="Nhập đơn giá món ăn"></input>
-                    </div>     
-                  </div>
+                    
+        
                   
+               
 
-                   
-                </div>              
+                 
+     </div>
+
               </div>
                 
   
+  
+  
+              </div>
+  
               
-  
-  
-              </div>
-  
-              <div class="bottom-nav">
-                <button class="bottom-nav_huy">
-                  Hủy         
-                </button>
-  
-                <button class="bottom-nav_luu" type="submit">
-                  Lưu           
-                </button>
-              </div>
-              </form>
-            </div>         
            <!-- ===content__Phieu Dat Tiec-end==== -->
   
   
           </div>
           <!-- ====content-end==== -->
-  
-  
-  
       </div>
-  
-  <!-- ===Gop_Y=== -->
-      <div class="modal js-modal">
-        <div class="modal-container js-modal-container">
-  
-            <div class="modal-close js-modal-close">
-              <i class="ti-close"></i>
-            </div>
-  
-            <div class="modal-header">
-                Gửi góp ý
-            </div>
-  
-            <div class="modal-body">
-                <input id="quantity" type="text" class="modal-input" placeholder="Vui Lòng nhập góp ý của bạn vào đây !">
-  
-                <button class=modal-pay>
-                    Gửi 
-                    <i class="ti-check"></i>
-                </button>
-  
-                <div class="modal-footer">
-                    <p class="modal-help">
-                        Need 
-                        <a href="">
-                            Help?
-                        </a>
-                    </p>
-                </div>        
-            </div>
-        </div>
-  
-  </div>
-
-
-          </div>
-          
-
-          </div>
-        </div> 
-
-        </div>
+ 
         <!-- ====content-end==== -->
 
 
@@ -560,3 +499,21 @@
       })
 </script>
 <!-- ===Gop_Y-end=== -->
+<script>
+     $('#save_btn').click(()=>{
+        const cmnd = document.getElementById("cmnd").value
+        console.log(cmnd)
+      $.ajax({
+        url: `/private/hddichvu/${cmnd}`,
+        type: 'GET',
+  
+       
+        error:(data)=>{
+          console.error(data)
+        }
+      })
+      .then((res)=>{alert('Save successfully'); window.location.replace(`/private/hddichvu/${cmnd}`);})
+          .catch((res)=>{alert('Save error ')})
+    })
+
+</script>

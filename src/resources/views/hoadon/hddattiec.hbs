@@ -1,4 +1,4 @@
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
      <div class="row">
         <!-- ====menu==== -->
         <div class="menu col l-3 m-0 c-0">
@@ -379,15 +379,13 @@
           </nav> 
 
 
-         
-
            
             <!-- ===content__Phieu Dat Tiec==== -->
             <div class="content-container">
               <div class="tieu_de">
                 <div class="tieu_de-text">
-                 Thêm vào thực đơn món an 
-                </div>n
+                  Hóa đơn dịch vụ
+                </div>
                 <div class="tieu_de-huong-dan">
                   <a href="">
                   <i class="fas fa-exclamation-circle"></i>
@@ -400,36 +398,155 @@
               <div class="noi_dung-1">
                 <div class="l-8 m-12 c-12">
                 <div class="bang_lon ">
-                  <form action="./themmonan" method="post">
-                  <div class="noi_dung-1-text_name">Thông tin cơ bản</div>
+                  <div class="noi_dung-1-text_name name_hd l-12 m-0 c-0">Thông tin hóa đơn</div>
                   
+                  <div class="box_name">
+                    <div>
+                      <p>Công ty khách sạn:</p>
+                      <p>Địa chỉ:</p>
+                    </div>    
+                  
+                    <div class="first"> 
+                      <p>GonT</p>
+                      <p>144A Chi Lăng Vũng Tàu</p>
+                    </div>
+                  </div>
+                  
+
+
 
                   <div class="box">
   
                     <div class="box-trong l-5">
+          
                       <div class="noi_dung-1-text_noi-dung">
-                        <div class="noi_dung-1-text_noi-dung_hoten">Tên món ăn</div>
-                          <p> (*)</p>
+                        <div class="noi_dung-1-text_noi-dung_hoten">CMND: </div>
+                          <p id="cmnd" name="cmnd"> </p>
                       </div>              
-                      <input class="textarea"  name="name" placeholder="Nhập tên món ăn"></input>
+                     
+                    </div>
+                  </div>
+                  <div class="noi_dung-1-text_noi-dung">
+                    <div class="noi_dung-1-text_noi-dung_hoten">Họ tên: </div>
+                    <p id="name" name="name"> </p>
+                  </div>
+                  <table style="width:100%; border:1px solid black;">
+                    <thead>
+                        <tr>
+                       <th>
+                          Số thứ tự
+                      </th>
+                     
+                      <th>
+                        Mã phiếu
+                      </th>
+                 
+                      <th>
+                      Tống tiền
+                      </th>
+                    </tr>
+                    </thead>
+                    <tbody id="tbody">
+
+                    </tbody>
+                    
+                  </table>
+                  
+{{!-- 
+                    <div class="box">
+                      <div class="box-trong l-5">
+                        <div class="noi_dung-1-text_noi-dung ">
+                          <div class="noi_dung-1-text_noi-dung_hoten">Loại Phòng</div>
+                            <p> (*)</p>
+                        </div>              
+                        <select class="textarea">
+                          <option class="option">Phong loại A</option>
+                          <option class="option">Phòng loại B</option>
+                          <option class="option">Phòng loại C</option>
+                        </select>
+                      </div> --}}
+    
+                      {{!-- <div class="box-trong l-5">
+                      <div class="noi_dung-1-text_noi-dung">
+                        <div class="noi_dung-1-text_noi-dung_hoten">Mã phòng đặt</div>
+                        <p> (*)</p>
+                      </div>
+                        <input class="textarea "  placeholder="Nhập mã phòng"></input>
+                      </div>      
                     </div>
 
+                    <div class="box">
+                        <div class="box-trong l-5">
+                          <div class="noi_dung-1-text_noi-dung ">
+                            <div class="noi_dung-1-text_noi-dung_hoten">Loại dịch vụ</div>
+                              <p> (*)</p>
+                            </div>              
+                            <select class="textarea">
+                              <option class="option">Dịch vụ masage</option>                        
+                              <option class="option">Dịch vụ Phòng</option>                        
+                              <option class="option">Dịch vụ vị trí phòng</option>                        
+                              <option class="option">Dịch vụ khác</option>                                             
+                            </select>
+                        </div>
+    
+                        <div class="box-trong l-5">
+                          <div class="noi_dung-1-text_noi-dung ">
+                            <div class="noi_dung-1-text_noi-dung_hoten">Số lượng</div>
+                              <p> (*)</p>
+                            </div>              
+                            <select class="textarea">
+                              <option class="option">Số lượng: 1</option>
+                              <option class="option">Số lượng: 2</option>
+                              <option class="option">Số lượng: 3</option>
+                              <option class="option">Số lượng: 4</option>
+                              <option class="option">Số lượng: 5</option>
+                              <option class="option">Số lượng: 6</option>
+                              <option class="option">Số lượng: 7</option>
+                              <option class="option">Số lượng: 8</option>
+                              
+                            </select>
+                        </div>
+                         --}}
+      
+                        
+    
+                        <!-- <div class="box-trong l-5">
+                          <div class="noi_dung-1-text_noi-dung">
+                            <div class="noi_dung-1-text_noi-dung_hoten">Mã phiếu thuê phòng</div>
+                              <p> (*)</p>
+                          </div>
+                          <input class="textarea "  placeholder=""></input>
+                          
+                        </div>  -->      
+                      {{!-- </div> --}}
+
+                    {{!-- <div class="box-trong l-5">
+                        <div class="noi_dung-1-text_noi-dung ">
+                          <div class="noi_dung-1-text_noi-dung_hoten">Phương thức thanh toán</div>
+                            <p> (*)</p>
+                        </div>              
+                        <select class="textarea">
+                          <option class="option">Tài khoản ngân hàng</option>
+                          <option class="option">Tiền mặt</option>
+                        </select>
+                      </div> --}}
+    
                     <div class="box-trong l-5">
                       <div class="noi_dung-1-text_noi-dung">
-                        <div class="noi_dung-1-text_noi-dung_hoten">Đơn giá</div>
-                          <p> (*)</p>
-                      </div>              
-                      <input class="textarea"  name="price" placeholder="Nhập đơn giá món ăn"></input>
-                    </div>     
-                  </div>
-                  
+                        <div class="noi_dung-1-text_noi-dung_hoten" >Tổng tiền thanh toán</div>
+                        <p> (*)</p>
+                      </div>
+                      <div class="box-trong_om">
+                        <span class="box-trong_text" id="total" name="total"> </span>
+                      </div> 
+                    </div>
+                
+                </div>
 
-                   
-                </div>              
               </div>
                 
   
-              
+           
   
   
               </div>
@@ -439,63 +556,20 @@
                   Hủy         
                 </button>
   
-                <button class="bottom-nav_luu" type="submit">
+                <button class="bottom-nav_luu" type="button" id="save_btn">
                   Lưu           
                 </button>
+             
               </div>
-              </form>
+      
             </div>         
            <!-- ===content__Phieu Dat Tiec-end==== -->
-  
+
   
           </div>
           <!-- ====content-end==== -->
-  
-  
-  
       </div>
-  
-  <!-- ===Gop_Y=== -->
-      <div class="modal js-modal">
-        <div class="modal-container js-modal-container">
-  
-            <div class="modal-close js-modal-close">
-              <i class="ti-close"></i>
-            </div>
-  
-            <div class="modal-header">
-                Gửi góp ý
-            </div>
-  
-            <div class="modal-body">
-                <input id="quantity" type="text" class="modal-input" placeholder="Vui Lòng nhập góp ý của bạn vào đây !">
-  
-                <button class=modal-pay>
-                    Gửi 
-                    <i class="ti-check"></i>
-                </button>
-  
-                <div class="modal-footer">
-                    <p class="modal-help">
-                        Need 
-                        <a href="">
-                            Help?
-                        </a>
-                    </p>
-                </div>        
-            </div>
-        </div>
-  
-  </div>
-
-
-          </div>
-          
-
-          </div>
-        </div> 
-
-        </div>
+ 
         <!-- ====content-end==== -->
 
 
@@ -532,7 +606,7 @@
               </div>        
           </div>
       </div>
-
+   
 </div>
 
 <script>      
@@ -559,4 +633,97 @@
         even.stopPropagation()
       })
 </script>
+<script>
+  $(document).ready(()=>{
+    const key = window.localStorage.getItem('key')
+    $.ajax({
+      url: `/private/getTicket/${key}`,
+      type: 'GET',
+      success: (data)=>{
+        $('#cmnd').text(`${data[0]['cmnd']}`)
+        $('#name').text(`${data[0]['name']}`)
+        let totalMoney = 0
+        
+        data.forEach((el,index)=>{
+          totalMoney += el['IntoMoney']
+          const data = `
+            <tr>
+                       <th>
+                          ${index +1}
+                      </th>
+                      
+                      <th id="nameService" name="nameService">
+                        ${el['nameService']}
+                      </th>
+                      <th id="amount" name="amount">
+                        ${el['amount']}
+                      </th>
+                      <th id="price" name="price">
+                        ${el['price']}
+                      </th>
+                      <th id="IntoMoney" name="IntoMoney">
+                        ${el['IntoMoney'].toLocaleString('vi', {style : 'currency', currency : 'VND'})}
+                      </th>
+                    </tr>
+          
+           `
+          $('#tbody').append(data)
+          $('#total').text(`${totalMoney.toLocaleString('vi', {style : 'currency', currency : 'VND'})}`)
+          
+        })
+        
+        
+      },
+      error:(data)=>{
+        console.error('error')
+      }
+    })
+
+
+    $('#save_btn').click(()=>{
+      const key = window.localStorage.getItem('key')
+      $.ajax({
+        url: `/private/get/${key}`,
+        type: 'GET',
+        success:(data)=>{
+          let serviceDate = []
+          let total = 0
+          data.forEach((el,index)=>{
+            serviceDate.push({'nameService': el['nameService'],'amount':el['amount'], 'price':el['price'],'IntoMoney':el['IntoMoney']})
+            total += el['IntoMoney']
+          })
+          const dataBill = {
+            'name': data[0]['name'],
+            'cmnd': data[0]['cmnd'],
+            'service': serviceDate,
+            'totalMoney': total
+            
+            
+          }
+          $.ajax({
+            url: '/private/hddichvu',
+            type: 'POST',
+            data: dataBill,
+           
+
+          }).then((res)=>{alert('Save successfully'); window.location.replace('/private/sudungdichvu');})
+          .catch((res)=>{alert('Save error ')})
+        },
+        error:(data)=>{
+          console.error(data)
+        }
+      })
+    })
+
+    
+  })
+  
+ 
+
+
+   
+
+
+</script>
+{{!-- CREATE AJAX DATA FORM: {} => POST => SUCCESS OR ERROR --}}
 <!-- ===Gop_Y-end=== -->

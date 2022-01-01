@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const ticketServiceSchema = new Schema(
+const ticketFoodSchema = new Schema(
     {
         name : { type : String , required : true }, 
         cmnd : { type : Number , required : true }, 
@@ -15,11 +15,12 @@ const ticketServiceSchema = new Schema(
                 IntoMoney :{ type : Number , required : false }, 
           }
         ],
+        totalMoney : {type : Number , required:true}
    
     },
     {
-        collection : "ticketService"
+        collection : "ticketFood"
     }
 );
-const customerModel = mongoose.model("ticketService",ticketServiceSchema);
+const customerModel = mongoose.model("ticketFood",ticketFoodSchema);
 module.exports =  customerModel;
