@@ -7,7 +7,7 @@ const billFoodSchema = new Schema(
         cmnd : { type : Number , required : true }, 
         Food :[
             {
-                idFood : {type: Number , required : true },
+                idFood : {type: String , required : true },
                 totalMoneyFood : {type : Number , required : true }
           }
         ],
@@ -19,5 +19,5 @@ const billFoodSchema = new Schema(
         timestamps: true,
       }
 );
-const customerModel = mongoose.model("billFood",billServiceSchema);
+const customerModel = mongoose.model("billFood",billFoodSchema);
 module.exports =  customerModel;

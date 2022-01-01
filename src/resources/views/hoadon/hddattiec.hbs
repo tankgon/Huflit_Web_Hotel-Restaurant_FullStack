@@ -637,7 +637,7 @@
   $(document).ready(()=>{
     const key = window.localStorage.getItem('key')
     $.ajax({
-      url: `/private/getTicket/${key}`,
+      url: `/private/getTicketFood/${key}`,
       type: 'GET',
       success: (data)=>{
         $('#cmnd').text(`${data[0]['cmnd']}`)
@@ -645,26 +645,20 @@
         let totalMoney = 0
         
         data.forEach((el,index)=>{
-          totalMoney += el['IntoMoney']
+          totalMoney += el['totalMoney']
           const data = `
             <tr>
                        <th>
                           ${index +1}
                       </th>
                       
-                      <th id="nameService" name="nameService">
-                        ${el['nameService']}
+                      <th id="nameService" name="idFood">
+                        ${el['_id']}
                       </th>
-                      <th id="amount" name="amount">
-                        ${el['amount']}
-                      </th>
-                      <th id="price" name="price">
-                        ${el['price']}
-                      </th>
-                      <th id="IntoMoney" name="IntoMoney">
-                        ${el['IntoMoney'].toLocaleString('vi', {style : 'currency', currency : 'VND'})}
-                      </th>
-                    </tr>
+                      <th id="amount" name="totalMoneyFood">
+                        ${el['totalMoney']}
+            
+             </tr>
           
            `
           $('#tbody').append(data)
@@ -683,25 +677,26 @@
     $('#save_btn').click(()=>{
       const key = window.localStorage.getItem('key')
       $.ajax({
-        url: `/private/get/${key}`,
+        url: `/private/getFood/${key}`,
         type: 'GET',
         success:(data)=>{
           let serviceDate = []
           let total = 0
           data.forEach((el,index)=>{
-            serviceDate.push({'nameService': el['nameService'],'amount':el['amount'], 'price':el['price'],'IntoMoney':el['IntoMoney']})
-            total += el['IntoMoney']
+            serviceDate.push({'idFood': el['_id'],'totalMoneyFood':el['totalMoney']})
+            total += el['totalMoney']
           })
           const dataBill = {
             'name': data[0]['name'],
             'cmnd': data[0]['cmnd'],
-            'service': serviceDate,
+            'Food': serviceDate,
             'totalMoney': total
             
             
           }
-          $.ajax({
-            url: '/private/hddichvu',
+          console.log(dataBill)
+         $.ajax({
+            url: '/private/hddattiec',
             type: 'POST',
             data: dataBill,
            

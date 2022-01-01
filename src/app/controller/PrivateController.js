@@ -8,6 +8,7 @@ const Room = require("../models/Room");
 const Food = require("../models/Food");
 const TicketBooked = require("../models/TicketBooked");
 const VoucherFood = require("../models/VoucherFood");
+const BillFood = require("../models/BillFood")
 class PrivateController {
   //[GET] private/
   privated(req, res, next) {
@@ -457,6 +458,13 @@ class PrivateController {
     const data = await VoucherFood.find({ cmnd: cmnd });
     return res.send(data);
   }
+
+  async  getDataFood(req,res,next)
+  {
+    const cmnd = req.params["cmnd"];
+    const data = await VoucherFood.find({ cmnd: cmnd });
+    return res.send(data);
+  }
   /////////Khách hàng ///////////
   //[GET] private/khachhang
   khachhang(req, res, next) {
@@ -617,6 +625,14 @@ class PrivateController {
       })
     })
   }  
+
+
+  hddattiecpost(req,res,next)
+  {
+    const bill = new BillFood(req.body);
+    bill.save();
+    return res.send("success");
+  }
   //AJAX GET DATA POST FORM => INSERT DB
   //RES.SEND('') , SUCCESS OR ERROR
 

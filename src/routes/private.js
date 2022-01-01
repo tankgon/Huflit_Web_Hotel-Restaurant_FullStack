@@ -42,6 +42,7 @@ router.get("/dattiec",checklogin,PrivateController.dattiec);
 router.get("/dattiecsearch",checklogin,PrivateController.dattiecsearch);
 router.post("/dattiecsearch",PrivateController.dattiecpost)
 
+
 router.get("/themmonan",checklogin,PrivateController.themmonan);
 
 
@@ -94,8 +95,10 @@ router.post("/datphongthanhcong",PrivateController.datphongthanhcong);
       //[DATTIEC]
    
 router.get("/hddattiec/:cmnd",checklogin,PrivateController.hddattiec);
+router.post("/hddattiec",checklogin,PrivateController.hddattiecpost);
 
 router.get("/getTicketFood/:cmnd",PrivateController.getTicketFood);
+router.get("/getFood/:cmnd",checklogin,PrivateController.getDataFood);
       //[SỰ CỐ]
 router.get("/hdsuco",checklogin,PrivateController.hdsuco);
 router.get("/suco",checklogin,PrivateController.suco);
