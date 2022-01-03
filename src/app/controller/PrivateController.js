@@ -7,6 +7,8 @@ const BillService = require("../models/BillService");
 const Room = require("../models/Room");
 const Food = require("../models/Food");
 const TicketBooked = require("../models/TicketBooked");
+const VoucherFood = require("../models/VoucherFood");
+const BillFood = require("../models/BillFood")
 class PrivateController {
   //[GET] private/
   privated(req, res, next) {
@@ -46,7 +48,7 @@ class PrivateController {
         res.render("dichvu/sudungdv", {
           service: service,
         })
-      );
+      )
   }
 
   // query khách hàng
@@ -126,6 +128,7 @@ class PrivateController {
   datphongget(req, res, next) {
     Room.find({ status: true })
       .lean()
+
       .then((data) => {
         res.render("phong/datphong", {
           data: data,
@@ -250,6 +253,13 @@ class PrivateController {
         });
       });
   }
+  //getAllTicket
+  async getAllTicket(req,res){
+    const cmnd = req.body['cmnd']
+    TicketBooked.find({cmnd:cmnd})
+    .then((data)=>{res.json(data)})
+    .catch((data)=>res.send('error'))
+  }
 
   //[GET] doiphong/:id/edit
   doiphongedit(req, res, next) {
@@ -323,16 +333,72 @@ class PrivateController {
   }
 
   //////Đặt tiệc ///////
-  //[GET] private/dattiec
+  //[GET] private/dattiec query khachhang
   dattiec(req, res, next) {
     Food.find({})
       .lean()
       .then((data) => {
-        res.render("nhahang/phieudattiec", {
+        res.render("nhahang/dattiecsearch", {
           data: data,
         });
       });
   }
+//[GET] private/dattiectsearch
+  dattiecsearch(req,res,next)
+  {
+    const namee = req.query.cmnd;
+    if(req.body == null || namee === '')
+    {
+      res.send("không có dữ liệu")
+    }
+    console.log(namee);
+    Promise.all([
+      Customer.findOne({ cmnd: namee }).lean(),
+      Food.find({}).lean(),
+    ]).then(([data, food]) =>
+      res.render("nhahang/phieudattiec", {
+        data: data,
+        food:food,
+      })
+    );
+  }
+
+//[POST] private/dattiecsearch
+  dattiecpost(req,res,next)
+  {
+    console.log(req.body)
+    // var data = 
+    //   {
+    //     "name": "ngocphu",
+    //     "cmnd" :"0909",
+    //     "phone":"0",
+    //     "Food" :[
+    //         {
+    //             "nameFood" : "Lẩu cá đuối", 
+    //             "price" : 200 ,
+    //             "amount" : 2 , 
+                
+    //       },
+    //       {
+    //         "nameFood" : "Cơm chiên dương châu ", 
+    //         "price" : 100 ,
+    //         "count" : 1 , 
+            
+    //   }
+    //     ],
+    //     "totalMoney" :  700
+   
+    //   }
+    const voucherfood = new VoucherFood(req.body)
+    voucherfood.save()
+    .then(()=>
+    {
+      res.redirect(`/private/hddattiec/${data.cmnd}`);
+    })
+    .catch(next)
+    
+  }
+
 
   //[GET] private/dsmonan
   themmonan(req, res, next) {
@@ -393,6 +459,21 @@ class PrivateController {
       .catch(next);
   }
 
+
+  //[GET] /private/getTicketFood 
+  async getTicketFood(req,res,next)
+  {
+    const cmnd = req.params["cmnd"];
+    const data = await VoucherFood.find({ cmnd: cmnd });
+    return res.send(data);
+  }
+
+  async  getDataFood(req,res,next)
+  {
+    const cmnd = req.params["cmnd"];
+    const data = await VoucherFood.find({ cmnd: cmnd });
+    return res.send(data);
+  }
   /////////Khách hàng ///////////
   //[GET] private/khachhang
   khachhang(req, res, next) {
@@ -514,11 +595,17 @@ class PrivateController {
 
   sucopost(req, res, next) {}
 
-  //[POST] private/hddichvu
+  //[POST] private/hddichvu/:cmnd
   createhddichvu(req, res, next) {
     const bill = new BillService(req.body);
     bill.save();
     return res.send("success");
+  }
+
+  //[GET] private/hddichvu
+  hddichvusearch(req,res,next)
+  {
+    res.render("hoadon/hddichvusearch")
   }
 
   // [GET] private/getTicket/:cmnd
@@ -531,6 +618,29 @@ class PrivateController {
     const cmnd = req.params["cmnd"];
     const data = await TicketService.find({ cmnd: cmnd });
     return res.send(data);
+  }
+
+
+  //[GET] /private/dattiec/:cmnd 
+  hddattiec(req,res,next)
+  {
+    const cmnd  = req.params.cmnd
+    console.log(cmnd)
+    VoucherFood.find({cmnd:cmnd}).lean()
+    .then((data)=>
+    {
+      res.render("hoadon/hddattiec",{
+        data:data
+      })
+    })
+  }  
+
+
+  hddattiecpost(req,res,next)
+  {
+    const bill = new BillFood(req.body);
+    bill.save();
+    return res.send("success");
   }
   //AJAX GET DATA POST FORM => INSERT DB
   //RES.SEND('') , SUCCESS OR ERROR
@@ -564,6 +674,13 @@ class PrivateController {
       foodsCustomer.push(data);
     });
     res.json(foodsCustomer);
+  }
+  //get getIdRoom
+  async getIdRoom(req,res){
+    const id = req.body['id']
+    await Room.find({'_id':id})
+    .then((data)=>{res.json(data)})
+    .catch((data)=>{res.send('error')})
   }
 }
 

@@ -8,9 +8,7 @@ const billRoomSchema = new Schema(
         Room :
             {
                 idRoom :{type : String , required : true }
-                 
-            }
-        ,
+         } ,
         dateArrive:{type : Date , required:true},
         dateGo :{type : Date , required:true},
         totalMoney : {type : Number, required : true  },
@@ -21,5 +19,5 @@ const billRoomSchema = new Schema(
         timestamps: true,
       }
 );
-const customerModel = mongoose.model("billService",billServiceSchema);
+const customerModel = mongoose.model("billRoomSchema",billRoomSchema);
 module.exports =  customerModel;

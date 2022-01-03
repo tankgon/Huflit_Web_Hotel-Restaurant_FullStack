@@ -265,7 +265,6 @@
               </li>
             </ul>
 
-
             <div class="header__notify-footer">
               <a href="" class="header__notify-footer-btn">
                 <i class="fas fa-phone-alt"></i>
@@ -377,10 +376,7 @@
         </li>
       </ul>
 
-
     </nav>
-
-
 
 
 
@@ -388,10 +384,13 @@
     <div class="content-container">
       <div class="tieu_de">
         <div class="tieu_de-text">
-          Thêm mới phiếu đặt tiệc
+          Tìm kiếm
         </div>
         <div class="tieu_de-huong-dan">
-    
+          <a href="">
+            <i class="fas fa-exclamation-circle"></i>
+            Hướng dẫn
+          </a>
         </div>
       </div>
 
@@ -399,316 +398,119 @@
       <div class="noi_dung-1">
         <div class="l-8 m-12 c-12">
           <div class="bang_lon ">
-            <div class="noi_dung-1-text_name">Thông tin cơ bản</div>
-
+            <div class="noi_dung-1-text_name l-12 m-0 c-0">Tìm kiếm khách hàng để gia hạn</div>
 
             <div class="box">
+
 
               <div class="box-trong l-5">
                 <div class="noi_dung-1-text_noi-dung">
                   <div class="noi_dung-1-text_noi-dung_hoten">CMND</div>
                   <p> (*)</p>
                 </div>
-                <input class="textarea" id="cmnd" value="{{data.cmnd}}" placeholder="Nhập số chứng minh"></input>
+                <button type="button" id="save_btn" style="background-color: aqua;">Tìm kiếm</button>
+                <input class="textarea" id="cmnd" name="cmnd" placeholder="Nhập số chứng minh"></input>
+
               </div>
 
-              <div class="box-trong l-5">
-                <div class="noi_dung-1-text_noi-dung">
-                  <div class="noi_dung-1-text_noi-dung_hoten">SĐT</div>
-                  <p> (*)</p>
-                </div>
-                <input class="textarea" id="phone" value="{{data.phone}}" placeholder="Nhập số SĐT"></input>
-              </div>
-            </div>
-            <div class="noi_dung-1-text_noi-dung">
-              <div class="noi_dung-1-text_noi-dung_hoten">Họ tên</div>
-              <p> (*)</p>
-            </div>
-            <input class="textarea" id="name" value="{{data.name}}" placeholder="Nhập họ và tên"></input>
 
 
 
 
 
-          </div>
-
-          <div class=" bang_lon-dong1 ">
-            <div class="noi_dung-1-text_name">Thông tin phiếu</div>
-
-
-            <table border="1" class="table_ds">
-              <thead>
-                <tr class="tr_ds">
-
-                  <th scope="col">
-                    #
-                  </th>
-                  <th scope="col">Tên món ăn </th>
-                  <th scope="col">Đơn giá</th>
-                  <th scope="col">Số lượng</th>
-                  <th scope="col">Thành tiền</th>
-                </tr>
-              </thead>
-
-              <tbody id="tbody"></tbody>
-            </table>
-
-
-            <div class="box-trong l-5">
-              <div class="noi_dung-1-text_noi-dung">
-                <div class="noi_dung-1-text_noi-dung_hoten">Tổng tiền</div>
-                <p> (*)</p>
-              </div>
-
-              <div class="box-trong_om">
-                <span class="box-trong_text" id="money"> </span>
-              </div>
             </div>
 
           </div>
+
+
 
 
         </div>
+
+
+        <!-- ===content__Phieu Dat Tiec-end==== -->
+
+
+      </div>
+      <!-- ====content-end==== -->
+    </div>
+
+    <!-- ====content-end==== -->
+
+
+
+  </div>
+
+  <!-- ===Gop_Y=== -->
+  <div class="modal js-modal">
+    <div class="modal-container js-modal-container">
+
+      <div class="modal-close js-modal-close">
+        <i class="ti-close"></i>
       </div>
 
-      <div class="bottom-nav">
-        <button class="bottom-nav_huy">
-          Hủy
+      <div class="modal-header">
+        Gửi góp ý
+      </div>
+
+      <div class="modal-body">
+        <input id="quantity" type="text" class="modal-input" placeholder="Vui Lòng nhập góp ý của bạn vào đây !">
+
+        <button class=modal-pay>
+          Gửi
+          <i class="ti-check"></i>
         </button>
 
-        <button class="bottom-nav_luu" type="button" id="save_btn">
-          Lưu
-        </button>
+        <div class="modal-footer">
+          <p class="modal-help">
+            Need
+            <a href="">
+              Help?
+            </a>
+          </p>
+        </div>
       </div>
     </div>
 
-
-
   </div>
 
+  <script>
+    // dong/mo Modal
+    const buyBtns = document.querySelectorAll('.js-buy-ticket');
+    const modal = document.querySelector('.js-modal')
+    const modalclose = document.querySelector('.js-modal-close')
+    const modalcontainer = document.querySelector('.js-modal-container')
 
-  <!-- ===content__Phieu Dat Tiec-end==== -->
+    function Showbuytickets() {
+      modal.classList.add('open')
+    }
+    function hidebuyticket() {
+      modal.classList.remove('open')
+    }
 
+    for (const buyBtn of buyBtns) {
+      buyBtn.addEventListener('click', Showbuytickets)
+    }
 
-</div>
-<!-- ====content-end==== -->
-
-
-
-</div>
-
-<!-- ===Gop_Y=== -->
-<div class="modal js-modal">
-  <div class="modal-container js-modal-container">
-
-    <div class="modal-close js-modal-close">
-      <i class="ti-close"></i>
-    </div>
-
-    <div class="modal-header">
-      Gửi góp ý
-    </div>
-
-    <div class="modal-body">
-      <input id="quantity" type="text" class="modal-input" placeholder="Vui Lòng nhập góp ý của bạn vào đây !">
-
-      <button class=modal-pay>
-        Gửi
-        <i class="ti-check"></i>
-      </button>
-
-      <div class="modal-footer">
-        <p class="modal-help">
-          Need
-          <a href="">
-            Help?
-          </a>
-        </p>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-
-</div>
-
-
-</div>
-</div>
-
-</div>
-<!-- ====content-end==== -->
-
-
-
-</div>
-
-<!-- ===Gop_Y=== -->
-<div class="modal js-modal">
-  <div class="modal-container js-modal-container">
-
-    <div class="modal-close js-modal-close">
-      <i class="ti-close"></i>
-    </div>
-
-    <div class="modal-header">
-      Gửi góp ý
-    </div>
-
-    <div class="modal-body">
-      <input id="quantity" type="text" class="modal-input" placeholder="Vui Lòng nhập góp ý của bạn vào đây !">
-
-      <button class=modal-pay>
-        Gửi
-        <i class="ti-check"></i>
-      </button>
-
-
-      <div class="modal-footer">
-        <p class="modal-help">
-          Need
-          <a href="">
-            Help?
-          </a>
-        </p>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<script>
-  // dong/mo Modal
-  const buyBtns = document.querySelectorAll('.js-buy-ticket');
-  const modal = document.querySelector('.js-modal')
-  const modalclose = document.querySelector('.js-modal-close')
-  const modalcontainer = document.querySelector('.js-modal-container')
-
-  function Showbuytickets() {
-    modal.classList.add('open')
-  }
-  function hidebuyticket() {
-    modal.classList.remove('open')
-  }
-
-  for (const buyBtn of buyBtns) {
-    buyBtn.addEventListener('click', Showbuytickets)
-  }
-
-  modalclose.addEventListener('click', hidebuyticket)
-  modal.addEventListener('click', hidebuyticket)
-  modalcontainer.addEventListener('click', function (even) {
-    even.stopPropagation()
-  })
-</script>
-<!-- action input so luong -->
-<script>
-   const cmnd = document.getElementById('cmnd').value
-   window.localStorage.setItem('key',cmnd)
-  if (localStorage.getItem('food') != null) {
-    console.log('ready')
-  }
-  else {
-    $.ajax({
-      url: 'http://localhost:3000/private/getAllFood',
-      type: 'GET',
-      success: (data) => {
-        localStorage.setItem('food', JSON.stringify(data))
-      },
-      error: (data) => {
-        console.log(data)
-      }
-
+    modalclose.addEventListener('click', hidebuyticket)
+    modal.addEventListener('click', hidebuyticket)
+    modalcontainer.addEventListener('click', function (even) {
+      even.stopPropagation()
     })
-    window.location.reload()
-
-  }
-
-
-  function renderTable(data) {
-
-    $(document).ready(() => {
-      let tbody = $('#tbody')
-
-      let str = ''
-
-      let total = 0
-      data.forEach((el, index) => {
-        total += (data[index]['count'] * data[index]['price'])
-        let tr_table =
-          `
-        <tr class="tr_ds">
+  </script>
+  <!-- ===Gop_Y-end=== -->
+  <script>
+    $('#save_btn').click(() => {
+      const cmnd = document.getElementById("cmnd").value
+      window.localStorage.setItem('key', cmnd)
+         alert('Save successfully'); window.location.replace(`/private/hddichvu/${cmnd}`); 
      
-          <th scope="col">
-            ${index + 1}
-          </th>
-          <th scope="col">${data[index]['name']} </th>
-          <th scope="col">${data[index]['price'].toLocaleString('vi', { style: 'currency', currency: 'VND' })}</th>
-          <th scope="col"><input value="${data[index]['count']}"  onchange="changeCount('${data[index]['_id']}',event)" min='0' max='15' type='text' ></th>
-          <th scope="col">${(data[index]['price'] * data[index]['count']).toLocaleString('vi', { style: 'currency', currency: 'VND' })}</th>
-        </tr>
-       
-       `
-        str += tr_table
-
+      
 
       })
-      $('#money').text(`${total.toLocaleString('vi', { style: 'currency', currency: 'VND' })}`)
-      $('#tbody').html(str)
-  })
 
-
-
-
-  }
-  const data = JSON.parse(localStorage.getItem('food'))
-  renderTable(data);
-
-  function changeCount(id, e) {
-    const data = JSON.parse(localStorage.getItem('food'))
-    data.forEach((el, index) => {
-      if (el['_id'] == id) {
-        el['count'] = Number(e.target.value)
-      }
-    })
-    localStorage.setItem('food', JSON.stringify(data))
-    renderTable(data);
-  }
-
-
+      
 
   
-</script>
-<script>
-  $('#save_btn').click(()=>{
-   // private/dattiecsearch
-    const cmnd = $('#cmnd').val()
-    const name = $('#name').val()
-    const phone = $('#phone').val()
-    const food = JSON.parse(localStorage.getItem('food'))
-    let Intomoney = 0
-    food.forEach((el,index)=>{
-      Intomoney += (el['price'] * el['count'])
-    })
-    console.log(Intomoney)
-    const data ={
-      'cmnd': cmnd,
-      'name': name,
-      'phone': phone,
-      'food': food,
-      'totalMoney': Intomoney
-    }
-    $.ajax({
-      url:'http://localhost:3000/private/dattiecsearch',
-      type: 'POST',
-      data: data,
-      success:(data)=>{
-        console.log(data)
-      },
-      error:(data)=>{
-        console.log(data)
-      }
-    })   
-  })
-</script>
+
+  </script>

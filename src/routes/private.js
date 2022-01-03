@@ -23,7 +23,10 @@ router.get("/dsphongdadat",checklogin, PrivateController.dsphongdadat);
 //[DICHVU]
 router.get("/dichvu", checklogin, PrivateController.dichvu);
 router.get("/sudungdichvu", checklogin, PrivateController.sudungdichvu);
+
 router.get("/khachhangdichvu",checklogin,PrivateController.searchkhachhang);
+router.post("/khachhangdichvu",checklogin,PrivateController.createphieudichvu);
+
 router.get("/getTicket/:cmnd",checklogin,PrivateController.getTicket);
 router.get("/get/:cmnd",checklogin,PrivateController.getData);
 router.post("/dichvu",checklogin,PrivateController.createdichvu);
@@ -34,7 +37,12 @@ router.get("/phanquyen", checklogin, PrivateController.phanquyen);
 
 //[ĐẶT TIỆC]
 router.get("/dattiec",checklogin,PrivateController.dattiec);
+router.get("/dattiecsearch",checklogin,PrivateController.dattiecsearch);
+router.post("/dattiecsearch",PrivateController.dattiecpost)
+
+
 router.get("/themmonan",checklogin,PrivateController.themmonan);
+
 
 router.get("/thucdonmonan",checklogin,PrivateController.thucdonmonan)
 router.get("/monan/:id/edit",checklogin,PrivateController.editmonan)
@@ -61,7 +69,13 @@ router.post("/khachhang",checklogin,PrivateController.receivekhachhang);
 router.get("/khachhangdatphong", checklogin, PrivateController.khachhangdatphong);
 router.get("/datphong", checklogin, PrivateController.datphongget);
 router.get("/dsdatphong", checklogin, PrivateController.dsdatphong);
+//get idRoom
+router.post("/getIdRoom",checklogin,PrivateController.getIdRoom)
 
+
+
+//getAllTicket
+router.post("/getAllTicket",checklogin,PrivateController.getAllTicket)
 router.get("/giahan",checklogin,PrivateController.giahan);
 router.get("/giahanphong",checklogin,PrivateController.giahanphong)
 router.get("/giahanphong/:id/edit",checklogin,PrivateController.giahanphongedit)
@@ -81,6 +95,14 @@ router.post("/datphongthanhcong",PrivateController.datphongthanhcong);
 
 
 //[HÓA ĐƠN]
+
+      //[DATTIEC]
+   
+router.get("/hddattiec/:cmnd",checklogin,PrivateController.hddattiec);
+router.post("/hddattiec",checklogin,PrivateController.hddattiecpost);
+
+router.get("/getTicketFood/:cmnd",PrivateController.getTicketFood);
+router.get("/getFood/:cmnd",checklogin,PrivateController.getDataFood);
       //[SỰ CỐ]
 router.get("/hdsuco",checklogin,PrivateController.hdsuco);
 router.get("/suco",checklogin,PrivateController.suco);
@@ -94,13 +116,14 @@ router.get("/hdtraphong",checklogin,PrivateController.hdtraphong);
 router.get("/traphong",checklogin,PrivateController.traphong);
       //[DỊCH VỤ]
 router.get("/hddichvu/:cmnd",checklogin,PrivateController.hddichvu);
+router.get("/hddichvu",checklogin,PrivateController.hddichvusearch);
 
-router.post("/khachhangdichvu",checklogin,PrivateController.createphieudichvu);
 router.post("/hddichvu",checklogin,PrivateController.createhddichvu); 
         //[TỔNG]
 router.get("/hdtong/:cmnd",checklogin,PrivateController.hdtong);
 
 router.post("/khachhanghdtong",checklogin,PrivateController.hdtongpost);
+//
 
 router.get("/getAllFood",PrivateController.getAllFood);
 
