@@ -26,8 +26,6 @@ router.get("/sudungdichvu", checklogin, PrivateController.sudungdichvu);
 router.get("/khachhangdichvu",checklogin,PrivateController.searchkhachhang);
 router.get("/getTicket/:cmnd",checklogin,PrivateController.getTicket);
 router.get("/get/:cmnd",checklogin,PrivateController.getData);
-
-
 router.post("/dichvu",checklogin,PrivateController.createdichvu);
 
 //[QUẢN LÝ ]

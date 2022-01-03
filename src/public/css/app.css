@@ -542,7 +542,7 @@ js-modal{
 }
 .noi_dung-1-text_name{
     font-size: 1.4rem;
-    padding-bottom: 20px;
+    padding-bottom: 32px;
 }
 
 .noi_dung-1-text_noi-dung{
@@ -691,4 +691,15 @@ table {
 }
 th, td {
     border: 3px solid #111175;
+}
+.look{
+    background-color: #6c757d;
+    border-radius: 2px;
+    padding: 10px;
+    color: #fff;
+    margin-left: 60px;
+    margin-top: -20px;
+}
+.top{
+    margin-top: 28px;
 }
