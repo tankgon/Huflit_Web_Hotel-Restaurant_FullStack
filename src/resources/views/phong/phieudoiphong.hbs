@@ -546,12 +546,13 @@
         data: {cmnd:param},
         success:(data)=>{
             data.forEach((el,index)=>{
+               
                 $.ajax({
                     url: 'http://localhost:3000/private/getIdRoom',
                     type:'POST',
                     data: {id: el['Room'].idRoom },
                     success:(room)=>{
-                        console.log(room)
+                        
                         let tr = `
                  <tr class="tr_ds">
 
@@ -560,8 +561,8 @@
                                     </th>
                                      <th>${el['name']}</th>
                                     <th>${el['cmnd']} </th>
-                                    <th>${el['dateArrive']}</th>
-                                    <th scope="col">${el['dateGo']} </th>
+                                    <th>${formatDay(new Date(el['dateArrive'] )) }</th>
+                                    <th scope="col">${formatDay(new Date(el['dateGo'] ))} </th>
                                     <th scope="col">${room[0]['name']}</th>
                                      <th scope="col">${el['moneyPay']}</th>
                                       <th scope="col"><a href="/private/doiphong/${el['Room'].idRoom}/edit">Edit</a></th>
@@ -582,4 +583,11 @@
             console.log(data)
         }
     })
+     function formatDay(day) {
+            var date = day.toJSON().slice(0, 10);
+            var nDate = date.slice(8, 10) + '/' 
+                       + date.slice(5, 7) + '/' 
+                       + date.slice(0, 4);
+            return nDate;
+        }
 </script>
