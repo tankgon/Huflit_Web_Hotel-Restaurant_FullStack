@@ -35,6 +35,7 @@ router.post("/khachhangdichvu",checklogin,ServiceController.createphieudichvu);
 router.get("/getTicket/:cmnd",checklogin,ServiceController.getTicket);
 router.get("/get/:cmnd",checklogin,ServiceController.getData);
 router.post("/dichvu",checklogin,ServiceController.createdichvu);
+router.get("/dsdichvu",checklogin,ServiceController.dsdichvu);
 
 //[QUẢN LÝ ]
 // router.get("/phanquyen", checklogin, PrivateController.phanquyen);

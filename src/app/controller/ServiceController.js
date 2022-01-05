@@ -101,7 +101,10 @@ class ServiceController {
     }
 
 
-
+    dsdichvu(req,res,next)
+    {
+      res.render("dichvu/dsdichvu")
+    }
   //[QUẢN LÝ]
   //[GET] private/phanquyen
   phanquyen(req, res, next) {
