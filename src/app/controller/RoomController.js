@@ -140,18 +140,23 @@ class RoomController {
   //[GET] private/doiphongsearch
   async doiphongsearch(req, res, next) {
     const cmnd = req.query.cmnd;
-    if (cmnd == "") {
-      res.send("không có dữ liệu");
-    }
+ 
     TicketBooked.find({
       cmnd: cmnd,
       
     })
       .lean()
       .then((data) => {
-        res.render("phong/phieudoiphong", {
-          data: data,
-        });
+        if (data == "") {
+          res.send("không có dữ liệu");
+        }
+        else
+        {
+          res.render("phong/phieudoiphong", {
+            data: data,
+          });
+        }
+     
         // res.json(data)
       });
   }
@@ -180,6 +185,7 @@ class RoomController {
   async doiphongput(req, res, next) {
     const id = req.params.id;
     const ticketbooked = await TicketBooked.findById(id);
+    
     const ticketbookedroom = ticketbooked.Room.idRoom;
     // chuyển trạng thái phòng đã sử dũng thành true 
     Room.findById(ticketbookedroom, function (err, room) {

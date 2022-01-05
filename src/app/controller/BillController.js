@@ -98,9 +98,15 @@ class BillController {
     TicketBooked.find({cmnd:cmnd})
     .then((data)=>
     {
+      if (data == "") {
+        res.send("không có dữ liệu ");
+      } else
+      {
         res.render("hoadon/hdtraphong",{
           data:data
         })
+      }
+      
     })
     .catch(next)
   }
@@ -119,7 +125,12 @@ class BillController {
   }
 
   hdtong(req, res, next) {
-    res.render("hoadon/hdtong");
+    res.render("hoadon/hdtongsearch");
+  }
+
+  hdtongsearch(req,res,next)
+  {
+    console.log(req.query.cmnd)
   }
 
   hdtongpost(req, res, next) {

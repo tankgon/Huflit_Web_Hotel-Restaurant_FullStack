@@ -384,7 +384,7 @@
         <div class="content-container">
             <div class="tieu_de">
                 <div class="tieu_de-text">
-                  Danh sách phòng
+                    Danh sách phòng
                 </div>
                 <div class="tieu_de-huong-dan">
                     <a href="">
@@ -414,24 +414,39 @@
 
 
 
+                        <div class="box">
 
-                       
+                            <div class="box-trong l-5">
+                                <div class="noi_dung-1-text_noi-dung">
+                                    <div class="noi_dung-1-text_noi-dung_hoten">CMND</div>
+                                    <p> (*)</p>
+                                </div>
+                                <p id="cmnd" name="cmnd"> </p>
+                            </div>
 
-                           
-                        <table border="1" class="table_ds" >
+                        </div>
+                        <div class="noi_dung-1-text_noi-dung">
+                            <div class="noi_dung-1-text_noi-dung_hoten">Họ tên</div>
+                            <p> (*)</p>
+                        </div>
+                        <p id="name" name="name"> </p>
+
+
+
+
+                        <table border="1" class="table_ds">
                             <thead>
                                 <tr class="tr_ds">
 
                                     <th scope="col">
                                         STT
                                     </th>
-                                     <th>NAME </th>
-                                    <th>CMND </th>
+                             
                                     <th>Ngày đến </th>
                                     <th scope="col">Ngày đi </th>
                                     <th scope="col">Phòng</th>
-                                     <th scope="col">Số tiền trả</th>
-                                     <th scope="col"></th>
+                                    <th scope="col">Số tiền trả</th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody id="tb">
@@ -440,9 +455,9 @@
                         </table>
 
 
+                    </div>
 
 
-                    
 
                 </div>
 
@@ -543,51 +558,52 @@
     $.ajax({
         url: 'http://localhost:3000/private/getAllTicket',
         type: 'POST',
-        data: {cmnd:param},
-        success:(data)=>{
-            data.forEach((el,index)=>{
-               
+        data: { cmnd: param },
+        success: (data) => {
+            $('#cmnd').text(`${data[0]['cmnd']}`)
+            $('#name').text(`${data[0]['name']}`)
+            data.forEach((el, index) => {
+
                 $.ajax({
                     url: 'http://localhost:3000/private/getIdRoom',
-                    type:'POST',
-                    data: {id: el['Room'].idRoom },
-                    success:(room)=>{
-                        
+                    type: 'POST',
+                    data: { id: el['Room'].idRoom },
+                    success: (room) => {
+
                         let tr = `
                  <tr class="tr_ds">
 
                                     <th scope="col">
-                                        ${index+1}
+                                        ${index + 1}
                                     </th>
-                                     <th>${el['name']}</th>
-                                    <th>${el['cmnd']} </th>
-                                    <th>${formatDay(new Date(el['dateArrive'] )) }</th>
-                                    <th scope="col">${formatDay(new Date(el['dateGo'] ))} </th>
+                          
+                                    <th>${formatDay(new Date(el['dateArrive']))}</th>
+                                    <th scope="col">${formatDay(new Date(el['dateGo']))} </th>
                                     <th scope="col">${room[0]['name']}</th>
                                      <th scope="col">${el['moneyPay']}</th>
-                                      <th scope="col"><a href="/private/doiphong/${el['Room'].idRoom}/edit">Edit</a></th>
+                                      <th scope="col"><a href="/private/doiphong/${el['_id']}/edit">Đổi phòng</a></th>
                                 </tr>
                 
                 `
-                $('#tb').append(tr)
+                        $('#tb').append(tr)
                     },
-                    error:(room)=>{
+                    error: (room) => {
                         console.log(room)
                     }
                 })
-                
-                
+
+
             })
         },
-        error:(data)=>{
+        error: (data) => {
             console.log(data)
         }
     })
-     function formatDay(day) {
-            var date = day.toJSON().slice(0, 10);
-            var nDate = date.slice(8, 10) + '/' 
-                       + date.slice(5, 7) + '/' 
-                       + date.slice(0, 4);
-            return nDate;
-        }
+    function formatDay(day) {
+        var date = day.toJSON().slice(0, 10);
+        var nDate = date.slice(8, 10) + '/'
+            + date.slice(5, 7) + '/'
+            + date.slice(0, 4);
+        return nDate;
+    }
 </script>

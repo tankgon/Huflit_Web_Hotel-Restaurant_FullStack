@@ -125,7 +125,8 @@ router.get("/hddichvu",checklogin,BillController.hddichvusearch);
 
 router.post("/hddichvu",checklogin,BillController.createhddichvu); 
         //[TỔNG]
-router.get("/hdtong/:cmnd",checklogin,BillController.hdtong);
+router.get("/hdtong",checklogin,BillController.hdtong);
+router.get("/hdtongsearch",checklogin,BillController.hdtongsearch);
 
 router.post("/khachhanghdtong",checklogin,BillController.hdtongpost);
 //

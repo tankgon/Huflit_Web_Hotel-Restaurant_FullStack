@@ -384,7 +384,7 @@
         <div class="content-container">
             <div class="tieu_de">
                 <div class="tieu_de-text">
-                  Danh sách phòng
+                    Danh sách phòng
                 </div>
                 <div class="tieu_de-huong-dan">
                     <a href="">
@@ -396,9 +396,9 @@
 
 
             <div class="noi_dung-1">
-                <div class="l-8 m-12 c-12">
+                <div class="l-10 m-12 c-12">
                     <div class="bang_lon ">
-                        <div class="noi_dung-1-text_name name_hd l-12 m-0 c-0">Thông tin khách hàng sử dụng phòng</div>
+                        <div class="noi_dung-1-text_name l-12 m-0 c-0">Thông tin khách hàng sử dụng phòng</div>
 
                         <div class="box_name">
                             <div>
@@ -414,10 +414,26 @@
 
 
 
-
                         <div class="box">
 
-                           
+                            <div class="box-trong l-5">
+                                <div class="noi_dung-1-text_noi-dung">
+                                    <div class="noi_dung-1-text_noi-dung_hoten">CMND</div>
+                                    <p> (*)</p>
+                                </div>
+                                <p id="cmnd" name="cmnd"> </p>
+                            </div>
+
+                        </div>
+                        <div class="noi_dung-1-text_noi-dung">
+                            <div class="noi_dung-1-text_noi-dung_hoten">Họ tên</div>
+                            <p> (*)</p>
+                        </div>
+                        <p id="name" name="name"> </p>
+
+
+
+
                         <table border="1" class="table_ds">
                             <thead>
                                 <tr class="tr_ds">
@@ -425,52 +441,23 @@
                                     <th scope="col">
                                         STT
                                     </th>
-                                     <th>NAME </th>
-                                    <th>CMND </th>
+                             
                                     <th>Ngày đến </th>
                                     <th scope="col">Ngày đi </th>
                                     <th scope="col">Phòng</th>
-                                     <th scope="col">Số tiền trả</th>
+                                    <th scope="col">Số tiền trả</th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                {{#each data }}
-                                <tr>
-                                    {{!-- thẻ checkbox all --}}
-
-                                    {{!-- sum này bên index.js chính để có thể thực hiện index + --}}
-                                    <th scope="row">{{sum @index 1}}</th>
-                                   <td>{{this.name}}</td>
-                                      <td>{{this.cmnd}}</td>
-                                    <td>{{this.dateArrive}}</td>
-                                    <td>{{this.dateGo}}</td>
-                                     <td>{{this.Room.idRoom}}</td>
-                                    <td>{{this.moneyPay}}</td>
-
-                                    <td>
-                                        <a href="/private/giahanphong/{{this._id}}/edit" class="btn">Gia hạm thêm</a>
-                                        {{!-- sau khi bấm xóa lấy được id khóa học mà muốn xóa
-                                        data-id là truyền id khóa học muốn lấy --}}
-                                    
-                                    </td>
-                                </tr>
-                                {{!-- else là khi không có dữ liệu nó sẽ hiển thị --}}
-                                {{else}}
-                                <tr>
-                                    <td colspan="6" class="text-center">Không có dữ liệu
-                                    </td>
-                                    <td colspan="12"> <a href="/khoahoc/showcreate">TẠO KHÁCH HÀNG</a></td>
-
-                                </tr>
+                            <tbody id="tb">
 
                             </tbody>
-                            {{/each}}
                         </table>
 
 
-
-
                     </div>
+
+
 
                 </div>
 
@@ -564,4 +551,59 @@
     modalcontainer.addEventListener('click', function (even) {
         even.stopPropagation()
     })
+</script>
+<script>
+    let searchParams = new URLSearchParams(window.location.search)
+    let param = Number(searchParams.get('cmnd'))
+    $.ajax({
+        url: 'http://localhost:3000/private/getAllTicket',
+        type: 'POST',
+        data: { cmnd: param },
+        success: (data) => {
+            $('#cmnd').text(`${data[0]['cmnd']}`)
+            $('#name').text(`${data[0]['name']}`)
+            data.forEach((el, index) => {
+
+                $.ajax({
+                    url: 'http://localhost:3000/private/getIdRoom',
+                    type: 'POST',
+                    data: { id: el['Room'].idRoom },
+                    success: (room) => {
+                       
+                        let tr = `
+                 <tr class="tr_ds">
+
+                                    <th scope="col">
+                                        ${index + 1}
+                                    </th>
+                          
+                                    <th>${formatDay(new Date(el['dateArrive']))}</th>
+                                    <th scope="col">${formatDay(new Date(el['dateGo']))} </th>
+                                    <th scope="col">${room[0]['name']}</th>
+                                     <th scope="col">${el['moneyPay']}</th>
+                                      <th scope="col"><a href="/private/giahanphong/${el['_id']}/edit">Gia hạn phòng</a></th>
+                                </tr>
+                
+                `
+                        $('#tb').append(tr)
+                    },
+                    error: (room) => {
+                        console.log(room)
+                    }
+                })
+
+
+            })
+        },
+        error: (data) => {
+            console.log(data)
+        }
+    })
+    function formatDay(day) {
+        var date = day.toJSON().slice(0, 10);
+        var nDate = date.slice(8, 10) + '/'
+            + date.slice(5, 7) + '/'
+            + date.slice(0, 4);
+        return nDate;
+    }
 </script>
