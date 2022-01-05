@@ -103,7 +103,7 @@ router.post("/datphongthanhcong",RoomController.datphongthanhcong);
 //[HÓA ĐƠN]
 
       //[DATTIEC]
-   
+ router.get("/hddattiecsearch",checklogin,BillController.hddattiecsearch);
 router.get("/hddattiec/:cmnd",checklogin,BillController.hddattiec);
 router.post("/hddattiec",checklogin,BillController.hddattiecpost);
 
@@ -130,7 +130,11 @@ router.get("/hdtong",checklogin,BillController.hdtong);
 router.get("/hdtongsearch",checklogin,BillController.hdtongsearch);
 
 router.post("/khachhanghdtong",checklogin,BillController.hdtongpost);
+
+router.get("/thongketheongay",checklogin,PrivateController.thongketheongay)
+router.get("/thongketheothang",checklogin,PrivateController.thongketheothang)
 //
+
 
 
 

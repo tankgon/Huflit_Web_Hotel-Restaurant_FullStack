@@ -75,6 +75,11 @@ class BillController {
     })
   }  
 
+  hddattiecsearch(req,res,next)
+  {
+    res.render("hoadon/hddattiecsearch")
+  }
+
 
   hddattiecpost(req,res,next)
   {

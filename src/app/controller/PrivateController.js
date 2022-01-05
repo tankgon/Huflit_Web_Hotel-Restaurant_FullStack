@@ -25,7 +25,15 @@ class PrivateController {
   
 
   showservice(req, res, next) {}
+  thongketheongay(req,res,next)
+  {
+    res.render("thongketheongay")
+  }
 
+  thongketheothang(req,res,next)
+  {
+    res.render("thongketheothang")
+  }
 
 }
 
