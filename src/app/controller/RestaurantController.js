@@ -72,7 +72,7 @@ class RestaurantController {
     voucherfood.save()
     .then(()=>
     {
-      res.redirect(`/private/hddattiec/${data.cmnd}`);
+      res.redirect(`/private/hddattiec/${req.body.cmnd}`);
     })
     .catch(next)
     
