@@ -68,16 +68,7 @@ class RoomController {
 
   //[GET] private/dsdatphong
   dsdatphong(req, res, next) {
-    // TicketBooked.find({},function(err,ticket)
-    // {
-    //    ticket.forEach((el)=>
-    //    {
-    //      console.log(el.Room.idRoom)
-    //      var idRoom = el.Room.idRoom
-    //       Room.findById({idRoom},function(err,dataRoom),)
 
-    //    })
-    // }).lean()
 
     TicketBooked.find({})
       .lean()

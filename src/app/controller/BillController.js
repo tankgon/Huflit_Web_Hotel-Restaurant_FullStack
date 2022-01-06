@@ -112,17 +112,31 @@ class BillController {
   }
 
   //[POST] private/traphong
- async traphongpost(req, res, next) {
-    // // const billroom = new BillRoom(req.body)
-    // // billroom.save()
-    // console.log(req.body.bill);
-
-    console.log(req.body)
-    
-
-
-
-
+  async traphongpost(req, res, next) {
+    const billroom = new BillRoom(req.body);
+    billroom.save();
+    const bill = req.body;
+    //  cho nó thành 1 mảng array để dùng funcion forEach duyệt nó kiếm cái id
+    const billarray = [bill];
+    // duyệt mảng kiểm idRoomm để thay đổi status phòng
+    billarray.forEach((el) => {
+      const billroomarray = el.bill;
+      billroomarray.forEach((el) => {
+        const idRoom = el.idRoomm;
+        console.log(idRoom);
+        Room.findById(idRoom, function (err, room) {
+          room.status = !room.status;
+          room.save(function (err, updatedroom) {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log("thành công");
+            }
+          });
+        });
+      });
+      // Ngọc phú code quá vip
+    });
   }
   hdtong(req, res, next) {
     res.render("hoadon/hdtongsearch");

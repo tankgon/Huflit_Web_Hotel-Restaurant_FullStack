@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ngocphuphamm/mangement-hotel.git"
+    "url": "git+https://github.com/ngocphuphamm/congnghephanmem"
   },
   "keywords": [
     "qlks"
@@ -17,9 +17,9 @@
   "author": "ngocphu",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ngocphuphamm/mangement-hotel/issues"
+    "url": "https://github.com/ngocphuphamm/congnghephanmem/issues"
   },
-  "homepage": "https://github.com/ngocphuphamm/mangement-hotel#readme",
+  "homepage": "https://github.com/ngocphuphamm/congnghephanmem#readme",
   "dependencies": {
     "@handlebars/allow-prototype-access": "^1.0.5",
     "cookie-parser": "^1.4.5",
