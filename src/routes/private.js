@@ -35,8 +35,11 @@ router.post("/khachhangdichvu",checklogin,ServiceController.createphieudichvu);
 router.get("/getTicket/:cmnd",checklogin,ServiceController.getTicket);
 router.get("/get/:cmnd",checklogin,ServiceController.getData);
 router.post("/dichvu",checklogin,ServiceController.createdichvu);
-router.get("/dsdichvu",checklogin,ServiceController.dsdichvu);
 
+router.get("/dsdichvu",checklogin,ServiceController.dsdichvu);
+router.get("/dichvu/:id/edit",checklogin,ServiceController.editdichvu)
+router.put("/dichvu/:id",checklogin,ServiceController.putdichvu)
+router.delete("/dichvu/:id",checklogin,ServiceController.deletedichvu)
 //[QUẢN LÝ ]
 // router.get("/phanquyen", checklogin, PrivateController.phanquyen);
 
@@ -112,7 +115,7 @@ router.post("/hddattiec",checklogin,BillController.hddattiecpost);
       //[SỰ CỐ]
 router.get("/hdsuco",checklogin,BillController.hdsuco);
 router.get("/suco",checklogin,BillController.suco);
-
+router.get("/getRoom/:nameRoom",checklogin,BillController.getRoom);
 
 router.post("/suco",checklogin,BillController.sucopost)
       //[PHÒNG]

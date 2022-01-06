@@ -26,19 +26,26 @@ class RestaurantController {
   dattiecsearch(req,res,next)
   {
     const namee = req.query.cmnd;
-    if(req.body == null || namee === '')
-    {
-      res.send("không có dữ liệu")
-    }
+
     console.log(namee);
     Promise.all([
       Customer.findOne({ cmnd: namee }).lean(),
       Food.find({}).lean(),
     ]).then(([data, food]) =>
-      res.render("nhahang/phieudattiec", {
-        data: data,
-        food:food,
-      })
+          {
+            if(data==" ")
+            {
+              res.send("KHÔNG CÓ DỮ LIỆU")
+            }
+            else
+            {
+              res.render("nhahang/phieudattiec", {
+                data: data,
+                food:food,
+              })
+            }
+          }
+     
     );
   }
 

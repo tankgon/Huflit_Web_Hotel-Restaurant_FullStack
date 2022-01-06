@@ -6,7 +6,7 @@ const TicketBooked = require("../models/TicketBooked");
 const VoucherFood = require("../models/VoucherFood");
 const BillFood = require("../models/BillFood");
 const BillRoom = require("../models/BillRoom");
-
+const BillAccident = require("../models/BillAccident");
 class BillController {
   //// hóa đơn/////////////
   //[GET] private/hdsuco
@@ -31,14 +31,52 @@ class BillController {
     Room.findOne({ name: name, status: false })
       .lean()
       .then((data) => {
-        res.render("hoadon/hdsucosearch", {
-          data: data,
-        });
+        if(data==" ")
+        {
+          res.send("không có dữ liệu")
+        }
+        else
+        {
+          res.render("hoadon/hdsucosearch", {
+            data: data,
+          });
+        }
+      
       })
       .catch(next);
   }
+  
+  //[POST] private/sucopost : hoàn thành billaccident
+  sucopost(req, res, next) {
+    const billaccident = new BillAccident(req.body)
+    console.log(billaccident);
+    billaccident.save()
+    return res.send("success");
+  }
 
-  sucopost(req, res, next) {}
+  
+
+  //[GET] private/getRoom/:nameRoom
+  async getRoom(req,res,next)
+  {
+    console.log(req.params.nameRoom);
+    const nameRoom = req.params.nameRoom;
+    const data = await Room.findOne({name:nameRoom})
+    const device = data.device
+    const deviceCustomer=[]
+    device.forEach((el,index)=>
+    {
+      const data = {
+         _id: el["_id"],
+         namedevice : el["namedevice"],
+          pricedevice : el["pricedevice"],
+          qty : el["qty"],
+          count : 0 , 
+      };
+      deviceCustomer.push(data);
+    })
+    return res.json(deviceCustomer)
+  }
 
   //[POST] private/hddichvu/:cmnd
   createhddichvu(req, res, next) {
