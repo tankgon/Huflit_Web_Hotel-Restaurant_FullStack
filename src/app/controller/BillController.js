@@ -180,8 +180,47 @@ class BillController {
     res.render("hoadon/hdtongsearch");
   }
 
-  hdtongsearch(req, res, next) {
-    console.log(req.query.cmnd);
+  async hdtongsearch(req, res, next) {
+    // CODE KIỂU NÀY AI  CHƠI LẠI NỮA HIHI 
+    const cmnd = req.query.cmnd;
+    if(cmnd == '')
+    {
+      res.send("Không có dữ liệu")
+    }
+    else
+    {
+     const service =  await BillService.find({cmnd:cmnd}).lean()
+     const food = await  BillFood.find({ cmnd: cmnd }).lean()
+     const room = await BillRoom.find({ cmnd: cmnd }).lean()
+     let moneyService = 0 
+     let moneyFood = 0;
+     let moneyRoom =0 ; 
+    
+    await service.forEach((el)=>
+     {
+        const totalMoney = el.totalMoney; 
+        moneyService += totalMoney
+     
+     })
+     await food.forEach((el)=>
+     {
+       const totalMoney = el.totalMoney;
+        moneyFood += totalMoney
+     })
+     await room.forEach((el)=>
+     {
+       const totalMoney = el.total;
+        moneyRoom += totalMoney
+     })
+        
+     let total = moneyService + moneyFood + moneyRoom
+    console.log(total)
+    }
+ 
+
+
+  
+   
   }
 
   hdtongpost(req, res, next) {
