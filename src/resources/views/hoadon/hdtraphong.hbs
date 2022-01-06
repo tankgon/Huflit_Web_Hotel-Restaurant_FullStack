@@ -94,7 +94,7 @@
         <li class="menu-ul_li">
           <a href="#">
             <i class="ti-clipboard"></i>
-            Dịch vụ
+            Dịch vụ 
         <li class="menu-ul_li-inside">
         <li class="menu-ul_li-inside_li">
           <a class="menu-ul_li-inside_a" href="http://localhost:3000/private/sudungdichvu">
@@ -368,10 +368,12 @@
           Hóa đơn trả phòng
         </div>
         <div class="tieu_de-huong-dan">
+          {{#each data.Room}}
           <a href="">
-            <i class="fas fa-exclamation-circle"></i>
-            Hướng dẫn
+            <h1 class="fas fa-exclamation-circle">{{this.idRoom}}</h1>
+            Hướng dẫn 
           </a>
+          {{/each}}
         </div>
       </div>
 
@@ -400,7 +402,7 @@
 
               <div class="box-trong l-5">
                 <div class="noi_dung-1-text_noi-dung">
-                  <div class="noi_dung-1-text_noi-dung_hoten">CMND</div>
+                  <div class="noi_dung-1-text_noi-dung_hoten">CMND </div>
                   <p> (*)</p>
                 </div>
                 <p id="cmnd" name="cmnd"> </p>
@@ -441,7 +443,7 @@
                 <p> (*)</p>
               </div>
               <div class="box-trong_om">
-                <span class="box-trong_text"> 0.000.000 đ</span>
+                <span class="box-trong_text" id="total"> </span>
               </div>
             </div>
 
@@ -464,7 +466,7 @@
           Hủy
         </button>
 
-        <button class="bottom-nav_luu">
+        <button class="bottom-nav_luu" id="save">
           Lưu
         </button>
       </div>
@@ -547,6 +549,7 @@
 <script>
   let searchParams = new URLSearchParams(window.location.search)
   let param = Number(searchParams.get('cmnd'))
+  const dataBill = []
   $.ajax({
     url: 'http://localhost:3000/private/getAllTicket',
     type: 'POST',
@@ -554,7 +557,7 @@
     success: (data) => {
       $('#cmnd').text(`${data[0]['cmnd']}`)
       $('#name').text(`${data[0]['name']}`)
-
+      
       data.forEach((el, index) => {
 
         $.ajax({
@@ -562,37 +565,42 @@
           type: 'POST',
           data: { id: el['Room'].idRoom },
           success: (room) => {
+            let item = {
+              countClick:0,
+              check : false,
+              idRoom: room[0]['name'],
+              dateArrive: formatDay(new Date(el['dateArrive'])),
+              dateGo: formatDay(new Date(el['dateGo'])),
+              moneyPay: el['moneyPay'],
+              dateIn:getDateDiff(formatDay(new Date(el['dateArrive'])), formatDay(new Date(el['dateGo']))),
+              price: room[0]['price'],
+              NeedPaid: (room[0]['price'] * getDateDiff(formatDay(new Date(el['dateArrive'])), formatDay(new Date(el['dateGo']))))-el['moneyPay']
 
-            let tr = `
-                 <tr class="tr_ds">
+            }
+            
+            
+            dataBill.push(item)
+          
+            
+            localStorage.setItem('bill',JSON.stringify(dataBill))
 
-                                    <th scope="col">
-                                        <input type="checkbox" id="" name="" value="" selected>
-                                    </th>
-                                     <th>     ${room[0]['name']}</th>
-                                    <th>${formatDay(new Date(el['dateArrive']))}</th>
-                                    <th>${formatDay(new Date(el['dateGo']))}</th>
-                                    <th scope="col">${el['moneyPay']} </th>
-                                    
-                                    <th scope="col">${getDateDiff(formatDay(new Date(el['dateArrive'])), formatDay(new Date(el['dateGo'])))}</th>
-                                     <th scope="col">${room[0]['price'] * getDateDiff(formatDay(new Date(el['dateArrive'])), formatDay(new Date(el['dateGo'])))}</th>
-                                      <th scope="col">${(room[0]['price'] * getDateDiff(formatDay(new Date(el['dateArrive'])), formatDay(new Date(el['dateGo']))))-el['moneyPay']}</th>
-                                </tr>
-                
-                `
-            $('#tb').append(tr)
-          },
-          error: (room) => {
-            console.log(room)
+           
           }
+         
+
+
         })
-
-
+      
+      
+      
       })
+      
+      
     },
     error: (data) => {
       console.log(data)
     }
+    
   })
   function formatDay(day) {
     var date = day.toJSON().slice(0, 10);
@@ -601,6 +609,8 @@
       + date.slice(0, 4);
     return nDate;
   }
+  
+  
 </script>
 <script>
   function getDateDiff(dateOne, dateTwo) {
@@ -628,20 +638,111 @@
          return date.split('-').reverse().join('-');
     }
  
-    console.log(getDateDiff("23-04-2018", "25-04-2018"));
+    //console.log(getDateDiff("23-04-2018", "25-04-2018"));
+</script>
+<script>
+  const data = JSON.parse(localStorage.getItem('bill'));
+  let total = 0
+  data.forEach((el,index)=>{
+     let tr = `
+                 <tr class="tr_ds">
+
+                                    <th scope="col">
+                                        <input type="checkbox" onclick="update('${index}')">
+                                    </th>
+                                     <th> ${el['idRoom']}</th>
+                                    <th>${el['dateArrive']}</th>
+                                    <th>${el['dateGo']}</th>
+                                    <th scope="col">${el['moneyPay'].toLocaleString('vi', {style : 'currency', currency : 'VND'})} </th>
+                                    
+                                    <th scope="col">${el['dateIn']}</th>
+                                     <th scope="col">${el['price'].toLocaleString('vi', {style : 'currency', currency : 'VND'})}</th>
+                                      <th scope="col">${el['NeedPaid'].toLocaleString('vi', {style : 'currency', currency : 'VND'})}</th>
+                                </tr>
+                
+                `
+            $('#tb').append(tr)
+  })
+  localStorage.setItem('total',JSON.stringify({'total':0}))
+  function update(id){
+    let total = JSON.parse(localStorage.getItem('total'))['total']
+   
+    const data = JSON.parse(localStorage.getItem('bill'));
+    if(data[id]['countClick'] >0){
+      data[id]['countClick'] = 0
+      data[id]['check'] = false
+      total -= Number(data[id]['NeedPaid'])
+      localStorage.setItem('total',JSON.stringify({'total':total}))
+      localStorage.setItem('bill',JSON.stringify(data))
+    }
+    else{
+
+    
+    data.forEach((el,index)=>{
+      
+      if(id==index){
+        el['countClick']+=1
+        el['check'] = true
+        total += Number(el['NeedPaid'])
+        localStorage.setItem('total',JSON.stringify({'total':total}))
+        
+      }
+    })
+    localStorage.setItem('bill',JSON.stringify(data))
+    }
+    
+    
+    //neu countClick = 0 la chua chon
+
+    //neu >0 thi reset =0
+    
+  }
+  setInterval(()=>{
+    let total = JSON.parse(localStorage.getItem('total'))['total']
+    
+      $('#total').text(`${total.toLocaleString('vi', {style : 'currency', currency : 'VND'})}`)
+    
+  },150)
+
+  
+
+</script>
+<script>
+  //post data
+  function getBillChecked(){
+    databill = JSON.parse(localStorage.getItem('bill'))
+    let billChecked = []
+    databill.forEach(el=>{
+      if(el['check']==true){
+        billChecked.push(el)
+        
+      }
+    })
+    
+    return billChecked
+  }
+  $('#save').click(()=>{
+    const data = {
+      cmnd: $('#cmnd').text() ,
+      name: $('#name').text(), 
+      //thong tin phieu thu => type array
+      bill: getBillChecked(),
+      //type number
+      total: Number(JSON.parse(localStorage.getItem('total'))['total'])
+
+
+    }
+    $.ajax({
+      //thong tin url dien vo nhe
+      url: '/private/traphong',
+      type: 'POST',
+      data: data,
+  
+    })
+    /*.then((res)=>{alert('Save successfully'); window.location.replace('/private');})
+    .catch((res)=>{alert('Save error ')})*/
+  })
+  
+
 </script>
 
-<!-- 
-
-  local: 
-  [
-  
-  {
-    checkbox: false, => true => for => true tổng array
-    
-
-
-  }
-  
-  ]
- -->

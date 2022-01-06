@@ -1,18 +1,13 @@
 const account = require("../models/Account");
 const jwt = require("jsonwebtoken");
-const Customer = require("../models/Customer");
-const Service = require("../models/Service");
-const TicketService = require("../models/VoucherService");
 const BillService = require("../models/BillService");
 const Room = require("../models/Room");
-const Food = require("../models/Food");
 const TicketBooked = require("../models/TicketBooked");
 const VoucherFood = require("../models/VoucherFood");
-const BillFood = require("../models/BillFood")
+const BillFood = require("../models/BillFood");
+const BillRoom = require("../models/BillRoom");
 
 class BillController {
-    
-  
   //// hóa đơn/////////////
   //[GET] private/hdsuco
   hdsuco(req, res, next) {
@@ -53,36 +48,28 @@ class BillController {
   }
 
   //[GET] private/hddichvu
-  hddichvusearch(req,res,next)
-  {
-    res.render("hoadon/hddichvusearch")
+  hddichvusearch(req, res, next) {
+    res.render("hoadon/hddichvusearch");
   }
 
-
-
-
-  //[GET] /private/dattiec/:cmnd 
-  hddattiec(req,res,next)
-  {
-    const cmnd  = req.params.cmnd
-    console.log(cmnd)
-    VoucherFood.find({cmnd:cmnd}).lean()
-    .then((data)=>
-    {
-      res.render("hoadon/hddattiec",{
-        data:data
-      })
-    })
-  }  
-
-  hddattiecsearch(req,res,next)
-  {
-    res.render("hoadon/hddattiecsearch")
+  //[GET] /private/dattiec/:cmnd
+  hddattiec(req, res, next) {
+    const cmnd = req.params.cmnd;
+    console.log(cmnd);
+    VoucherFood.find({ cmnd: cmnd })
+      .lean()
+      .then((data) => {
+        res.render("hoadon/hddattiec", {
+          data: data,
+        });
+      });
   }
 
+  hddattiecsearch(req, res, next) {
+    res.render("hoadon/hddattiecsearch");
+  }
 
-  hddattiecpost(req,res,next)
-  {
+  hddattiecpost(req, res, next) {
     const bill = new BillFood(req.body);
     bill.save();
     return res.send("success");
@@ -95,29 +82,24 @@ class BillController {
     res.render("hoadon/hdtraphongsearch");
   }
 
-
   //[GET] private/hdtraphongsearch
-  hdtraphongsearch(req,res,next)
-  {
-    const cmnd = req.query.cmnd
-    TicketBooked.find({cmnd:cmnd})
-    .then((data)=>
-    {
-      if (data == "") {
-        res.send("không có dữ liệu ");
-      } else
-      {
-        res.render("hoadon/hdtraphong",{
-          data:data
-        })
-      }
-      
-    })
-    .catch(next)
+  hdtraphongsearch(req, res, next) {
+    const cmnd = req.query.cmnd;
+    TicketBooked.find({ cmnd: cmnd })
+      .then((data) => {
+        if (data == "") {
+          res.send("không có dữ liệu ");
+        } else {
+          res.render("hoadon/hdtraphong", {
+            data: data,
+          });
+        }
+      })
+      .catch(next);
   }
 
-   //[GET] private/traphong
-   traphong(req, res, next) {
+  //[GET] private/traphong
+  traphong(req, res, next) {
     console.log(req.query.nameRoom);
     const nameRoom = req.query.nameRoom;
 
@@ -129,18 +111,41 @@ class BillController {
       .catch(next);
   }
 
+  //[POST] private/traphong
+ async traphongpost(req, res, next) {
+    // // const billroom = new BillRoom(req.body)
+    // // billroom.save()
+    // console.log(req.body.bill);
+
+    const bill = req.body.bill;
+    console.log(bill)
+    bill.forEach((el)=>
+    {
+      var idRoom = bill.idRoom;
+      // const room =  Room.find({name:idRoom})
+     const room =  Room.findOne({name:idRoom})
+     console.log(room.name)
+    })
+    
+
+
+  
+  // bill.forEach((el) => {
+  //     console.log(el.idRoom);
+
+
+  //  });
+  }
   hdtong(req, res, next) {
     res.render("hoadon/hdtongsearch");
   }
 
-  hdtongsearch(req,res,next)
-  {
-    console.log(req.query.cmnd)
+  hdtongsearch(req, res, next) {
+    console.log(req.query.cmnd);
   }
 
   hdtongpost(req, res, next) {
     res.render("hoadon/");
   }
-
 }
 module.exports = new BillController();

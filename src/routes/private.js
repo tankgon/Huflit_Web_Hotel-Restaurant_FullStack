@@ -120,6 +120,7 @@ router.get("/hdungtruoc",checklogin,BillController.hdungtruoc);
 router.get("/hdtraphong",checklogin,BillController.hdtraphong);
 router.get("/hdtraphongsearch",checklogin,BillController.hdtraphongsearch)
 router.get("/traphong",checklogin,BillController.traphong);
+router.post("/traphong",checklogin,BillController.traphongpost);
       //[DỊCH VỤ]
 router.get("/hddichvu/:cmnd",checklogin,BillController.hddichvu);
 router.get("/hddichvu",checklogin,BillController.hddichvusearch);
