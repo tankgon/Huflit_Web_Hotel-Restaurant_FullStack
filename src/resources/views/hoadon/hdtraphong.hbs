@@ -387,12 +387,11 @@
           Hóa đơn trả phòng
         </div>
         <div class="tieu_de-huong-dan">
-          {{#each data.Room}}
+    
           <a href="">
-            <h1 class="fas fa-exclamation-circle">{{this.idRoom}}</h1>
-            Hướng dẫn 
+            <i class="fas fa-exclamation-circle"></i>
+            Hướng dẫn
           </a>
-          {{/each}}
         </div>
       </div>
 
@@ -576,9 +575,10 @@
     success: (data) => {
       $('#cmnd').text(`${data[0]['cmnd']}`)
       $('#name').text(`${data[0]['name']}`)
-      
+  
       data.forEach((el, index) => {
-
+        
+      
         $.ajax({
           url: 'http://localhost:3000/private/getIdRoom',
           type: 'POST',
@@ -588,6 +588,7 @@
               countClick:0,
               check : false,
               idRoom: room[0]['name'],
+              idRoomm: el['Room'].idRoom ,
               dateArrive: formatDay(new Date(el['dateArrive'])),
               dateGo: formatDay(new Date(el['dateGo'])),
               moneyPay: el['moneyPay'],

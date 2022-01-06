@@ -117,24 +117,12 @@ class BillController {
     // // billroom.save()
     // console.log(req.body.bill);
 
-    const bill = req.body.bill;
-    console.log(bill)
-    bill.forEach((el)=>
-    {
-      var idRoom = bill.idRoom;
-      // const room =  Room.find({name:idRoom})
-     const room =  Room.findOne({name:idRoom})
-     console.log(room.name)
-    })
+    console.log(req.body)
     
 
 
-  
-  // bill.forEach((el) => {
-  //     console.log(el.idRoom);
 
 
-  //  });
   }
   hdtong(req, res, next) {
     res.render("hoadon/hdtongsearch");
