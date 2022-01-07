@@ -183,6 +183,7 @@ class BillController {
   async hdtongsearch(req, res, next) {
     // CODE KIỂU NÀY AI  CHƠI LẠI NỮA HIHI 
     const cmnd = req.query.cmnd;
+
     if(cmnd == '')
     {
       res.send("Không có dữ liệu")
@@ -214,13 +215,29 @@ class BillController {
      })
         
      let total = moneyService + moneyFood + moneyRoom
-    console.log(total)
+     Promise.all([
+      BillService.find({cmnd:cmnd}).lean(),
+      BillFood.find({ cmnd: cmnd }).lean(),
+      BillRoom.find({ cmnd: cmnd }).lean()
+    ]).then(([service,food,room]) =>
+      res.render( "hoadon/hdtong" ,{
+        service : service ,
+        room: room,
+        food : food ,
+        total : total 
+      })
+    );
     }
+  }
+
  
 
 
-  
-   
+
+  async hdtongthanhcong(req,res,next)
+  {
+    console.log("đã vào")
+    console.log(req.body)
   }
 
   hdtongpost(req, res, next) {
