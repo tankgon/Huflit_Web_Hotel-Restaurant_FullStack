@@ -585,8 +585,20 @@
               },
       ],
       'total':total
-    }
-    console.log(dataBill)
+    },
+      $.ajax({
+      url:'http://localhost:3000/private/hdtongthanhcong',
+      type: 'POST',
+      data: dataBill,
+      success:(data)=>{
+        
+          alert("thành công")
+       
+      },
+      error:(data)=>{
+        console.log(data)
+      }
+    })  
  
   })
 
