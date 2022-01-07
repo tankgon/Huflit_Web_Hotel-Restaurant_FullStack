@@ -135,8 +135,11 @@ router.get("/hdtongsearch",BillController.hdtongsearch);
 
 router.post("/khachhanghdtong",checklogin,BillController.hdtongpost);
 
+router.post("/hdtongthanhcong",checklogin,BillController.hdtongthanhcong);
+
 router.get("/thongketheongay",checklogin,PrivateController.thongketheongay)
 router.get("/thongketheothang",checklogin,PrivateController.thongketheothang)
+
 //
 
 
