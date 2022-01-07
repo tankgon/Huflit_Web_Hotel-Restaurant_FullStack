@@ -7,6 +7,8 @@ const VoucherFood = require("../models/VoucherFood");
 const BillFood = require("../models/BillFood");
 const BillRoom = require("../models/BillRoom");
 const BillAccident = require("../models/BillAccident");
+const Bill = require("../models/Bill");
+
 class BillController {
   //// hóa đơn/////////////
   //[GET] private/hdsuco
@@ -238,6 +240,9 @@ class BillController {
   {
     console.log("đã vào")
     console.log(req.body)
+    const bill = new Bill(req.body)
+    bill.save()
+    return res.send("thành công")
   }
 
   hdtongpost(req, res, next) {

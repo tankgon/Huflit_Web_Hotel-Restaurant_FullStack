@@ -6,7 +6,7 @@ const bill = new Schema(
         name : { type : String , required : true }, 
         cmnd : { type : Number , required : true }, 
         bill:[],
-       totalMoney : {type : Number, required : true  }
+       total : {type : Number, required : true  }
         
     },
     

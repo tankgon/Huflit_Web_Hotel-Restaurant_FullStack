@@ -3,19 +3,10 @@
   <!-- ====menu==== -->
   <div class="menu col l-3 m-0 c-0">
 
-<<<<<<< HEAD
-          <ul class="menu-nav l-3 m-0 c-0">
-      <a href="http://localhost:3000/private">
-                <img src="/img/logo.png" width="148px">
-      </a>
-
-    </ul>
-=======
     <ul class="menu-nav l-3 m-0 c-0">
       <a href="http://localhost:3000/private">
                 <img src="/img/logo.png" width="148px">
       </a>
->>>>>>> 2b4da55b74e786819185692b02b4b7434ae393f3
 
     </ul>
 
@@ -567,6 +558,7 @@
 <script>
   $('#save_btn').click(()=>{
      const cmnd = document.getElementById('cmnd').value
+ 
      const name = document.getElementById('name').value
      const idService = document.getElementById('idService').value
      const totalMoneyService = document.getElementById('totalService').value
@@ -576,38 +568,36 @@
      const totalMoneyRoom = document.getElementById('totalRoom').value
      const total = document.getElementById('total').value
 
-    const dataBill = {
+    const data ={
       'cmnd': cmnd , 
       'name' : name,
       'bill' : [
               {
                 'idService':idService,
-                'totalService':totalService
+                'totalService':totalMoneyService
               },
                  {
                 'idFood':idFood,
-                'totalFood':totalFood
+                'totalFood':totalMoneyFood
               },
                   {
                 'idRoom':idRoom,
-                'totalRoom':totalRoom
+                'totalRoom':totalMoneyRoom
               },
       ],
       'total':total
-    },
+    }
+    console.log(data)
       $.ajax({
-      url:'http://localhost:3000/private/hdtongthanhcong',
-      type: 'POST',
-      data: dataBill,
-      success:(data)=>{
-        
+        url : 'http://localhost:3000/private/hdtongthanhcong',
+        type :'POST',
+        data : data,
+        success : ()=>
+        {
           alert("thành công")
-       
-      },
-      error:(data)=>{
-        console.log(data)
-      }
-    })  
+            window.location.href=`http://localhost:3000/private`
+        }
+      })
  
   })
 
