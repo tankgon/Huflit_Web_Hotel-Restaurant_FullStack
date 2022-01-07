@@ -6,7 +6,7 @@ const TicketBooked = require("../models/TicketBooked");
 const VoucherFood = require("../models/VoucherFood");
 const BillFood = require("../models/BillFood");
 const BillRoom = require("../models/BillRoom");
-
+const BillAccident = require("../models/BillAccident");
 class BillController {
   //// hóa đơn/////////////
   //[GET] private/hdsuco
@@ -31,14 +31,52 @@ class BillController {
     Room.findOne({ name: name, status: false })
       .lean()
       .then((data) => {
-        res.render("hoadon/hdsucosearch", {
-          data: data,
-        });
+        if(data==" ")
+        {
+          res.send("không có dữ liệu")
+        }
+        else
+        {
+          res.render("hoadon/hdsucosearch", {
+            data: data,
+          });
+        }
+      
       })
       .catch(next);
   }
+  
+  //[POST] private/sucopost : hoàn thành billaccident
+  sucopost(req, res, next) {
+    const billaccident = new BillAccident(req.body)
+    console.log(billaccident);
+    billaccident.save()
+    return res.send("success");
+  }
 
-  sucopost(req, res, next) {}
+  
+
+  //[GET] private/getRoom/:nameRoom
+  async getRoom(req,res,next)
+  {
+    console.log(req.params.nameRoom);
+    const nameRoom = req.params.nameRoom;
+    const data = await Room.findOne({name:nameRoom})
+    const device = data.device
+    const deviceCustomer=[]
+    device.forEach((el,index)=>
+    {
+      const data = {
+         _id: el["_id"],
+         namedevice : el["namedevice"],
+          pricedevice : el["pricedevice"],
+          qty : el["qty"],
+          count : 0 , 
+      };
+      deviceCustomer.push(data);
+    })
+    return res.json(deviceCustomer)
+  }
 
   //[POST] private/hddichvu/:cmnd
   createhddichvu(req, res, next) {
@@ -142,8 +180,47 @@ class BillController {
     res.render("hoadon/hdtongsearch");
   }
 
-  hdtongsearch(req, res, next) {
-    console.log(req.query.cmnd);
+  async hdtongsearch(req, res, next) {
+    // CODE KIỂU NÀY AI  CHƠI LẠI NỮA HIHI 
+    const cmnd = req.query.cmnd;
+    if(cmnd == '')
+    {
+      res.send("Không có dữ liệu")
+    }
+    else
+    {
+     const service =  await BillService.find({cmnd:cmnd}).lean()
+     const food = await  BillFood.find({ cmnd: cmnd }).lean()
+     const room = await BillRoom.find({ cmnd: cmnd }).lean()
+     let moneyService = 0 
+     let moneyFood = 0;
+     let moneyRoom =0 ; 
+    
+    await service.forEach((el)=>
+     {
+        const totalMoney = el.totalMoney; 
+        moneyService += totalMoney
+     
+     })
+     await food.forEach((el)=>
+     {
+       const totalMoney = el.totalMoney;
+        moneyFood += totalMoney
+     })
+     await room.forEach((el)=>
+     {
+       const totalMoney = el.total;
+        moneyRoom += totalMoney
+     })
+        
+     let total = moneyService + moneyFood + moneyRoom
+    console.log(total)
+    }
+ 
+
+
+  
+   
   }
 
   hdtongpost(req, res, next) {

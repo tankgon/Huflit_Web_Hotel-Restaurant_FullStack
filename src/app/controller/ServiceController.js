@@ -24,7 +24,7 @@ class ServiceController {
     dichvu
       .save()
       .then(() => {
-        res.send("thành công");
+        res.redirect("/private/dsdichvu");
       })
       .catch(next);
   }
@@ -101,15 +101,49 @@ class ServiceController {
     }
 
 
-    dsdichvu(req,res,next)
+  dsdichvu(req,res,next)
+  {
+    Service.find({}).lean()
+    .then((data)=>
     {
-      res.render("dichvu/dsdichvu")
-    }
+      res.render("dichvu/dsdichvu",{
+        data:data
+      })
+    })
+  }
   //[QUẢN LÝ]
   //[GET] private/phanquyen
   phanquyen(req, res, next) {
     res.render("management/phieuphanquyen");
   }
 
+
+  
+   //[GET] private/dichvu/:id/edit 
+   editdichvu(req,res,next)
+   {
+    Service.findById(req.params.id)
+    .lean()
+    .then((data) => {
+      res.render("dichvu/editdichvu", {
+        data: data,
+      });
+    })
+    .catch(next);
+   }
+
+   putdichvu(req,res,next)
+   {
+    Service.updateOne({ _id: req.params.id }, req.body)
+    .then(() => res.redirect("/private/dsdichvu"))
+    .catch(next);
+   }
+
+   deletedichvu(req,res,next)
+   {
+    Service.deleteOne({ _id: req.params.id }, req.body)
+    .then(() => res.redirect("/private/dsdichvu"))
+    .catch(next);
+   }
 }
 module.exports = new ServiceController();

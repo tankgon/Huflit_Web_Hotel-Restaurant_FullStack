@@ -1,3 +1,4 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <div class="row">
   <!-- ====menu==== -->
   <div class="menu col l-3 m-0 c-0">
@@ -408,9 +409,33 @@
                   <p> (*)</p>
                 </div>
 
-                <input class="textarea " value="{{data.name}}" name="name" placeholder="Nhập mã phòng"></input>
+
+              
+               <h1><input value="{{data.name}}" id="nameRoom" name="nameRoom" placeholder="Nhập mã phòng"></input></h1> 
+        
               </div>
             </div>
+
+
+            
+
+                        
+            <div class="noi_dung-1-text_noi-dung">
+              <div class="noi_dung-1-text_noi-dung_hoten">CMND</div>
+              <p> (*)</p>
+            </div>
+            <input class="textarea" id="cmnd" name="cmnd"   placeholder="Nhập họ và tên"></input>
+
+           
+              <div class="box-trong l-12" style="width: 1000px;">
+                <div class="noi_dung-1-text_noi-dung">
+                  <div class="noi_dung-1-text_noi-dung_hoten">Họ tên</div>
+                  <p> (*)</p>
+                </div>
+                <input class="textarea" id="name" name="name"  placeholder="Nhập số HỌ TÊN"></input>
+              </div>
+            </div>
+
 
 
 
@@ -437,33 +462,10 @@
                      Thành tiền
                   </th>
                 </tr>
-    {{#each data.device}}
-                <tr>
-                  <th>
-                    1
-                  </th>
-
-                  <th>
-                     {{this.namedevice}}
-                  </th>
-                  <th>
-                        {{this.qty}}
-                  </th>
-                  <th>
-                    {{this.pricedevice}}
-                  </th>
-                    <th>
-                      <input style = "width:30px"type="text" name="huhong" id="huhong">
-                  </th>
-                  <th>
-                    <b>0000</b>
-                  </th>
-
-                </tr>
-       {{/each}}
+   
               </thead>
 
-
+               <tbody id="tbody"></tbody>
             </table>
 
         
@@ -474,8 +476,8 @@
                 <div class="noi_dung-1-text_noi-dung_hoten">Tổng tiền thanh toán</div>
                 <p> (*)</p>
               </div>
-              <div class="box-trong_om">
-                <span class="box-trong_text"> 0.000.000 đ</span>
+                 <div class="box-trong_om">
+                <span class="box-trong_text" id="money"> </span>
               </div>
             </div>
 
@@ -483,20 +485,20 @@
 
         </div>
 
-
-
-
-
-      </div>
-
       <div class="bottom-nav">
         <button class="bottom-nav_huy">
           Hủy
         </button>
 
-        <button class="bottom-nav_luu">
-          Lưu
+        <button class="bottom-nav_luu" id="save_btn">
+          Xuất hóa đơn 
         </button>
+
+
+
+      </div>
+
+
       </div>
     </div>
     <!-- ===content__Phieu Dat Tiec-end==== -->
@@ -546,27 +548,131 @@
 </div>
 
 <script>
-  // dong/mo Modal
-  const buyBtns = document.querySelectorAll('.js-buy-ticket');
-  const modal = document.querySelector('.js-modal')
-  const modalclose = document.querySelector('.js-modal-close')
-  const modalcontainer = document.querySelector('.js-modal-container')
-
-  function Showbuytickets() {
-    modal.classList.add('open')
+  const nameRoom = document.getElementById('nameRoom').value
+  console.log(nameRoom)
+  if(localStorage.getItem('device')!=null)
+  {
+    console.log('ready')
   }
-  function hidebuyticket() {
-    modal.classList.remove('open')
+  else
+  {
+    // setting local storage device
+    $.ajax({
+      url:`http://localhost:3000/private/getRoom/${nameRoom}`,
+      type : 'GET',
+      success : (data)=>
+      {
+       localStorage.setItem('device', JSON.stringify(data))
+      },
+      error: (data) => {
+          console.log(data)
+        }
+    })
+       window.location.reload()
+  }
+  // show table 
+  function renderTable(data) {
+
+    $(document).ready(() => {
+      let tbody = $('#tbody')
+
+      let str = ''
+
+      let total = 0
+      data.forEach((el, index) => {
+        total += (data[index]['count'] * data[index]['pricedevice'])
+        let tr_table =
+          `
+        <tr class="tr_ds">
+     
+          <th scope="col">
+            ${index + 1}
+          </th>
+          <th scope="col">${data[index]['namedevice']} </th>
+          <th scope="col">${data[index]['qty']} </th>
+          <th scope="col">${data[index]['pricedevice'].toLocaleString('vi', { style: 'currency', currency: 'VND' })}</th>
+          <th scope="col"><input value="${data[index]['count']}"  onchange="changeCount('${data[index]['_id']}',event)"  min = "0" max='${data[index]['qty']}' type='number' ></th>
+          <th scope="col">${(data[index]['pricedevice'] * data[index]['count']).toLocaleString('vi', { style: 'currency', currency: 'VND' })}</th>
+        </tr>
+       
+       `
+       str += tr_table
+
+
+      })
+      $('#money').text(`${total.toLocaleString('vi', { style: 'currency', currency: 'VND' })}`)
+      $('#tbody').html(str)
+  })
+
   }
 
-  for (const buyBtn of buyBtns) {
-    buyBtn.addEventListener('click', Showbuytickets)
+  const data = JSON.parse(localStorage.getItem('device'))
+  renderTable(data);
+
+  function changeCount(id, e) {
+    const data = JSON.parse(localStorage.getItem('device'))
+    data.forEach((el, index) => {
+      if (el['_id'] == id) {
+        el['count'] = Number(e.target.value)
+      }
+    })
+    localStorage.setItem('device', JSON.stringify(data))
+    renderTable(data);
   }
 
-  modalclose.addEventListener('click', hidebuyticket)
-  modal.addEventListener('click', hidebuyticket)
-  modalcontainer.addEventListener('click', function (even) {
-    even.stopPropagation()
+ 
+    function IsEmpty() {
+
+      if (document.form.question.value == "") {
+        alert("empty");
+      }
+      return;
+    }
+  </script>
+
+</script>
+
+
+
+<script>
+   $('#save_btn').click(()=>{
+   // private/dattiecsearch
+    const cmnd = $('#cmnd').val()
+    const name = $('#name').val()
+    const nameRoom = $('#nameRoom').val()
+    const device = JSON.parse(localStorage.getItem('device'))
+    let Intomoney = 0
+    if(cmnd == "" || name =="")
+    {
+        alert("empty");
+    }
+    else
+    {
+    device.forEach((el,index)=>{
+      Intomoney += (el['pricedevice'] * el['count'])
+    })
+    console.log(Intomoney)
+    const data ={
+      'cmnd': cmnd,
+      'name': name,
+      'nameRoom' : nameRoom,
+      'device': device,
+      'total': Intomoney
+    }
+    $.ajax({
+      url:'http://localhost:3000/private/suco',
+      type: 'POST',
+      data: data,
+      success:(data)=>{
+          localStorage.removeItem('device');
+          alert("thành công")
+          window.location.href=`http://localhost:3000/private`
+      },
+      error:(data)=>{
+        console.log(data)
+      }
+    })  
+    } 
   })
 </script>
 <!-- ===Gop_Y-end=== -->

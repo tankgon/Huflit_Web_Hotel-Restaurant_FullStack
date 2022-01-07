@@ -3,16 +3,11 @@ const Schema = mongoose.Schema;
 
 const billAccident = new Schema(
     {
+        cmnd : {type:Number , required : true },
+        name : {type:String , required : true },
         nameRoom : {type : String , required : true },
-        device : [
-            {
-                nameDevice : {type : String, required: true}, 
-                priceDevice : {type:Number,required:true},
-                qtyAccident:{type:Number, required:true}, 
-                intoMoney : {type:Number,required : true }
-            },
-        ],
-        totalMoney:{type:Number , required : true }
+        device : [],
+        total:{type:Number , required : true }
         
     },
     

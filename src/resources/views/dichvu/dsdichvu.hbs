@@ -35,7 +35,7 @@
                      </a>
                     </li>
 
-                    
+                
                   </li>
 
 
@@ -93,7 +93,6 @@
                   </li>
 
                   
-
                 </li>
               </a>
             </li>
@@ -374,7 +373,7 @@
     <div class="content-container">
       <div class="tieu_de">
         <div class="tieu_de-text">
-          Danh sách dịch vụ
+          Danh sách dịch vụ
         </div>
         <div class="tieu_de-huong-dan">
           <a href="">
@@ -384,10 +383,7 @@
         </div>
 
       </div>
-      {{!-- cú pháp kt --}}
-      {{!-- {{#if deletedCount}} --}}
-      <a href="/private/dskhachhang/trash">Thùng rác {{deletedCount}}</a>
-      {{!-- {{/if}} --}}
+ 
       
      
     <table border="1" class="table_ds">
@@ -396,20 +392,10 @@
      
           <th scope="col">
             STT
-
-            {{!-- viết một controller tôi đang sử dụng chức năng sort đó
-            truyển query paramter lên
-            Sort Column name trong database
-            sort từ nhỏ đén lớn asc --}}
-            <a href="?_sort&column=name&type=asc">
-              <span ></span> </a>
           </th>
-          <th> Mã KH</th>
-          <th scope="col">Tên khách hàng</th>
-          <th scope="col">CMND</th>
-          <th scope="col">SĐT</th>
-          <th scope="col">ĐỊA CHỈ</th>
-          <th scope="col">Thao tác</th>
+          <th> Tên món ăn</th>
+          <th scope="col">Đơn Gía</th>
+          <th scope="col">Thao tác thực đơn</th>
         </tr>
       </thead>
       <tbody>
@@ -419,17 +405,14 @@
    
           {{!-- sum này bên index.js chính để có thể thực hiện index + --}}
           <th scope="row">{{sum @index 1}}</th>
-          <td>{{this._id}}</td>
           <td>{{this.name}}</td>
-          <td>{{this.cmnd}}</td>
-          <td>{{this.phone}}</td>
-          <td>{{this.address}}</td>
+          <td>{{this.price}}</td>
 
           <td>
-            <a href="/private/khachhang/{{this._id}}/edit" class="btn">Sữa</a>
+            <a href="/private/dichvu/{{this._id}}/edit" class="btn">Sữa</a>
             {{!-- sau khi bấm xóa lấy được id khóa học mà muốn xóa
             data-id là truyền id khóa học muốn lấy --}}
-        <form action="/private/khachhang/{{this._id}}?_method=DELETE" method="POST">
+        <form action="/private/dichvu/{{this._id}}?_method=DELETE" method="POST">
       
         <button style="background-color:red"type="submit">Xóa</button>
         </form>

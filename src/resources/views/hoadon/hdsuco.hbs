@@ -415,75 +415,6 @@
                     </div>
                   </form>
 
-
-                  <table style="width:100%; border:1px solid black;">
-                <thead>
-                        <tr>
-                       <th>
-                          Số thứ tự
-                      </th>
-                     
-                      <th>
-                        Thiết bị 
-                      </th>
-                      <th>
-                       Số lượng
-                      </th>
-                      <th>
-                        Đơn giá
-                      </th>
-                   
-                    </tr>
-
-            {{#each data}}
-                          <tr>
-                       <th>
-                       {{sum @index 1}}
-                      </th>
-                     
-                      <th>
-                        {{this.name}}
-                      </th>
-                      <th>
-                       {{this.price}}
-                      </th>
-                      <th>
-                           {{this.type}}
-                      </th>
-                   
-                    </tr>
-                    {{/each}}
-                    </thead>
-                    <tbody id="tbody">
-
-                    </tbody>
-                    
-                  </table>
-
-                      <div class="box-trong l-5">
-                        <div class="noi_dung-1-text_noi-dung">
-                          <div class="noi_dung-1-text_noi-dung_hoten">Đơn giá</div>
-                          <p> (*)</p>
-                        </div>
-                        <div class="box-trong_om">
-                          <span class="box-trong_text"> 0.000.000 đ</span>
-                        </div> 
-                      </div>
-
-    
-                    <div class="box-trong l-5">
-                      <div class="noi_dung-1-text_noi-dung">
-                        <div class="noi_dung-1-text_noi-dung_hoten">Tổng tiền thanh toán</div>
-                        <p> (*)</p>
-                      </div>
-                      <div class="box-trong_om">
-                        <span class="box-trong_text"> 0.000.000 đ</span>
-                      </div> 
-                    </div>
-                
-                </div>
-
-              </div>
                 
   
             
@@ -491,14 +422,7 @@
   
               </div>
   
-              <div class="bottom-nav">
-                <button class="bottom-nav_huy">
-                  Hủy         
-                </button>
-  
-                <button class="bottom-nav_luu">
-                  Lưu           
-                </button>
+            
               </div>
             </div>         
            <!-- ===content__Phieu Dat Tiec-end==== -->
