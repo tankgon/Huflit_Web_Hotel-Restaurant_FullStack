@@ -1,0 +1,27 @@
+[{
+  "_id": {
+    "$oid": "61d8fee99eeaa083d51a8d69"
+  },
+  "name": "Phạm Ngọc Phú",
+  "cmnd": 1234567,
+  "phone": 909,
+  "address": "52/2 Nguyễn Thị Minh Khai,Quận 1 ,Thành phố HCM",
+  "nameService": "Dịch vụ giặt ủi",
+  "price": 200,
+  "amount": 3,
+  "IntoMoney": 600,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61d9027b23c69fa851e94ff9"
+  },
+  "name": "Phạm Ngọc Phú",
+  "cmnd": 1234567,
+  "phone": 909,
+  "address": "52/2 Nguyễn Thị Minh Khai,Quận 1 ,Thành phố HCM",
+  "nameService": "Dịch vụ uống cocktail",
+  "price": 100,
+  "amount": 3,
+  "IntoMoney": 300,
+  "__v": 0
+}]

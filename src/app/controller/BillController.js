@@ -94,7 +94,7 @@ class BillController {
 
   //[GET] /private/dattiec/:cmnd
   hddattiec(req, res, next) {
-    const cmnd = req.params.cmnd;
+    const cmnd = req.query.cmnd;
     console.log(cmnd);
     VoucherFood.find({ cmnd: cmnd })
       .lean()

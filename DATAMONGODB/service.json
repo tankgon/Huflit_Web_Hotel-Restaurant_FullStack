@@ -1,0 +1,27 @@
+[{
+  "_id": {
+    "$oid": "61b7350b6140afe75db6d2e4"
+  },
+  "name": "Dịch vụ phòng",
+  "price": 100
+},{
+  "_id": {
+    "$oid": "61b7356c6140afe75db6d2e5"
+  },
+  "name": "Dịch vụ giặt ủi",
+  "price": 200
+},{
+  "_id": {
+    "$oid": "61c319d32dba81a066e64182"
+  },
+  "name": "Dịch vụ uống cocktail ",
+  "price": 100,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61d74212b41e305d4cc987bd"
+  },
+  "name": "Dịch vụ đánh golf",
+  "price": 300,
+  "__v": 0
+}]

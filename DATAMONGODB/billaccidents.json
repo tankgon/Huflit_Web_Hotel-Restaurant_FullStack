@@ -1,0 +1,46 @@
+[{
+  "_id": {
+    "$oid": "61d9081d23c69fa851e95255"
+  },
+  "cmnd": 123456,
+  "name": "Phạm Ngọc Phú",
+  "nameRoom": "MP03",
+  "device": [
+    {
+      "_id": "61c610380480f5fe5dd798c1",
+      "namedevice": "Máy lạnh",
+      "pricedevice": "500",
+      "qty": "2",
+      "count": "2"
+    },
+    {
+      "_id": "61c610380480f5fe5dd798c2",
+      "namedevice": "TV",
+      "pricedevice": "400",
+      "qty": "1",
+      "count": "1"
+    },
+    {
+      "_id": "61c610380480f5fe5dd798c3",
+      "namedevice": "Bếp",
+      "pricedevice": "300",
+      "qty": "1",
+      "count": "0"
+    },
+    {
+      "_id": "61c610380480f5fe5dd798c4",
+      "namedevice": "Tủ lạnh",
+      "pricedevice": "100",
+      "qty": "1",
+      "count": "0"
+    }
+  ],
+  "total": 1400,
+  "createdAt": {
+    "$date": "2022-01-08T03:42:21.389Z"
+  },
+  "updatedAt": {
+    "$date": "2022-01-08T03:42:21.389Z"
+  },
+  "__v": 0
+}]

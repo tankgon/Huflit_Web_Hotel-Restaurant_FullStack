@@ -1,0 +1,18 @@
+[{
+  "_id": {
+    "$oid": "61d90d0c23c69fa851e952ea"
+  },
+  "name": "Phạm Ngọc Phú",
+  "cmnd": 1234567,
+  "dateArrive": {
+    "$date": "2022-01-01T00:00:00Z"
+  },
+  "dateGo": {
+    "$date": "2022-01-12T00:00:00Z"
+  },
+  "Room": {
+    "idRoom": "61c610380480f5fe5dd798c0"
+  },
+  "moneyPay": 300,
+  "__v": 0
+}]

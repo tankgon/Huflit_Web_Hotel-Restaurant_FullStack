@@ -1,0 +1,205 @@
+[{
+  "_id": {
+    "$oid": "61c610380480f5fe5dd798c0"
+  },
+  "name": "MP01",
+  "price": 40000,
+  "type": "Vip",
+  "device": [
+    {
+      "namedevice": "Máy lạnh",
+      "pricedevice": 500,
+      "qty": 2,
+      "_id": {
+        "$oid": "61c610380480f5fe5dd798c1"
+      }
+    },
+    {
+      "namedevice": "TV",
+      "pricedevice": 400,
+      "qty": 1,
+      "_id": {
+        "$oid": "61c610380480f5fe5dd798c2"
+      }
+    },
+    {
+      "namedevice": "Bếp",
+      "pricedevice": 300,
+      "qty": 1,
+      "_id": {
+        "$oid": "61c610380480f5fe5dd798c3"
+      }
+    },
+    {
+      "namedevice": "Tủ lạnh",
+      "pricedevice": 100,
+      "qty": 1,
+      "_id": {
+        "$oid": "61c610380480f5fe5dd798c4"
+      }
+    }
+  ],
+  "status": true,
+  "__v": 0,
+  "floor": 2
+},{
+  "_id": {
+    "$oid": "61c6106004e215697521e241"
+  },
+  "name": "MP02",
+  "price": 1000,
+  "type": "Normal",
+  "device": [
+    {
+      "namedevice": "Máy lạnh",
+      "pricedevice": 500,
+      "qty": 2,
+      "_id": {
+        "$oid": "61c6106004e215697521e242"
+      }
+    },
+    {
+      "namedevice": "TV",
+      "pricedevice": 400,
+      "qty": 1,
+      "_id": {
+        "$oid": "61c6106004e215697521e243"
+      }
+    }
+  ],
+  "status": true,
+  "__v": 0,
+  "floor": 1
+},{
+  "_id": {
+    "$oid": "61c7d2a28a657591e76694b8"
+  },
+  "name": "MP03",
+  "price": 400,
+  "type": "Vip",
+  "device": [
+    {
+      "namedevice": "Máy lạnh",
+      "pricedevice": 500,
+      "qty": 2,
+      "_id": {
+        "$oid": "61c610380480f5fe5dd798c1"
+      }
+    },
+    {
+      "namedevice": "TV",
+      "pricedevice": 400,
+      "qty": 1,
+      "_id": {
+        "$oid": "61c610380480f5fe5dd798c2"
+      }
+    },
+    {
+      "namedevice": "Bếp",
+      "pricedevice": 300,
+      "qty": 1,
+      "_id": {
+        "$oid": "61c610380480f5fe5dd798c3"
+      }
+    },
+    {
+      "namedevice": "Tủ lạnh",
+      "pricedevice": 100,
+      "qty": 1,
+      "_id": {
+        "$oid": "61c610380480f5fe5dd798c4"
+      }
+    }
+  ],
+  "status": true,
+  "__v": 0,
+  "floor": 3
+},{
+  "_id": {
+    "$oid": "61d2bc1c341cbcfb6f6290b2"
+  },
+  "name": "MP04",
+  "price": 400,
+  "type": "Vip",
+  "device": [
+    {
+      "namedevice": "Máy lạnh",
+      "pricedevice": 500,
+      "qty": 2,
+      "_id": {
+        "$oid": "61c610380480f5fe5dd798c1"
+      }
+    },
+    {
+      "namedevice": "TV",
+      "pricedevice": 400,
+      "qty": 1,
+      "_id": {
+        "$oid": "61c610380480f5fe5dd798c2"
+      }
+    },
+    {
+      "namedevice": "Bếp",
+      "pricedevice": 300,
+      "qty": 1,
+      "_id": {
+        "$oid": "61c610380480f5fe5dd798c3"
+      }
+    },
+    {
+      "namedevice": "Tủ lạnh",
+      "pricedevice": 100,
+      "qty": 1,
+      "_id": {
+        "$oid": "61c610380480f5fe5dd798c4"
+      }
+    }
+  ],
+  "status": true,
+  "__v": 0,
+  "floor": 2
+},{
+  "_id": {
+    "$oid": "61d823e9e1414344c33ea382"
+  },
+  "name": "MP05",
+  "price": 350,
+  "type": "Medium",
+  "device": [
+    {
+      "namedevice": "Máy lạnh",
+      "pricedevice": 500,
+      "qty": 2,
+      "_id": {
+        "$oid": "61c610380480f5fe5dd798c1"
+      }
+    },
+    {
+      "namedevice": "TV",
+      "pricedevice": 400,
+      "qty": 1,
+      "_id": {
+        "$oid": "61c610380480f5fe5dd798c2"
+      }
+    },
+    {
+      "namedevice": "Bếp",
+      "pricedevice": 300,
+      "qty": 1,
+      "_id": {
+        "$oid": "61c610380480f5fe5dd798c3"
+      }
+    },
+    {
+      "namedevice": "Tủ lạnh",
+      "pricedevice": 100,
+      "qty": 1,
+      "_id": {
+        "$oid": "61c610380480f5fe5dd798c4"
+      }
+    }
+  ],
+  "status": true,
+  "__v": 0,
+  "floor": 4
+}]

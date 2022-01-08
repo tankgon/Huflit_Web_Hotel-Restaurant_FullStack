@@ -1,0 +1,35 @@
+[{
+  "_id": {
+    "$oid": "61d90edd23c69fa851e95364"
+  },
+  "name": "Phạm Ngọc Phú",
+  "cmnd": 1234567,
+  "service": [
+    {
+      "nameService": "Dịch vụ giặt ủi",
+      "price": 200,
+      "amount": 3,
+      "IntoMoney": 600,
+      "_id": {
+        "$oid": "61d90edd23c69fa851e95365"
+      }
+    },
+    {
+      "nameService": "Dịch vụ uống cocktail",
+      "price": 100,
+      "amount": 3,
+      "IntoMoney": 300,
+      "_id": {
+        "$oid": "61d90edd23c69fa851e95366"
+      }
+    }
+  ],
+  "totalMoney": 900,
+  "createdAt": {
+    "$date": "2022-01-08T04:11:09.860Z"
+  },
+  "updatedAt": {
+    "$date": "2022-01-08T04:11:09.860Z"
+  },
+  "__v": 0
+}]

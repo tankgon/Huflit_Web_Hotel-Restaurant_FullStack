@@ -1,0 +1,33 @@
+[{
+  "_id": {
+    "$oid": "61c7cb688a657591e76694a1"
+  },
+  "name": "Cá hồi sashimi",
+  "price": 400
+},{
+  "_id": {
+    "$oid": "61c7cc728a657591e76694a2"
+  },
+  "name": "Cơm chiên dương châu",
+  "price": 100
+},{
+  "_id": {
+    "$oid": "61c7cc8e8a657591e76694a3"
+  },
+  "name": "Lẩu cá đuối",
+  "price": 300
+},{
+  "_id": {
+    "$oid": "61ce775c5e1b5846bbfba49d"
+  },
+  "name": "Tôm hùm mỹ ",
+  "price": 500,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ce7799589bf044517c0df7"
+  },
+  "name": "Cơm chiên cá mặn",
+  "price": 500,
+  "__v": 0
+}]

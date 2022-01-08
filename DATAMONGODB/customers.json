@@ -1,0 +1,18 @@
+[{
+  "_id": {
+    "$oid": "61d8fdcf9eeaa083d51a8d38"
+  },
+  "name": "Phạm Ngọc Phú",
+  "cmnd": 1234567,
+  "phone": 909,
+  "address": "52/2 Nguyễn Thị Minh Khai,Quận 1 ,Thành phố HCM",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2022-01-08T02:58:23.710Z"
+  },
+  "updatedAt": {
+    "$date": "2022-01-08T02:58:23.710Z"
+  },
+  "slug": "pham-ngoc-phu",
+  "__v": 0
+}]

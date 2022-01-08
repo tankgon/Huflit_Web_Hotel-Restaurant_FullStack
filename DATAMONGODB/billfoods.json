@@ -1,0 +1,31 @@
+[{
+  "_id": {
+    "$oid": "61d90e0923c69fa851e9534f"
+  },
+  "name": "Phạm Ngọc Phú",
+  "cmnd": 1234567,
+  "Food": [
+    {
+      "idFood": "61d9051023c69fa851e95050",
+      "totalMoneyFood": 4600,
+      "_id": {
+        "$oid": "61d90e0923c69fa851e95350"
+      }
+    },
+    {
+      "idFood": "61d9052923c69fa851e9505a",
+      "totalMoneyFood": 4600,
+      "_id": {
+        "$oid": "61d90e0923c69fa851e95351"
+      }
+    }
+  ],
+  "totalMoney": 9200,
+  "createdAt": {
+    "$date": "2022-01-08T04:07:37.339Z"
+  },
+  "updatedAt": {
+    "$date": "2022-01-08T04:07:37.339Z"
+  },
+  "__v": 0
+}]

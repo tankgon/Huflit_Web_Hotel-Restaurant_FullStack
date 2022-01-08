@@ -690,12 +690,14 @@
       type: 'POST',
       data: data,
       success:(data)=>{
-        console.log(data)
-          window.location.href=`http://localhost:3000/private/hddattiec/${cmnd}`
+          console.log(data)
+          alert("thành công")
+      
       },
       error:(data)=>{
         console.log(data)
       }
-    })   
+    })  
+       window.location.replace('http://localhost:3000/private'); 
   })
 </script>

@@ -1,0 +1,29 @@
+[{
+  "_id": {
+    "$oid": "61d90dd323c69fa851e95305"
+  },
+  "name": "Phạm Ngọc Phú",
+  "cmnd": 1234567,
+  "bill": [
+    {
+      "countClick": "1",
+      "check": "true",
+      "idRoom": "MP01",
+      "idRoomm": "61c610380480f5fe5dd798c0",
+      "dateArrive": "01-01-2022",
+      "dateGo": "12-01-2022",
+      "moneyPay": "300",
+      "dateIn": "11",
+      "price": "40000",
+      "NeedPaid": "439700"
+    }
+  ],
+  "total": 439700,
+  "createdAt": {
+    "$date": "2022-01-08T04:06:43.754Z"
+  },
+  "updatedAt": {
+    "$date": "2022-01-08T04:06:43.754Z"
+  },
+  "__v": 0
+}]

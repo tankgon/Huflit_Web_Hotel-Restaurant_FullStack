@@ -1,0 +1,107 @@
+[{
+  "_id": {
+    "$oid": "61d9051023c69fa851e95050"
+  },
+  "name": "Phạm Ngọc Phú",
+  "cmnd": 1234567,
+  "phone": 909,
+  "food": [
+    {
+      "price": 400,
+      "count": 1,
+      "_id": {
+        "$oid": "61c7cb688a657591e76694a1"
+      }
+    },
+    {
+      "price": 100,
+      "count": 3,
+      "_id": {
+        "$oid": "61c7cc728a657591e76694a2"
+      }
+    },
+    {
+      "price": 300,
+      "count": 3,
+      "_id": {
+        "$oid": "61c7cc8e8a657591e76694a3"
+      }
+    },
+    {
+      "price": 500,
+      "count": 3,
+      "_id": {
+        "$oid": "61ce775c5e1b5846bbfba49d"
+      }
+    },
+    {
+      "price": 500,
+      "count": 2,
+      "_id": {
+        "$oid": "61ce7772132497f21b743e5e"
+      }
+    },
+    {
+      "price": 500,
+      "count": 1,
+      "_id": {
+        "$oid": "61ce7799589bf044517c0df7"
+      }
+    }
+  ],
+  "totalMoney": 4600,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61d9052923c69fa851e9505a"
+  },
+  "name": "Phạm Ngọc Phú",
+  "cmnd": 1234567,
+  "phone": 909,
+  "food": [
+    {
+      "price": 400,
+      "count": 1,
+      "_id": {
+        "$oid": "61c7cb688a657591e76694a1"
+      }
+    },
+    {
+      "price": 100,
+      "count": 3,
+      "_id": {
+        "$oid": "61c7cc728a657591e76694a2"
+      }
+    },
+    {
+      "price": 300,
+      "count": 3,
+      "_id": {
+        "$oid": "61c7cc8e8a657591e76694a3"
+      }
+    },
+    {
+      "price": 500,
+      "count": 3,
+      "_id": {
+        "$oid": "61ce775c5e1b5846bbfba49d"
+      }
+    },
+    {
+      "price": 500,
+      "count": 2,
+      "_id": {
+        "$oid": "61ce7772132497f21b743e5e"
+      }
+    },
+    {
+      "price": 500,
+      "count": 1,
+      "_id": {
+        "$oid": "61ce7799589bf044517c0df7"
+      }
+    }
+  ],
+  "totalMoney": 4600,
+  "__v": 0
+}]

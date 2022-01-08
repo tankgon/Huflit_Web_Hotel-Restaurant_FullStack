@@ -107,7 +107,7 @@ router.post("/datphongthanhcong",RoomController.datphongthanhcong);
 
       //[DATTIEC]
  router.get("/hddattiecsearch",checklogin,BillController.hddattiecsearch);
-router.get("/hddattiec/:cmnd",checklogin,BillController.hddattiec);
+router.get("/hddattiec",checklogin,BillController.hddattiec);
 router.post("/hddattiec",checklogin,BillController.hddattiecpost);
 
 
