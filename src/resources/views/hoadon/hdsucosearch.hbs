@@ -552,7 +552,17 @@
 
 <script>
   const nameRoom = document.getElementById('nameRoom').value
-  console.log(nameRoom)
+  
+   console.log(nameRoom);
+   if(nameRoom == "")
+  {
+      alert("Phòng không trong trạng thái đang thuê nên không cần kiểm")
+      window.location.replace = "http://localhost:3000/private"
+  }
+  else
+  {
+
+   
   if(localStorage.getItem('device')!=null)
   {
     console.log('ready')
@@ -577,6 +587,7 @@
   function renderTable(data) {
 
     $(document).ready(() => {
+     
       let tbody = $('#tbody')
 
       let str = ''
@@ -608,7 +619,7 @@
   })
 
   }
-
+ 
   const data = JSON.parse(localStorage.getItem('device'))
   renderTable(data);
 
@@ -631,7 +642,8 @@
       }
       return;
     }
-  </script>
+  }
+
 
 </script>
 

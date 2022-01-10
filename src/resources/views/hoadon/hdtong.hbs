@@ -5,7 +5,7 @@
 
     <ul class="menu-nav l-3 m-0 c-0">
       <a href="http://localhost:3000/private">
-                <img src="/img/logo.png" width="148px">
+        <img src="/img/logo.png" width="148px">
       </a>
 
     </ul>
@@ -400,24 +400,22 @@
 
 
 
-       
+
             <div class="box">
-     
+
               <div class="box-trong l-5">
-                {{#each service}}
+
                 <div class="noi_dung-1-text_noi-dung">
                   <div class="noi_dung-1-text_noi-dung_hoten">CMND: </div>
-                  <input type="text" id="cmnd" name="cmnd" value="{{this.cmnd}}">
+                  <input type="text" name="cmnd" id="cmnd" value="{{customer.cmnd}}">
                 </div>
-           
+
               </div>
             </div>
             <div class="noi_dung-1-text_noi-dung">
               <div class="noi_dung-1-text_noi-dung_hoten">Họ tên: </div>
-        
-              <input type="text" id="name" name="name" value="{{this.name}}">
+              <input type="text" name="name" id="name" value="{{customer.name}}">
             </div>
-            {{/each}}
             <table style="width:100%; border:1px solid black;">
               <thead>
                 <tr>
@@ -428,7 +426,7 @@
                   <th>
                     Mã hóa đơn
                   </th>
-                  <th>
+                  <th style="width: 100px;">
                     Tổng tiền
                   </th>
 
@@ -441,36 +439,38 @@
 
                   {{!-- sum này bên index.js chính để có thể thực hiện index + --}}
                   <th scope="row">Dịch vụ </th>
-                  <td ><input type="text" id="idService" style ="width:300px" name="idService "value="{{this._id}}"></td>
-                  <td><input type="text" id="totalService" name ="totalService"value="{{this.totalMoney}}"></td>
+                  <td><input type="text" id="idService" style="width:300px" name="idService " value="{{this._id}}">
+                  </td>
+                  <td><input type="text" style="width:100px" id="totalService" name="totalService"
+                      value="{{this.totalMoney}}"></td>
 
                   </td>
                 </tr>
-                 {{/each}}
-                     {{#each room}}
+                {{/each}}
+                {{#each room}}
                 <tr>
                   {{!-- thẻ checkbox all --}}
 
                   {{!-- sum này bên index.js chính để có thể thực hiện index + --}}
                   <th scope="row">Trả phòng </th>
-                  <td><input type="text" id="idRoom" style ="width:300px" value="{{this._id}}"></td>
-                  <td><input type="text" id="totalRoom" value="{{this.total}}" ></td>
+                  <td><input type="text" id="idRoom" style="width:300px" value="{{this._id}}"></td>
+                  <td><input type="text" id="totalRoom" value="{{this.total}}"></td>
 
                   </td>
                 </tr>
-                 {{/each}}
-                   {{#each food}}
+                {{/each}}
+                {{#each food}}
                 <tr>
                   {{!-- thẻ checkbox all --}}
 
                   {{!-- sum này bên index.js chính để có thể thực hiện index + --}}
                   <th scope="row">Đặt tiệc</th>
-                  <td><input type="text" id="idFood" style ="width:300px" value="{{this._id}}" ></td>
-                  <td><input type="text" id="totalFood" value="{{this.totalMoney}}" ></td>
+                  <td><input type="text" id="idFood" style="width:300px" value="{{this._id}}"></td>
+                  <td><input type="text" id="totalFood" value="{{this.totalMoney}}"></td>
 
                   </td>
                 </tr>
-                 {{/each}}
+                {{/each}}
               </tbody>
 
             </table>
@@ -479,8 +479,8 @@
 
             <div class="box-trong l-5">
               <div class="noi_dung-1-text_noi-dung">
-                <div class="noi_dung-1-text_noi-dung_hoten">Tổng tiền thanh toán </div> 
-                 <input type="text" id="total" value="{{total}}" > 
+                <div class="noi_dung-1-text_noi-dung_hoten">Tổng tiền thanh toán </div>
+                <input type="text" id="total" style="width :300px" value="{{total}}">
               </div>
               <div class="box-trong_om">
                 <span class="box-trong_text" id="total" name="total"> </span>
@@ -556,51 +556,48 @@
 </div>
 
 <script>
-  $('#save_btn').click(()=>{
-     const cmnd = document.getElementById('cmnd').value
- 
-     const name = document.getElementById('name').value
-     const idService = document.getElementById('idService').value
-     const totalMoneyService = document.getElementById('totalService').value
-     const idFood = document.getElementById('idFood').value
-     const totalMoneyFood = document.getElementById('totalFood').value
-     const idRoom =  document.getElementById('idRoom').value
-     const totalMoneyRoom = document.getElementById('totalRoom').value
-     const total = document.getElementById('total').value
+  $('#save_btn').click(() => {
+    const cmnd = document.getElementById('cmnd').value
 
-    const data ={
-      'cmnd': cmnd , 
-      'name' : name,
-      'bill' : [
-              {
-                'idService':idService,
-                'totalService':totalMoneyService
-              },
-                 {
-                'idFood':idFood,
-                'totalFood':totalMoneyFood
-              },
-                  {
-                'idRoom':idRoom,
-                'totalRoom':totalMoneyRoom
-              },
+    const name = document.getElementById('name').value
+    const idService = document.getElementById('idService').value
+    const totalMoneyService = document.getElementById('totalService').value
+    const idFood = document.getElementById('idFood').value
+    const totalMoneyFood = document.getElementById('totalFood').value
+    const idRoom = document.getElementById('idRoom').value
+    const totalMoneyRoom = document.getElementById('totalRoom').value
+    const total = document.getElementById('total').value
+
+    const data = {
+      'cmnd': cmnd,
+      'name': name,
+      'bill': [
+        {
+          'idService': idService,
+          'totalService': totalMoneyService
+        },
+        {
+          'idFood': idFood,
+          'totalFood': totalMoneyFood
+        },
+        {
+          'idRoom': idRoom,
+          'totalRoom': totalMoneyRoom
+        },
       ],
-      'total':total
+      'total': total
     }
     console.log(data)
-      $.ajax({
-        url : 'http://localhost:3000/private/hdtongthanhcong',
-        type :'POST',
-        data : data,
-        success : ()=>
-        {
-          alert("thành công")
-            window.location.href=`http://localhost:3000/private`
-        }
-      })
- 
+    $.ajax({
+      url: 'http://localhost:3000/private/hdtongthanhcong',
+      type: 'POST',
+      data: data,
+      success: () => {
+        alert("thành công")
+        window.location.href = `http://localhost:3000/private`
+      }
+    })
+
   })
 
 </script>
-
-

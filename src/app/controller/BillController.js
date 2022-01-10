@@ -8,6 +8,7 @@ const BillFood = require("../models/BillFood");
 const BillRoom = require("../models/BillRoom");
 const BillAccident = require("../models/BillAccident");
 const Bill = require("../models/Bill");
+const Customer = require("../models/Customer");
 
 class BillController {
   //// hóa đơn/////////////
@@ -61,6 +62,7 @@ class BillController {
   //[GET] private/getRoom/:nameRoom
   async getRoom(req,res,next)
   {
+    
     console.log(req.params.nameRoom);
     const nameRoom = req.params.nameRoom;
     const data = await Room.findOne({name:nameRoom})
@@ -185,13 +187,14 @@ class BillController {
   async hdtongsearch(req, res, next) {
     // CODE KIỂU NÀY AI  CHƠI LẠI NỮA HIHI 
     const cmnd = req.query.cmnd;
-
+ 
     if(cmnd == '')
     {
       res.send("Không có dữ liệu")
     }
     else
     {
+     const customer = await Customer.findOne({cmnd:cmnd}).lean()
      const service =  await BillService.find({cmnd:cmnd}).lean()
      const food = await  BillFood.find({ cmnd: cmnd }).lean()
      const room = await BillRoom.find({ cmnd: cmnd }).lean()
@@ -215,7 +218,7 @@ class BillController {
        const totalMoney = el.total;
         moneyRoom += totalMoney
      })
-        
+   
      let total = moneyService + moneyFood + moneyRoom
      Promise.all([
       BillService.find({cmnd:cmnd}).lean(),
@@ -226,6 +229,7 @@ class BillController {
         service : service ,
         room: room,
         food : food ,
+        customer : customer , 
         total : total 
       })
     );
